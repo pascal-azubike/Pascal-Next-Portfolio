@@ -27,19 +27,20 @@ const HomePage: React.FC = () => {
           <main className=" max-w-5xl mx-auto mt-32  md:mt-40 px-8  ">
             <section className="max-w-3xl">
               <h2 className=" text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                Im a software engineer that rarely{" "}
-                <span className="text-blue-400">writes code.</span>
+                I&apos;m a software engineer who is passionate about{" "}
+                <span className="text-blue-400"> code writing</span>
               </h2>
               <p className="text-gray-400 mb-8">
-                Meet Your Name, the self-proclaimed code wizard who can turn
-                caffeine into beautiful websites. Their passion for building
-                clean and functional designs is only rivaled by their passion
-                for finding the perfect GIF to express their excitement.
+                Meet Azubike Pascal, the self-proclaimed code wizard who
+                transforms ideas into beautiful, responsive websites. His
+                passion for crafting clean, functional designs is matched only
+                by his dedication to creating seamless user experiences and
+                finding the perfect GIF to celebrate every project milestone.
               </p>
               <p className="text-zinc-400">
-                Building <span className="font-semibold">ProjectOne</span> and{" "}
-                <span className="font-semibold">ProjectTwo</span> when Im not
-                working on my day job.
+                Createing <span className="font-semibold">Blog posts</span> and{" "}
+                <span className="font-semibold">YouTube videos</span> when Im
+                not working on my day job.
               </p>
             </section>
 
@@ -48,7 +49,9 @@ const HomePage: React.FC = () => {
                 Work Experience
               </h3>
               <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide ">
-                I switch a lot of companies. Its mostly about the culture.
+                Driven by a passion for growth and cultural fit, I’ve gained
+                diverse experience across multiple companies, refining my skills
+                and adapting to new challenges along the way.
               </p>
               <WorkExperience />
             </section>

@@ -16,6 +16,12 @@ import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { cn } from "@/lib/utils";
+import "highlight.js/styles/atom-one-dark.css";
+import "react-quill/dist/quill.snow.css";
+
+import { Copy } from "lucide-react";
+import hljs from "highlight.js";
+import { useSearchStore } from "@/hooks/use-search-store";
 
 interface HeadingObject {
   id: string;
@@ -25,16 +31,18 @@ interface HeadingObject {
 }
 
 interface Article {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   blurImage: string;
   imageUrl: string;
+  shortSummary: string;
+  pdfUrl: string;
 }
 
 interface ApiResponse {
   article: Article;
-  relatedArticles: Article[];
+  similarArticles: Article[];
 }
 
 const ArticleLayout: React.FC = () => {
@@ -43,6 +51,7 @@ const ArticleLayout: React.FC = () => {
   const [articleStructure, setArticleStructure] = useState<HeadingObject[]>([]);
   const contentRef = useRef<HTMLDivElement>(null);
   const articleContentRef = useRef<HTMLDivElement>(null);
+  const [articleHtml, setArticleHtml] = useState<string>("");
 
   const pathname = usePathname();
   const id = pathname.split("/").pop() || "";
@@ -57,9 +66,114 @@ const ArticleLayout: React.FC = () => {
 
   const article = data?.article;
 
+  const handleDownload = async (pdfUrl: any) => {
+    console.log(pdfUrl, "pdfurl....................");
+    try {
+      const response = await fetch(pdfUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Christian-Games-and-Puzzles.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+      // You might want to show an error message to the user here
+    }
+  };
+  // Modify code blocks and other elements
+
+  const processArticleContent = (htmlContent: string) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, "text/html");
+
+    const codeBlocks = doc.querySelectorAll("pre");
+
+    codeBlocks.forEach((codeBlock) => {
+      // Create wrapper
+      const wrapper = document.createElement("div");
+      wrapper.className = "my-4 rounded-lg overflow-hidden";
+
+      // Navbar for the code block
+      const navbar = document.createElement("div");
+      navbar.className =
+        "bg-zinc-800 px-4 py-2 flex justify-between items-center";
+
+      const languageSpan = document.createElement("span");
+      languageSpan.className = "text-zinc-400";
+
+      // Convert codeBlock content to string for highlighting
+      const codeContent = codeBlock.textContent || "";
+      const result = hljs.highlightAuto(codeContent);
+      const language = result.language || "plaintext";
+      languageSpan.textContent = language;
+      navbar.appendChild(languageSpan);
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-button text-zinc-400 hover:text-white flex items-center";
+      copyButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span className="text-sm">Copy</span>
+      `;
+
+      navbar.appendChild(copyButton);
+
+      // Insert the navbar before the code block
+      codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
+
+      // Move the code block into the wrapper
+      wrapper.appendChild(navbar);
+      wrapper.appendChild(codeBlock);
+    });
+
+    // Add event listener to the document body for event delegation
+    document.body.addEventListener("click", function (event) {
+      const target = event.target as Element;
+      if (target.closest(".copy-button")) {
+        const copyButton = target.closest(".copy-button") as HTMLElement;
+        const codeBlock = copyButton.closest(".my-4")?.querySelector("pre");
+        if (codeBlock) {
+          const codeText = codeBlock.textContent || "";
+          navigator.clipboard
+            .writeText(codeText)
+            .then(() => {
+              console.log("Text copied to clipboard");
+              copyButton.innerHTML = `
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                 <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span className="text-sm">Copied!</span>
+              `;
+              setTimeout(() => {
+                copyButton.innerHTML = `
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span className="text-sm" >Copy</span>
+                `;
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy text: ", err);
+            });
+        }
+      }
+    });
+
+    return doc.body.innerHTML; // Return the processed HTML
+  };
+
   useEffect(() => {
     if (article?.description && articleContentRef.current) {
-      articleContentRef.current.innerHTML = article.description;
+      articleContentRef.current.innerHTML = articleHtml;
       const headings = articleContentRef.current.querySelectorAll("h1, h2, h3");
 
       const structure: HeadingObject[] = [
@@ -104,10 +218,11 @@ const ArticleLayout: React.FC = () => {
             break;
         }
       });
-
+      const processedContent = processArticleContent(article.description);
+      setArticleHtml(processedContent);
       setArticleStructure(structure);
     }
-  }, [article]);
+  }, [article, articleHtml]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -164,8 +279,7 @@ const ArticleLayout: React.FC = () => {
     }
     setIsDrawerOpen(false);
   };
-
-
+  // left sidebar.......................................................................................
   const LeftSidebar: React.FC = () => {
     const [hoveredSection, setHoveredSection] = useState<string | null>(null);
     const renderSidebarItems = (items: HeadingObject[]) => {
@@ -238,6 +352,7 @@ const ArticleLayout: React.FC = () => {
         <div className="p-4">
           <div className="relative">
             <input
+              onFocus={toggleOpen}
               type="text"
               placeholder="Quick search..."
               className="w-full py-2 pl-8 pr-3 text-sm bg-[rgba(32,33,39,0.8)] text-white rounded-lg border border-[#343541] focus:outline-none focus:border-[#4b9bff]"
@@ -257,8 +372,7 @@ const ArticleLayout: React.FC = () => {
       </div>
     );
   };
-
-  // ... (rest of the component remains the same)
+  const { toggleOpen } = useSearchStore();
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
@@ -288,6 +402,7 @@ const ArticleLayout: React.FC = () => {
         <div className="relative flex-1 max-w-[400px] ml-4">
           <div className="relative">
             <input
+              onFocus={toggleOpen}
               type="text"
               placeholder="Quick search..."
               className="w-full py-2 pl-8 pr-3 text-sm bg-zinc-800 text-white rounded-lg border border-zinc-700 focus:outline-none focus:border-blue-400"
@@ -301,7 +416,7 @@ const ArticleLayout: React.FC = () => {
       </div>
 
       <div className="mx-auto px-4 lg:px-0 max-w-screen-2xl">
-        <div className="flex flex-col lg:flex-row gap-8 left">
+        <div className="flex flex-col lg:flex-row min-[1200px]:gap-8 left">
           {/* Left Sidebar */}
           <div className="hidden lg:block lg:w-1/4 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto">
             <LeftSidebar />
@@ -316,15 +431,20 @@ const ArticleLayout: React.FC = () => {
                   {article?.title}
                 </h1>
                 <p className="text-gray-400 text-lg mb-8 max-w-2xl">
-                  {article?.description.slice(0, 120)}
+                  {article?.shortSummary}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="inline-flex items-center justify-center px-6 py-3 bg-blue-400 text-black font-semibold rounded-lg hover:bg-blue-300 transition-colors">
                     Share <Share2 className="ml-2" size={20} />
                   </Button>
-                  <Button className="inline-flex items-center justify-center px-6 py-3 border border-blue-400 text-white font-semibold rounded-lg hover:bg-blue-400 hover:text-black transition-all">
-                    <Eye className="mr-2" size={20} /> Read Later
-                  </Button>
+                  <div>
+                    <Button
+                      onClick={() => handleDownload(article?.pdfUrl)}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-blue-400 text-white font-semibold rounded-lg hover:bg-blue-400 hover:text-black transition-all"
+                    >
+                      <Eye className="mr-2" size={20} /> Read Later
+                    </Button>
+                  </div>
                 </div>
               </div>
             </section>
@@ -361,34 +481,19 @@ const ArticleLayout: React.FC = () => {
           <div className="lg:w-1/4 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto right">
             <div className="space-y-8 p-4">
               {/* Social Media Section */}
-              <div className="bg-zinc-800/50 backdrop-blur-sm text-gray-400 rounded-lg p-6">
-                <h2 className="text-white text-lg font-semibold mb-4">
-                  Share This Article
-                </h2>
-                <div className="flex flex-wrap justify-start items-start gap-4">
-                  <Button className="bg-blue-400 text-black hover:bg-blue-300 transition-colors">
-                    <Share2 className="mr-2" size={18} /> Share
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-blue-400 text-white hover:bg-blue-400 hover:text-black transition-all"
-                  >
-                    <Eye className="mr-2" size={18} /> Read Later
-                  </Button>
-                </div>
-              </div>
+
               <div className="bg-zinc-800/50 backdrop-blur-sm text-gray-400 rounded-lg p-6">
                 <h3 className="text-xl font-bold mb-2">Related Articles</h3>
                 <ul>
-                  {data?.relatedArticles
+                  {data?.similarArticles
                     ?.slice(0, 5)
-                    .map((relatedArticle, index) => (
+                    .map((similarArticle, index) => (
                       <li key={index} className="mb-2">
                         <a
-                          href="#"
+                          href={`/blogs/${similarArticle._id}`}
                           className="text-blue-400 hover:text-blue-300 transition-colors"
                         >
-                          {relatedArticle.title}
+                          {similarArticle.title}
                         </a>
                       </li>
                     ))}

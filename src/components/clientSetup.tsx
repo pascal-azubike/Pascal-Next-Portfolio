@@ -6,6 +6,7 @@ import Navbar from "./navbar";
 import Link from "next/link";
 import { FloatingNavbar } from "./FloatingNavbar";
 import Footer from "./footer";
+import GlobalSearch from "./search";
 const queryClient = new QueryClient();
 
 export default function ClientSetup({
@@ -17,7 +18,7 @@ export default function ClientSetup({
     <div className="">
       <QueryClientProvider client={queryClient}>
         <main>{children}</main>
-
+        <GlobalSearch />
         {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </QueryClientProvider>
     </div>

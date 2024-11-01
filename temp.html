@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        .ql-editor {
+            padding: 0;
+        }
+        .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .ql-editor p {
+            margin-bottom: 1em;
+        }
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+        a:hover {
+            color: #2563eb;
+        }
+        a:active {
+            color: #1d4ed8;
+        }
+        blockquote {
+            background-color: #1f2937;
+            padding-left: 1.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-left: 2px solid #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .ql-syntax {
+  background-color: #282c34 !important;
+  padding: 10px;
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  overflow-wrap: break-word; /* Modern browsers */
+}
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 14px;
+        }
+        ul li {
+            padding-left: 8px;
+        }
+        ol li {
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-zinc-900 max-w-5xl mx-auto py-4 px-6 flex items-center justify-between">
+        <div class="flex items-center space-x-4 cursor-pointer">
+            <img id="author-image" alt="Author" class="rounded-full w-9 h-9" src="https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_300/h_300//v1729800030/orama_dropdown_search_pys0jh.png" />
+            <a class="text-white hover:text-gray-300 active:text-gray-400 transition-colors duration-200 font-semibold" href="/" id="author-name">Azubike Pascal</a>
+        </div>
+        <div class="hidden md:flex space-x-6">
+            <a href="http://localhost:3000"><span class="text-white hover:text-gray-300 active:text-gray-400 transition-colors duration-200">About</span></a>
+            <a href="http://localhost:3000"><span class="text-white hover:text-gray-300 active:text-gray-400 transition-colors duration-200">Projects</span></a>
+            <a href="http://localhost:3000"><span class="text-white hover:text-gray-300 active:text-gray-400 transition-colors duration-200">Blogs</span></a>
+        </div>
+        <div class="hidden md:block">
+            <a class="bg-gradient-to-br from-zinc-700 to-zinc-800 text-white px-4 py-2 rounded-lg hover:bg-gradient-to-br hover:from-zinc-600 hover:to-zinc-700 active:from-zinc-800 active:to-zinc-900 hover:shadow-lg hover:shadow-zinc-700/50 transition-all duration-300" href="/path/to/your/resume.pdf">Download CV</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4">Embracing Faith Through Fun Added Create Article</h1>
+            <p id="article-description" class="text-gray-400 text-lg mb-4">engaging activities are more than just pastimes; they are powerful tools designed to deepen one's understanding of scripture, foster community, and nurture spiritual development.</p>
+        </header>
+        
+        <main>
+            <div id="article-image" class="mb-8 relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800"><img src="https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_800//v1729800030/orama_dropdown_search_pys0jh.png" alt="Embracing Faith Through Fun Added Create Article" style="width: 100%; height: 100%; object-fit: cover;">
+                <!-- Image will be inserted here -->
+            </div>
+            
+            <div id="article-content" class="prose prose-invert max-w-none"><h2>This is an heading modified</h2><p>In a world where entertainment often seems detached from spiritual growth, Christian games and puzzles offer a refreshing way to combine fun with faith. These engaging activities are more than just pastimes; they are powerful tools designed to deepen one's understanding of scripture, foster community, and nurture spiritual development.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/RVvfr7aniko?showinfo=0"></iframe><p><br></p><p><br></p><p>Christian games and puzzles come in various forms, each tailored to convey biblical lessons in an interactive and enjoyable manner. From board games that bring Bible stories to life to intricate puzzles that feature scriptural themes, these resources are crafted to make learning about faith both accessible and enjoyable.</p><h2>This is another heading</h2><p>One of the most significant benefits of Christian games and puzzles is their ability to make scripture memorable. By engaging with Bible verses through interactive play, players are more likely to internalize and reflect on spiritual teachings. For instance, a game that challenges players to answer questions about Bible characters or events not only tests their knowledge but also reinforces their understanding of the material.</p><p><br></p><p><br></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-string">"use client"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Image</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"next/image"</span>;
+<span class="hljs-keyword">import</span> { useEffect, useState, useMemo, useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { useForm } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-hook-form"</span>;
+<span class="hljs-keyword">import</span> { z } <span class="hljs-keyword">from</span> <span class="hljs-string">"zod"</span>;
+<span class="hljs-keyword">import</span> { zodResolver } <span class="hljs-keyword">from</span> <span class="hljs-string">"@hookform/resolvers/zod"</span>;
+<span class="hljs-keyword">import</span> dynamic <span class="hljs-keyword">from</span> <span class="hljs-string">"next/dynamic"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"react-quill/dist/quill.snow.css"</span>;
+<span class="hljs-comment">// You can choose a different style if you prefer</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Resizer</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react-image-file-resizer"</span>;
+
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">"highlight.js/styles/atom-one-dark.css"</span>;
+
+
+<span class="hljs-keyword">import</span> {
+&nbsp; <span class="hljs-title class_">Form</span>,
+&nbsp; <span class="hljs-title class_">FormControl</span>,
+&nbsp; <span class="hljs-title class_">FormField</span>,
+&nbsp; <span class="hljs-title class_">FormItem</span>,
+&nbsp; <span class="hljs-title class_">FormLabel</span>,
+&nbsp; <span class="hljs-title class_">FormMessage</span>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/ui/form"</span>;
+
+
+<span class="hljs-comment">// Dynamically import React Quill</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">ReactQuill</span> = <span class="hljs-title function_">dynamic</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">"react-quill"</span>), { <span class="hljs-attr">ssr</span>: <span class="hljs-literal">false</span> });
+
+
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Loader2</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"lucide-react"</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Button</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/ui/button"</span>;
+<span class="hljs-keyword">import</span> { useToast } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/ui/use-toast"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Input</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/ui/input"</span>;
+<span class="hljs-keyword">import</span> { useSearchParams } <span class="hljs-keyword">from</span> <span class="hljs-string">"next/navigation"</span>;
+<span class="hljs-keyword">import</span> { useQuery } <span class="hljs-keyword">from</span> <span class="hljs-string">"@tanstack/react-query"</span>;
+<span class="hljs-keyword">import</span> useUploadMutation <span class="hljs-keyword">from</span> <span class="hljs-string">"@/hooks/useUploadMutation"</span>;
+<span class="hljs-keyword">import</span> { handleImageUpload } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/hooks/handleImageUpload"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Textarea</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/ui/textarea"</span>;
+<span class="hljs-keyword">import</span> { modulesObject } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/admin-panel/modules"</span>;
+
+
+<span class="hljs-keyword">const</span> formSchema = z.<span class="hljs-title function_">object</span>({
+&nbsp; <span class="hljs-attr">title</span>: z.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nonempty</span>({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Title is required."</span> }),
+&nbsp; <span class="hljs-attr">shortSummary</span>: z
+&nbsp; &nbsp; .<span class="hljs-title function_">string</span>()
+&nbsp; &nbsp; .<span class="hljs-title function_">max</span>(<span class="hljs-number">200</span>, { <span class="hljs-attr">message</span>: <span class="hljs-string">"Short summary should be 200 characters or less."</span> })
+&nbsp; &nbsp; .<span class="hljs-title function_">nonempty</span>({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Short summary is required."</span> }),
+&nbsp; <span class="hljs-attr">description</span>: z.<span class="hljs-title function_">any</span>(),
+&nbsp; <span class="hljs-attr">image</span>: z.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nonempty</span>({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Image is required."</span> }),
+&nbsp; <span class="hljs-attr">blurImage</span>: z.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nonempty</span>({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Blur Image string is required."</span> })
+});
+
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">CreateProduct</span>() {
+&nbsp; <span class="hljs-keyword">return</span> (
+&nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">React.Suspense</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">ProductForm</span> /&gt;</span>
+&nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">React.Suspense</span>&gt;</span>
+&nbsp; );
+}
+
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">ProductForm</span>() {
+&nbsp; <span class="hljs-keyword">const</span> [isFetchingImage, setIsFetchingImage] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
+&nbsp; <span class="hljs-keyword">const</span> [quillIsFocus, setQuillIsFocus] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
+&nbsp; <span class="hljs-keyword">const</span> searchParams = <span class="hljs-title function_">useSearchParams</span>();
+&nbsp; <span class="hljs-keyword">const</span> id = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">"id"</span>);
+
+
+&nbsp; <span class="hljs-keyword">const</span> url = id
+&nbsp; &nbsp; ? <span class="hljs-string">`/api/routes/edit-article?productId=<span class="hljs-subst">${id}</span>`</span>
+&nbsp; &nbsp; : <span class="hljs-string">"/api/routes/create-article"</span>;
+
+
+&nbsp; <span class="hljs-keyword">const</span> [shouldFetch, setShouldFetch] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>); <span class="hljs-comment">// Control fetch trigger</span>
+
+
+&nbsp; <span class="hljs-keyword">const</span> {
+&nbsp; &nbsp; <span class="hljs-attr">isPending</span>: fetchEditIsPending,
+&nbsp; &nbsp; <span class="hljs-attr">error</span>: fetchEditIsError,
+&nbsp; &nbsp; <span class="hljs-attr">data</span>: fetchEditIsData,
+&nbsp; &nbsp; <span class="hljs-attr">isSuccess</span>: fetchEditIsSuccess
+&nbsp; } = <span class="hljs-title function_">useQuery</span>({
+&nbsp; &nbsp; <span class="hljs-attr">queryKey</span>: [id], <span class="hljs-comment">// Query key should be an array</span>
+&nbsp; &nbsp; <span class="hljs-attr">queryFn</span>: <span class="hljs-function">() =&gt;</span>
+&nbsp; &nbsp; &nbsp; <span class="hljs-title function_">axios</span>(<span class="hljs-string">`/api/routes/fetchSingleArticle?articleId=<span class="hljs-subst">${id}</span>&amp;place=create`</span>), <span class="hljs-comment">// Query function</span>
+&nbsp; &nbsp; <span class="hljs-attr">enabled</span>: shouldFetch <span class="hljs-comment">// Trigger query only when `shouldFetch` is true</span>
+&nbsp; });
+
+
+&nbsp; <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+&nbsp; &nbsp; <span class="hljs-keyword">if</span> (fetchEditIsSuccess) {
+&nbsp; &nbsp; &nbsp; <span class="hljs-comment">// Disable further fetching after successful fetch</span>
+&nbsp; &nbsp; &nbsp; <span class="hljs-title function_">setShouldFetch</span>(<span class="hljs-literal">false</span>);
+&nbsp; &nbsp; }
+&nbsp; }, [fetchEditIsSuccess]);
+&nbsp; <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+&nbsp; &nbsp; <span class="hljs-comment">// Trigger the query after the component mounts</span>
+&nbsp; &nbsp; <span class="hljs-title function_">setShouldFetch</span>(<span class="hljs-literal">true</span>);
+&nbsp; }, []);
+&nbsp; <span class="hljs-keyword">const</span> { toast } = <span class="hljs-title function_">useToast</span>();
+
+
+&nbsp; <span class="hljs-keyword">const</span> { error, isSuccess, mutate, isPending } = <span class="hljs-title function_">useUploadMutation</span>(url, [
+&nbsp; &nbsp; <span class="hljs-string">"newArticle"</span>,
+&nbsp; &nbsp; <span class="hljs-string">"featureArticles"</span>
+&nbsp; ]);
+
+
+&nbsp; <span class="hljs-keyword">const</span> form = useForm&lt;z.<span class="hljs-property">infer</span>&lt;<span class="hljs-keyword">typeof</span> formSchema&gt;&gt;({
+&nbsp; &nbsp; <span class="hljs-attr">resolver</span>: <span class="hljs-title function_">zodResolver</span>(formSchema),
+&nbsp; &nbsp; <span class="hljs-attr">defaultValues</span>: {
+&nbsp; &nbsp; &nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">""</span>,
+&nbsp; &nbsp; &nbsp; <span class="hljs-attr">shortSummary</span>: <span class="hljs-string">""</span>,
+&nbsp; &nbsp; &nbsp; <span class="hljs-attr">description</span>: <span class="hljs-string">""</span>,
+&nbsp; &nbsp; &nbsp; <span class="hljs-attr">image</span>: <span class="hljs-string">""</span>,
+&nbsp; &nbsp; &nbsp; <span class="hljs-attr">blurImage</span>: <span class="hljs-string">""</span>
+&nbsp; &nbsp; }
+&nbsp; });
+
+
+&nbsp; <span class="hljs-keyword">const</span> [editorContent, setEditorContent] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">""</span>);
+&nbsp; <span class="hljs-keyword">const</span> [imagePreview, setImagePreview] = useState&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+&nbsp; <span class="hljs-keyword">const</span> beforeDivRef = useRef&lt;<span class="hljs-title class_">HTMLDivElement</span>&gt;(<span class="hljs-literal">null</span>);
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">onSubmit</span> = (<span class="hljs-params"><span class="hljs-attr">values</span>: z.infer&lt;<span class="hljs-keyword">typeof</span> formSchema&gt;</span>) =&gt; {
+&nbsp; &nbsp; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(values);
+&nbsp; &nbsp; <span class="hljs-title function_">mutate</span>(values);
+&nbsp; };
+
+
+&nbsp; <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+&nbsp; &nbsp; isSuccess &amp;&amp;
+&nbsp; &nbsp; &nbsp; <span class="hljs-title function_">toast</span>({
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">description</span>: id
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? <span class="hljs-string">"Article updated successfully"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <span class="hljs-string">"Article created successfully"</span>
+&nbsp; &nbsp; &nbsp; });
+&nbsp; }, [isSuccess, id, toast]);
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">resizeFile</span> = (<span class="hljs-params"><span class="hljs-attr">file</span>: <span class="hljs-title class_">File</span></span>) =&gt;
+&nbsp; &nbsp; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
+&nbsp; &nbsp; &nbsp; <span class="hljs-title class_">Resizer</span>.<span class="hljs-title function_">imageFileResizer</span>(
+&nbsp; &nbsp; &nbsp; &nbsp; file,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-number">24</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-number">24</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">"JPEG"</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-number">30</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-number">0</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-function">(<span class="hljs-params">uri</span>) =&gt;</span> {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-title function_">resolve</span>(uri);
+&nbsp; &nbsp; &nbsp; &nbsp; },
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">"base64"</span>
+&nbsp; &nbsp; &nbsp; );
+&nbsp; &nbsp; });
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleImageChange</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"><span class="hljs-attr">e</span>: <span class="hljs-title class_">React</span>.<span class="hljs-title class_">ChangeEvent</span>&lt;<span class="hljs-title class_">HTMLInputElement</span>&gt;</span>) =&gt; {
+&nbsp; &nbsp; <span class="hljs-title function_">setIsFetchingImage</span>(<span class="hljs-literal">true</span>);
+&nbsp; &nbsp; <span class="hljs-keyword">const</span> imageUrl = <span class="hljs-keyword">await</span> <span class="hljs-title function_">handleImageUpload</span>(e);
+&nbsp; &nbsp; <span class="hljs-keyword">const</span> file = e.<span class="hljs-property">target</span>.<span class="hljs-property">files</span>?.[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> <span class="hljs-title class_">File</span>;
+&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-attr">resizedImage</span>: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">await</span> <span class="hljs-title function_">resizeFile</span>(file);
+
+
+&nbsp; &nbsp; form.<span class="hljs-title function_">setValue</span>(<span class="hljs-string">"blurImage"</span>, resizedImage.<span class="hljs-title function_">split</span>(<span class="hljs-string">","</span>)[<span class="hljs-number">1</span>]);
+&nbsp; &nbsp; <span class="hljs-title function_">setImagePreview</span>(imageUrl);
+&nbsp; &nbsp; <span class="hljs-title function_">setIsFetchingImage</span>(<span class="hljs-literal">false</span>);
+&nbsp; &nbsp; form.<span class="hljs-title function_">setValue</span>(<span class="hljs-string">"image"</span>, imageUrl);
+&nbsp; };
+
+
+&nbsp; <span class="hljs-keyword">const</span> modules = modulesObject;
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleQuillChange</span> = (<span class="hljs-params"><span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span></span>) =&gt; {
+&nbsp; &nbsp; <span class="hljs-title function_">setEditorContent</span>(content);
+&nbsp; &nbsp; form.<span class="hljs-title function_">setValue</span>(<span class="hljs-string">"description"</span>, content);
+&nbsp; };
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleQuillFocus</span> = () =&gt; {
+&nbsp; &nbsp; <span class="hljs-title function_">setQuillIsFocus</span>(<span class="hljs-literal">true</span>);
+&nbsp; };
+
+
+&nbsp; <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleOnBlur</span> = () =&gt; {
+&nbsp; &nbsp; <span class="hljs-title function_">setQuillIsFocus</span>(<span class="hljs-literal">false</span>);
+&nbsp; };
+
+
+&nbsp; <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+&nbsp; &nbsp; <span class="hljs-keyword">if</span> (beforeDivRef.<span class="hljs-property">current</span>) {
+&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">const</span> beforeDivHeight = beforeDivRef.<span class="hljs-property">current</span>.<span class="hljs-property">clientHeight</span> + <span class="hljs-number">30</span>;
+&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">const</span> formContent = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">".form-content"</span>
+&nbsp; &nbsp; &nbsp; ) <span class="hljs-keyword">as</span> <span class="hljs-title class_">HTMLDivElement</span>;
+&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">if</span> (formContent) {
+&nbsp; &nbsp; &nbsp; &nbsp; formContent.<span class="hljs-property">style</span>.<span class="hljs-property">marginTop</span> = quillIsFocus
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? <span class="hljs-string">`-<span class="hljs-subst">${beforeDivHeight}</span>px`</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <span class="hljs-string">"0"</span>;
+&nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; }
+&nbsp; }, [quillIsFocus]);
+
+
+&nbsp; <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+&nbsp; &nbsp; <span class="hljs-keyword">if</span> (fetchEditIsSuccess &amp;&amp; fetchEditIsData?.<span class="hljs-property">data</span>?.<span class="hljs-property">article</span>) {
+&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">const</span> product = fetchEditIsData.<span class="hljs-property">data</span>.<span class="hljs-property">article</span>;
+&nbsp; &nbsp; &nbsp; form.<span class="hljs-title function_">reset</span>({
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">title</span>: product.<span class="hljs-property">title</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">shortSummary</span>: product.<span class="hljs-property">shortSummary</span> || <span class="hljs-string">""</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">description</span>: product.<span class="hljs-property">description</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">image</span>: product.<span class="hljs-property">imageUrl</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">blurImage</span>: product.<span class="hljs-property">imageUrl</span>
+&nbsp; &nbsp; &nbsp; });
+&nbsp; &nbsp; &nbsp; <span class="hljs-title function_">setImagePreview</span>(product.<span class="hljs-property">imageUrl</span>);
+&nbsp; &nbsp; &nbsp; <span class="hljs-title function_">setEditorContent</span>(product.<span class="hljs-property">description</span>);
+&nbsp; &nbsp; }
+&nbsp; }, [fetchEditIsSuccess, fetchEditIsData, form]);
+
+
+&nbsp; <span class="hljs-keyword">return</span> (
+&nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Form</span> {<span class="hljs-attr">...form</span>}&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">form</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{form.handleSubmit(onSubmit)}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">className</span>=<span class="hljs-string">"md:space-y-6 md:p-10 space-y-10 p-4 form-content"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{beforeDivRef}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"beforeDiv"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormField</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">control</span>=<span class="hljs-string">{form.control}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">render</span>=<span class="hljs-string">{({</span> <span class="hljs-attr">field</span> }) =&gt;</span> (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormLabel</span>&gt;</span>Article Title<span class="hljs-tag">&lt;/<span class="hljs-name">FormLabel</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Input</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Title"</span> {<span class="hljs-attr">...field</span>} /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormMessage</span> /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormField</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">name</span>=<span class="hljs-string">"shortSummary"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">control</span>=<span class="hljs-string">{form.control}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">render</span>=<span class="hljs-string">{({</span> <span class="hljs-attr">field</span> }) =&gt;</span> (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormLabel</span>&gt;</span>Short Summary<span class="hljs-tag">&lt;/<span class="hljs-name">FormLabel</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Textarea</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Enter a short summary (max 200 characters)"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<span class="hljs-attr">...field</span>}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">maxLength</span>=<span class="hljs-string">{200}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormMessage</span> /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormField</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">name</span>=<span class="hljs-string">"image"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">control</span>=<span class="hljs-string">{form.control}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">render</span>=<span class="hljs-string">{({</span> <span class="hljs-attr">field</span> }) =&gt;</span> (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormLabel</span>&gt;</span>Upload Image<span class="hljs-tag">&lt;/<span class="hljs-name">FormLabel</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"relative flex items-center justify-center"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">label</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">className</span>=<span class="hljs-string">"absolute left-0 mx-4 h-[80%] flex items-center justify-center cursor-pointer text-center rounded-lg w-[40%] bg-blue-400"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">htmlFor</span>=<span class="hljs-string">"uploadImage"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"flex items-center text-white justify-center"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {isFetchingImage &amp;&amp; (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Loader2</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"mr-2 h-4 w-4 animate-spin"</span> /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Upload Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Input</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">id</span>=<span class="hljs-string">"uploadImage"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">accept</span>=<span class="hljs-string">"image/*"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleImageChange}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">className</span>=<span class="hljs-string">"py-8 border border-opacity-35"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {imagePreview &amp;&amp; (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"mt-2 relative border border-opacity-25 overflow-hidden h-[100px] w-[100px] max-w-fit p-4"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">src</span>=<span class="hljs-string">{imagePreview}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">alt</span>=<span class="hljs-string">"Image Preview"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">width</span>=<span class="hljs-string">{100}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">height</span>=<span class="hljs-string">{100}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormMessage</span> /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"mt-8 md:mt-0 relative"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"flex gap-2 items-center justify-center absolute -top-5 right-0"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"switch"</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setQuillIsFocus(!quillIsFocus)}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; type="checkbox"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; checked={quillIsFocus}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"slider round"</span>&gt;&lt;/<span class="hljs-name">span</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">{isPending}</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {isPending ? "Submitting..." : "Submit"}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {error &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"text-red-500"</span>&gt;</span>{error.message}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormField</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">name</span>=<span class="hljs-string">"description"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">control</span>=<span class="hljs-string">{form.control}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">render</span>=<span class="hljs-string">{({</span> <span class="hljs-attr">field</span> }) =&gt;</span> (
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormLabel</span>&gt;</span>Description<span class="hljs-tag">&lt;/<span class="hljs-name">FormLabel</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormControl</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`${
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">quillIsFocus</span> ? "<span class="hljs-attr">h-</span>[<span class="hljs-attr">75vh</span>] <span class="hljs-attr">relative</span> <span class="hljs-attr">top-0</span> <span class="hljs-attr">z-50</span>" <span class="hljs-attr">:</span> "<span class="hljs-attr">h-</span>[<span class="hljs-attr">30vh</span>]"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }`}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">ReactQuill</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">value</span>=<span class="hljs-string">{editorContent}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleQuillChange}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">modules</span>=<span class="hljs-string">{modules}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">theme</span>=<span class="hljs-string">"snow"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onFocus</span>=<span class="hljs-string">{handleQuillFocus}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">onBlur</span>=<span class="hljs-string">{handleOnBlur}</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormControl</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;<span class="hljs-name">FormMessage</span> /&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">FormItem</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+&nbsp; &nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">Form</span>&gt;</span>
+&nbsp; &nbsp; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&nbsp; );
+}
+
+
+</pre><p>&nbsp;</p><p>In addition to educational value, Christian games and puzzles serve as excellent tools for building community. Whether used in church groups, family gatherings, or youth ministries, these activities create opportunities for fellowship and discussion. They provide a relaxed setting where individuals can bond over shared experiences and deepen their relationships with one another while exploring their faith. </p><h3>Here’s a bullet list of the key points from the updated approach:</h3><ul><li><strong>Removed </strong><code><strong>onSuccess</strong></code>:</li><li class="ql-indent-1">React Query v5 no longer supports <code>onSuccess</code> in the <code>useQuery</code> options.</li><li><strong>Moved success handling to </strong><code><strong>useEffect</strong></code>:</li><li class="ql-indent-1">Used a <code>useEffect</code> to watch the <code>isSuccess</code> state returned by <code>useQuery</code>.</li><li class="ql-indent-1">After a successful fetch, the <code>shouldFetch</code> state is set to <code>false</code>, preventing further queries.</li><li><strong>Used </strong><code><strong>enabled</strong></code><strong> option</strong>:</li><li class="ql-indent-1">Controlled query triggering using the <code>enabled</code> option based on <code>shouldFetch</code>.</li><li><strong>Fetch only on initial render</strong>:</li><li class="ql-indent-1">Set <code>shouldFetch</code> to <code>true</code> after the component mounts via <code>useEffect</code>.</li></ul><p><br></p><h3>This is an Ordered Bullet List</h3><ol><li>Moreover, Christian puzzles, such as those featuring scripture-based crosswords or word searches, offer a solitary yet contemplative experience. These puzzles allow individuals to engage in personal reflection and meditation, helping them to connect with their faith on a deeper level.</li><li>Christian games and puzzles also address various age groups and learning styles. For children, they offer a playful way to learn about Bible stories and values, encouraging early spiritual development. For adults, these activities provide a means to revisit and reflect on their faith in a meaningful way, often serving as conversation starters or teaching tools in group settings.</li></ol><p><br></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">@tailwind</span> base;
+<span class="hljs-keyword">@tailwind</span> components;
+<span class="hljs-keyword">@tailwind</span> utilities;
+
+
+<span class="hljs-keyword">@layer</span> base {
+&nbsp; :root {
+&nbsp; &nbsp; <span class="hljs-attr">--background</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--buttonBackground</span>: <span class="hljs-number">99</span> <span class="hljs-number">64%</span> <span class="hljs-number">85%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--card</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--card-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--popover</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--popover-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--primary</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--primary-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--secondary</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--secondary-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--muted</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--muted-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.8%</span> <span class="hljs-number">46.1%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--accent</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--accent-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--destructive</span>: <span class="hljs-number">0</span> <span class="hljs-number">84.2%</span> <span class="hljs-number">60.2%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--destructive-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--border</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">90%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--input</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">90%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--ring</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--radius</span>: <span class="hljs-number">0.5rem</span>;
+&nbsp; }
+
+
+&nbsp; .dark {
+&nbsp; &nbsp; <span class="hljs-attr">--background</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--buttonBackground</span>: <span class="hljs-number">99</span> <span class="hljs-number">64%</span> <span class="hljs-number">85%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--card</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--card-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--popover</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--popover-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--primary</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--primary-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--secondary</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--secondary-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--muted</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--muted-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5%</span> <span class="hljs-number">64.9%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--accent</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--accent-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--destructive</span>: <span class="hljs-number">0</span> <span class="hljs-number">62.8%</span> <span class="hljs-number">30.6%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--destructive-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+
+
+&nbsp; &nbsp; <span class="hljs-attr">--border</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--input</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
+&nbsp; &nbsp; <span class="hljs-attr">--ring</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.9%</span> <span class="hljs-number">83.9%</span>;
+&nbsp; }
+}
+
+
+.ql-syntax {
+&nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#282c34</span> <span class="hljs-meta">!important</span>;
+}
+
+
+ol {
+&nbsp; <span class="hljs-attribute">list-style-type</span>: decimal; letters, etc. */
+&nbsp; <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">20px</span>;
+}
+
+
+<span class="hljs-comment">/* Set unordered lists to have dots */</span>
+ul {
+&nbsp; <span class="hljs-attribute">list-style-type</span>: disc; 
+&nbsp; <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">14px</span>;
+}
+ul li {
+&nbsp; <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">8px</span>;
+}
+ol li {
+&nbsp; <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">15px</span>;
+}
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">hover</span>: <span class="hljs-attribute">hover</span>) {
+&nbsp; .ql-syntax::-webkit-scrollbar {
+&nbsp; &nbsp; <span class="hljs-attribute">width</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; }
+
+
+&nbsp; .ql-syntax::-webkit-scrollbar-thumb {
+&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#c8c8c8</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
+&nbsp; }
+
+
+&nbsp; .ql-syntax::-webkit-scrollbar-track {
+&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: transparent;
+&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>;
+&nbsp; }
+}
+
+
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">hover</span>: <span class="hljs-attribute">hover</span>) {
+&nbsp; .custom-scrollbar::-webkit-scrollbar {
+&nbsp; &nbsp; scroll-behavior: smooth;
+&nbsp; &nbsp; <span class="hljs-attribute">width</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; }
+
+
+&nbsp; .custom-scrollbar::-webkit-scrollbar-thumb {
+&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#565658</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; }
+
+
+&nbsp; .custom-scrollbar::-webkit-scrollbar-track {
+&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: transparent;
+&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+&nbsp; }
+}
+</pre><p><br></p><p><br></p><p>The impact of Christian games and puzzles extends beyond personal enrichment. They can be used as effective outreach tools, helping to introduce individuals to faith in a non-threatening and engaging manner. By offering a blend of entertainment and education, these resources have the potential to reach a wider audience and facilitate discussions about faith in diverse settings.</p><p>made changes now</p><p class="ql-direction-rtl ql-align-right"><br></p><blockquote>In summary, Christian games and puzzles are invaluable resources that blend fun with faith, providing opportunities for spiritual growth, community building, and personal reflection. As they continue to evolve and adapt to new formats, they remain a testament to the creative ways in which faith can be woven into everyday life. Embracing these activities not only enhances one's spiritual journey but</blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><img src="http://res.cloudinary.com/dztt3ldiy/image/upload/f_auto,q_auto/v1729444703/about_oezfwv.png"></p><p><br></p><p><br></p><p>also fosters a deeper connection with both scripture and fellow believers.</p>
+                <!-- Quill content will be inserted here -->
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="border-t border-slate-900/5 py-10 max-w-6xl mx-auto px-8 mt-40">
+            <div class="flex flex-col justify-center items-center py-10 relative">
+                <a class="flex items-center mb-4 hover:opacity-80 active:opacity-70 transition-opacity duration-200" href="http://localhost:3000">
+                    <img id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_300/h_300//v1729800030/orama_dropdown_search_pys0jh.png" />
+                    <h2 class="text-xl font-bold" id="footer-author-name">Azubike Pascal</h2>
+                </a>
+                <div class="flex items-center flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
+                    <a class="text-zinc-100 hover:text-gray-300 active:text-gray-400 text-sm relative transition-colors duration-200" href="/about"><span class="relative z-10 px-2 py-2 inline-block">About</span></a>
+                    <a class="text-zinc-100 hover:text-gray-300 active:text-gray-400 text-sm relative transition-colors duration-200" href="/projects"><span class="relative z-10 px-2 py-2 inline-block">Projects</span></a>
+                    <a class="text-zinc-100 hover:text-gray-300 active:text-gray-400 text-sm relative transition-colors duration-200" href="/contributions"><span class="relative z-10 px-2 py-2 inline-block">Contributions</span></a>
+                    <a class="text-zinc-100 hover:text-gray-300 active:text-gray-400 text-sm relative transition-colors duration-200" href="/blogs"><span class="relative z-10 px-2 py-2 inline-block">Blogs</span></a>
+                    <a class="text-zinc-100 hover:text-gray-300 active:text-gray-400 text-sm relative transition-colors duration-200" href="/events"><span class="relative z-10 px-2 py-2 inline-block">Events</span></a>
+                </div>
+                <p class="text-zinc-200 text-sm font-light text-center max-w-fit mx-auto mt-8 border-t border-zinc-800 pt-4">
+                    © 2024 Devpro Portfolio Template. All rights reserved.
+                </p>
+                <div class="flex flex-row justify-center space-x-2 mt-2">
+                    <a href="http://localhost:3000" class="hover:text-gray-400 active:text-gray-500 text-zinc-500 text-sm relative transition-colors duration-200">
+                        <div class="relative z-10 px-2 py-2 inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter">
+                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="http://localhost:3000" class="hover:text-gray-400 active:text-gray-500 text-zinc-500 text-sm relative transition-colors duration-200">
+                        <div class="relative z-10 px-2 py-2 inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect width="4" height="12" x="2" y="9"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="http://localhost:3000" class="hover:text-gray-400 active:text-gray-500 text-zinc-500 text-sm relative transition-colors duration-200">
+                        <div class="relative z-10 px-2 py-2 inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+        });
+    </script>
+</body>
+</html>
