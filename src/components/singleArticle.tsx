@@ -423,6 +423,59 @@ const ArticleLayout: React.FC = () => {
           </div>
 
           {/* Main Content */}
+          <div className="lg:w-1/2 lg:mx-8 main " ref={contentRef}>
+            {/* Hero Section */}
+            <section className="pt-48 lg:pt-32 pb-12 px-4">
+              <div className="mx-auto max-w-4xl">
+                <h1 className="text-3xl md:text-4xl font-bold mb-6">
+                  {article?.title}
+                </h1>
+                <p className="text-gray-400 text-lg mb-8 max-w-2xl">
+                  {article?.shortSummary}
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button className="inline-flex items-center justify-center px-6 py-3 bg-blue-400 text-black font-semibold rounded-lg hover:bg-blue-300 transition-colors">
+                    Share <Share2 className="ml-2" size={20} />
+                  </Button>
+                  <div>
+                    <Button
+                      onClick={() => handleDownload(article?.pdfUrl)}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-blue-400 text-white font-semibold rounded-lg hover:bg-blue-400 hover:text-black transition-all"
+                    >
+                      <Eye className="mr-2" size={20} /> Read Later
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className="mb-16 relative">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800">
+                <Image
+                  alt={article?.title || "Article image"}
+                  className="max-w-[90vw] max-h-[90vh] mx-auto my-auto"
+                  src={article?.imageUrl || "/"}
+                  blurDataURL={`data:image/jpeg;base64,${
+                    article && article.blurImage
+                  }`}
+                  placeholder="blur"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-50 blur-3xl" />
+              <div className="absolute -inset-x-10 -inset-y-10 z-0 bg-blue-400/10 opacity-30 blur-2xl" />
+            </div>
+
+            {/* Article Content */}
+            <div
+              ref={articleContentRef}
+              className="prose prose-invert max-w-none"
+            >
+              {/* The article content will be inserted here by the useEffect */}
+            </div>
+          </div>
 
           {/* Right Sidebar */}
           <div className="lg:w-1/4 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto right">
