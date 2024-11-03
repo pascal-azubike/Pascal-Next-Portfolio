@@ -171,7 +171,7 @@ const ArticleLayout: React.FC = () => {
   };
 
   useEffect(() => {
-    if (article?.description && articleContentRef.current) {
+    if (article?.description && articleContentRef?.current) {
       articleContentRef.current.innerHTML = articleHtml;
       const headings = articleContentRef.current.querySelectorAll("h1, h2, h3");
 
@@ -181,7 +181,7 @@ const ArticleLayout: React.FC = () => {
       let currentH1: HeadingObject | null = null;
       let currentH2: HeadingObject | null = null;
 
-      headings.forEach((heading, index) => {
+      headings?.forEach((heading, index) => {
         const headingId = heading.id || `heading-${index}`;
         heading.id = headingId;
 
@@ -226,7 +226,7 @@ const ArticleLayout: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const headings =
-        articleContentRef.current?.querySelectorAll("h1, h2, h3");
+        articleContentRef?.current?.querySelectorAll("h1, h2, h3");
       if (headings) {
         for (let i = headings.length - 1; i >= 0; i--) {
           const heading = headings[i];
@@ -375,7 +375,7 @@ const ArticleLayout: React.FC = () => {
   if (isPending) {
     return <div>loading</div>;
   }
-  console.log(article);
+  console.log(article)
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
       {/* Mobile Navigation */}
@@ -468,6 +468,14 @@ const ArticleLayout: React.FC = () => {
               {/* Decorative elements */}
               <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-50 blur-3xl" />
               <div className="absolute -inset-x-10 -inset-y-10 z-0 bg-blue-400/10 opacity-30 blur-2xl" />
+            </div>
+
+            {/* Article Content */}
+            <div
+              ref={articleContentRef}
+              className="prose prose-invert max-w-none"
+            >
+              {/* The article content will be inserted here by the useEffect */}
             </div>
           </div>
 
