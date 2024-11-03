@@ -170,7 +170,58 @@ const ArticleLayout: React.FC = () => {
     return doc.body.innerHTML; // Return the processed HTML
   };
 
- 
+  useEffect(() => {
+    if (article?.description && articleContentRef?.current) {
+      articleContentRef.current.innerHTML = articleHtml;
+      const headings = articleContentRef.current.querySelectorAll("h1, h2, h3");
+
+      const structure: HeadingObject[] = [
+        { id: "article-title", text: article.title, level: 1, items: [] }
+      ];
+      let currentH1: HeadingObject | null = null;
+      let currentH2: HeadingObject | null = null;
+
+      headings?.forEach((heading, index) => {
+        const headingId = heading.id || `heading-${index}`;
+        heading.id = headingId;
+
+        const headingObject: HeadingObject = {
+          id: headingId,
+          text: heading.textContent || "",
+          level: parseInt(heading.tagName[1]),
+          items: []
+        };
+
+        switch (heading.tagName.toLowerCase()) {
+          case "h1":
+            currentH1 = headingObject;
+            currentH2 = null;
+            structure.push(currentH1);
+            break;
+          case "h2":
+            currentH2 = headingObject;
+            if (currentH1) {
+              currentH1.items.push(currentH2);
+            } else {
+              structure.push(currentH2);
+            }
+            break;
+          case "h3":
+            if (currentH2) {
+              currentH2.items.push(headingObject);
+            } else if (currentH1) {
+              currentH1.items.push(headingObject);
+            } else {
+              structure.push(headingObject);
+            }
+            break;
+        }
+      });
+      const processedContent = processArticleContent(article.description);
+      setArticleHtml(processedContent);
+      setArticleStructure(structure);
+    }
+  }, [article, articleHtml]);
 
   useEffect(() => {
     const handleScroll = () => {
