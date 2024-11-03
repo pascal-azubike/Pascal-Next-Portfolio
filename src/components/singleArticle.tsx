@@ -303,12 +303,12 @@ const ArticleLayout: React.FC = () => {
           >
             {item.text}
           </a>
-          {item?.items && item.items.length > 0 && (
+          {/* {item?.items && item.items.length > 0 && (
             <div className={`relative ${item.level === 2 ? "ml-0h mt-2" : ""}`}>
               {item.level === 2 && (
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-700" />
               )}
-              {/* {item?.items?.map((subItem, subIndex) => (
+              {item?.items?.map((subItem, subIndex) => (
                 <div key={subIndex} className="relative">
                   {item.level === 2 && (
                     <div
@@ -340,9 +340,9 @@ const ArticleLayout: React.FC = () => {
                     {subItem.text}
                   </a>
                 </div>
-              ))} */}
+              ))}
             </div>
-          )}
+          )} */}
         </div>
       ));
     };
