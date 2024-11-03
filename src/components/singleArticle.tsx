@@ -283,7 +283,7 @@ const ArticleLayout: React.FC = () => {
   const LeftSidebar: React.FC = () => {
     const [hoveredSection, setHoveredSection] = useState<string | null>(null);
     const renderSidebarItems = (items: HeadingObject[]) => {
-      return items.map((item, index) => (
+      return items?.map((item, index) => (
         <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
           <a
             href={`#${item.id}`}
@@ -303,12 +303,12 @@ const ArticleLayout: React.FC = () => {
           >
             {item.text}
           </a>
-          {item.items && item.items.length > 0 && (
+          {item?.items && item.items.length > 0 && (
             <div className={`relative ${item.level === 2 ? "ml-0h mt-2" : ""}`}>
               {item.level === 2 && (
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-700" />
               )}
-              {item.items.map((subItem, subIndex) => (
+              {item?.items?.map((subItem, subIndex) => (
                 <div key={subIndex} className="relative">
                   {item.level === 2 && (
                     <div
