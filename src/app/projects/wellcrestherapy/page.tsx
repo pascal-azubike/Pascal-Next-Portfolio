@@ -7,9 +7,9 @@ export default function WellcrestTherapyCaseStudy() {
   return (
     <div className="min-h-screen bg-zinc-900 pt-28 text-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4">
+      <section className="lg:pt-24 pt-11 pb-12 px-4">
         <div className=" mx-auto max-w-4xl">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-6">
             Wellcrest Therapy
           </h1>
           <p className="text-gray-400 text-lg mb-8 max-w-2xl">
@@ -39,7 +39,7 @@ export default function WellcrestTherapyCaseStudy() {
       </section>
 
       {/* Project Details */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 overflow-hidden">
         <div className=" mx-auto max-w-5xl">
           <div className="mb-16 relative">
             <div className="relative flex aspect-[16/9]  rounded-xl overflow-hidden bg-zinc-800">
@@ -57,7 +57,7 @@ export default function WellcrestTherapyCaseStudy() {
 
           <div className="space-y-16">
             <div>
-              <h2 className="text-3xl font-bold mb-8">Project Overview</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">Project Overview</h2>
               <div className="space-y-6 text-gray-400">
                 <p className="text-lg">
                   Developed a comprehensive mental health clinic website
@@ -111,7 +111,7 @@ export default function WellcrestTherapyCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold mb-8">Technical Deep Dive</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">Technical Deep Dive</h2>
               <div className="space-y-6 text-gray-400">
                 <p className="text-lg">
                   The project leverages several key technologies and approaches:
@@ -138,7 +138,7 @@ export default function WellcrestTherapyCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold mb-8">Tools Used</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">Tools Used</h2>
               <div className="flex flex-wrap gap-3">
                 {[
                   "Next.js 13+",
@@ -164,7 +164,7 @@ export default function WellcrestTherapyCaseStudy() {
             <div className="space-y-16">
               {/* Add new Challenges & Solutions section */}
               <div>
-                <h2 className="text-3xl font-bold mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold mb-8">
                   Challenges & Solutions
                 </h2>
                 <div className="space-y-8">
@@ -240,7 +240,7 @@ export default function WellcrestTherapyCaseStudy() {
 
               {/* Add Key Accomplishments section */}
               <div>
-                <h2 className="text-3xl font-bold mb-8">Key Accomplishments</h2>
+                <h2 className="text-2xl font-bold mb-8">Key Accomplishments</h2>
                 <div className="grid gap-6 md:grid-cols-2">
                   {[
                     {
@@ -265,7 +265,7 @@ export default function WellcrestTherapyCaseStudy() {
                       key={index}
                       className="bg-zinc-800/30 rounded-lg p-6 backdrop-blur-sm"
                     >
-                      <div className="text-3xl font-bold text-blue-400 mb-2">
+                      <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
                         {item.metric}
                       </div>
                       <p className="text-gray-400">{item.description}</p>
@@ -276,7 +276,7 @@ export default function WellcrestTherapyCaseStudy() {
 
               {/* Add Learning Outcomes section */}
               <div>
-                <h2 className="text-3xl font-bold mb-8">Learning Outcomes</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8">Learning Outcomes</h2>
                 <div className="space-y-4 text-gray-400">
                   <p>
                     This project significantly enhanced my expertise in

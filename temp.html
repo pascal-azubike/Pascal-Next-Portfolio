@@ -88,364 +88,364 @@
                 <!-- Image will be inserted here -->
             </div>
             
-            <div id="article-content" class="prose prose-invert max-w-none"><h2>This is an heading modified</h2><p>In a world where entertainment often seems detached from spiritual growth, Christian games and puzzles offer a refreshing way to combine fun with faith. These engaging activities are more than just pastimes; they are powerful tools designed to deepen one's understanding of scripture, foster community, and nurture spiritual development.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/RVvfr7aniko?showinfo=0"></iframe><p><br></p><p><br></p><p>Christian games and puzzles come in various forms, each tailored to convey biblical lessons in an interactive and enjoyable manner. From board games that bring Bible stories to life to intricate puzzles that feature scriptural themes, these resources are crafted to make learning about faith both accessible and enjoyable.</p><p>edited removed</p><p><br></p><pre class="ql-syntax" spellcheck="false">import Product <span class="hljs-keyword">from</span> <span class="hljs-string">"../../models/Product"</span>;
-import { NextRequest, NextResponse } <span class="hljs-keyword">from</span> <span class="hljs-string">"next/server"</span>;
+            <div id="article-content" class="prose prose-invert max-w-none"><h2>This is an heading modified</h2><p>In a world where entertainment often seems detached from spiritual growth, Christian games and puzzles offer a refreshing way to combine fun with faith. These engaging activities are more than just pastimes; they are powerful tools designed to deepen one's understanding of scripture, foster community, and nurture spiritual development.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/RVvfr7aniko?showinfo=0"></iframe><p><br></p><p><br></p><p>Christian games and puzzles come in various forms, each tailored to convey biblical lessons in an interactive and enjoyable manner. From board games that bring Bible stories to life to intricate puzzles that feature scriptural themes, these resources are crafted to make learning about faith both accessible and enjoyable.</p><p>edited removed</p><p><br></p><pre class="ql-syntax" spellcheck="false">import Product from "../../models/Product";
+import { NextRequest, NextResponse } from "next/server";
 
 
-import { connectDB } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../config/MongoDbConfig"</span>;
-import Article <span class="hljs-keyword">from</span> <span class="hljs-string">"../../models/Article"</span>;
+import { connectDB } from "../../config/MongoDbConfig";
+import Article from "../../models/Article";
 
 
-import puppeteer <span class="hljs-keyword">from</span> <span class="hljs-string">"puppeteer"</span>;
-import fs <span class="hljs-keyword">from</span> <span class="hljs-string">"fs/promises"</span>;
-import path <span class="hljs-keyword">from</span> <span class="hljs-string">"path"</span>;
+import puppeteer from "puppeteer";
+import fs from "fs/promises";
+import path from "path";
 
 
-import axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;
-import { uptimizeCloudinaryImage } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/hooks/imageCloudinaryOptimizer"</span>;
+import axios from "axios";
+import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 
 
-import { embedding } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/utils/getEmbeddins"</span>;
-import { pdfTemplate } <span class="hljs-keyword">from</span> <span class="hljs-string">"../create-article/pdfTemplate"</span>;
+import { embedding } from "@/utils/getEmbeddins";
+import { pdfTemplate } from "../create-article/pdfTemplate";
 
 
-<span class="hljs-comment">// Define the POST handler</span>
-export <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">POST</span> = <span class="hljs-title function_ invoke__">async</span> (<span class="hljs-attr">request</span>: NextRequest) =&gt; {
-&nbsp; <span class="hljs-keyword">try</span> {
-&nbsp; &nbsp; await <span class="hljs-title function_ invoke__">connectDB</span>();
+// Define the POST handler
+export const POST = async (request: NextRequest) =&gt; {
+&nbsp; try {
+&nbsp; &nbsp; await connectDB();
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> { searchParams } = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">URL</span>(request.url);
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">id</span> = searchParams.<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">"productId"</span>)?.<span class="hljs-title function_ invoke__">trim</span>();
+&nbsp; &nbsp; const { searchParams } = new URL(request.url);
+&nbsp; &nbsp; const id = searchParams.get("productId")?.trim();
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">if</span> (!id) {
-&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">return</span> NextResponse.<span class="hljs-title function_ invoke__">json</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; { <span class="hljs-attr">message</span>: <span class="hljs-string">"Product ID is required"</span> },
-&nbsp; &nbsp; &nbsp; &nbsp; { <span class="hljs-attr">status</span>: <span class="hljs-number">400</span> }
+&nbsp; &nbsp; if (!id) {
+&nbsp; &nbsp; &nbsp; return NextResponse.json(
+&nbsp; &nbsp; &nbsp; &nbsp; { message: "Product ID is required" },
+&nbsp; &nbsp; &nbsp; &nbsp; { status: 400 }
 &nbsp; &nbsp; &nbsp; );
 &nbsp; &nbsp; }
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">article</span> = await Article.<span class="hljs-title function_ invoke__">findById</span>(id);
+&nbsp; &nbsp; const article = await Article.findById(id);
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">if</span> (!article) {
-&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">return</span> NextResponse.<span class="hljs-title function_ invoke__">json</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; { <span class="hljs-attr">message</span>: <span class="hljs-string">"Article not found"</span> },
-&nbsp; &nbsp; &nbsp; &nbsp; { <span class="hljs-attr">status</span>: <span class="hljs-number">404</span> }
+&nbsp; &nbsp; if (!article) {
+&nbsp; &nbsp; &nbsp; return NextResponse.json(
+&nbsp; &nbsp; &nbsp; &nbsp; { message: "Article not found" },
+&nbsp; &nbsp; &nbsp; &nbsp; { status: 404 }
 &nbsp; &nbsp; &nbsp; );
 &nbsp; &nbsp; }
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Parse the request body</span>
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">reqBody</span> = await request.<span class="hljs-title function_ invoke__">json</span>();
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> { title, description, image, blurImage, shortSummary } = reqBody;
+&nbsp; &nbsp; // Parse the request body
+&nbsp; &nbsp; const reqBody = await request.json();
+&nbsp; &nbsp; const { title, description, image, blurImage, shortSummary } = reqBody;
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">optimizedImage1</span> = await <span class="hljs-title function_ invoke__">uptimizeCloudinaryImage</span>(
-&nbsp; &nbsp; &nbsp; <span class="hljs-string">"/q_auto/f_auto/w_300/h_300"</span>,
+&nbsp; &nbsp; const optimizedImage1 = await uptimizeCloudinaryImage(
+&nbsp; &nbsp; &nbsp; "/q_auto/f_auto/w_300/h_300",
 &nbsp; &nbsp; &nbsp; image
 &nbsp; &nbsp; );
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">optimizedImage2</span> = await <span class="hljs-title function_ invoke__">uptimizeCloudinaryImage</span>(
-&nbsp; &nbsp; &nbsp; <span class="hljs-string">"/q_auto/f_auto/w_800"</span>,
+&nbsp; &nbsp; const optimizedImage2 = await uptimizeCloudinaryImage(
+&nbsp; &nbsp; &nbsp; "/q_auto/f_auto/w_800",
 &nbsp; &nbsp; &nbsp; image
 &nbsp; &nbsp; );
-&nbsp; &nbsp; console.<span class="hljs-title function_ invoke__">log</span>(<span class="hljs-string">"Generating PDF from Quill content..."</span>);
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">newEmbedding</span> = await <span class="hljs-title function_ invoke__">embedding</span>(
+&nbsp; &nbsp; console.log("Generating PDF from Quill content...");
+&nbsp; &nbsp; const newEmbedding = await embedding(
 &nbsp; &nbsp; &nbsp; `${title},
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${shortSummary},
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${description},`
 &nbsp; &nbsp; );
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Launch a headless browser instance</span>
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">browser</span> = await puppeteer.<span class="hljs-title function_ invoke__">launch</span>();
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">page</span> = await browser.<span class="hljs-title function_ invoke__">newPage</span>();
+&nbsp; &nbsp; // Launch a headless browser instance
+&nbsp; &nbsp; const browser = await puppeteer.launch();
+&nbsp; &nbsp; const page = await browser.newPage();
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// HTML template (you would typically load this from a file)</span>
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">htmlTemplate</span> = pdfTemplate;
+&nbsp; &nbsp; // HTML template (you would typically load this from a file)
+&nbsp; &nbsp; const htmlTemplate = pdfTemplate;
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Populate the template with the content</span>
+&nbsp; &nbsp; // Populate the template with the content
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">populatedHtml</span> = htmlTemplate
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'&lt;h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"&gt;&lt;/h1&gt;'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `&lt;h1 id=<span class="hljs-string">"article-title"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"text-3xl md:text-4xl font-bold mb-4"</span>&gt;${title}&lt;/h1&gt;`
+&nbsp; &nbsp; const populatedHtml = htmlTemplate
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; '&lt;h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"&gt;&lt;/h1&gt;',
+&nbsp; &nbsp; &nbsp; &nbsp; `&lt;h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"&gt;${title}&lt;/h1&gt;`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'&lt;p id="article-description" class="text-gray-400 text-lg mb-4"&gt;&lt;/p&gt;'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `&lt;p id=<span class="hljs-string">"article-description"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"text-gray-400 text-lg mb-4"</span>&gt;${shortSummary}&lt;/p&gt;`
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; '&lt;p id="article-description" class="text-gray-400 text-lg mb-4"&gt;&lt;/p&gt;',
+&nbsp; &nbsp; &nbsp; &nbsp; `&lt;p id="article-description" class="text-gray-400 text-lg mb-4"&gt;${shortSummary}&lt;/p&gt;`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'&lt;div id="article-image" class="mb-8 relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800"&gt;'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `&lt;div id=<span class="hljs-string">"article-image"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"mb-8 relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800"</span>&gt;&lt;img src=<span class="hljs-string">"${optimizedImage2}"</span> alt=<span class="hljs-string">"${title}"</span> style=<span class="hljs-string">"width: 100%; height: 100%; object-fit: cover;"</span>&gt;`
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; '&lt;div id="article-image" class="mb-8 relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800"&gt;',
+&nbsp; &nbsp; &nbsp; &nbsp; `&lt;div id="article-image" class="mb-8 relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800"&gt;&lt;img src="${optimizedImage2}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;"&gt;`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'&lt;div id="article-content" class="prose prose-invert max-w-none"&gt;'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `&lt;div id=<span class="hljs-string">"article-content"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"prose prose-invert max-w-none"</span>&gt;${description}`
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; '&lt;div id="article-content" class="prose prose-invert max-w-none"&gt;',
+&nbsp; &nbsp; &nbsp; &nbsp; `&lt;div id="article-content" class="prose prose-invert max-w-none"&gt;${description}`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(<span class="hljs-string">'id="author-name"&gt;&lt;/a&gt;'</span>, `id=<span class="hljs-string">"author-name"</span>&gt;Azubike Pascal&lt;/a&gt;`)
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'id="author-image" alt="Author" class="rounded-full w-9 h-9" src=""'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `id=<span class="hljs-string">"author-image"</span> alt=<span class="hljs-string">"Author"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"rounded-full w-9 h-9"</span> src=<span class="hljs-string">"${optimizedImage1}"</span>`
+&nbsp; &nbsp; &nbsp; .replace('id="author-name"&gt;&lt;/a&gt;', `id="author-name"&gt;Azubike Pascal&lt;/a&gt;`)
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; 'id="author-image" alt="Author" class="rounded-full w-9 h-9" src=""',
+&nbsp; &nbsp; &nbsp; &nbsp; `id="author-image" alt="Author" class="rounded-full w-9 h-9" src="${optimizedImage1}"`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'id="footer-author-name"&gt;&lt;/h2&gt;'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `id=<span class="hljs-string">"footer-author-name"</span>&gt;Azubike Pascal&lt;/h2&gt;`
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; 'id="footer-author-name"&gt;&lt;/h2&gt;',
+&nbsp; &nbsp; &nbsp; &nbsp; `id="footer-author-name"&gt;Azubike Pascal&lt;/h2&gt;`
 &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; .<span class="hljs-title function_ invoke__">replace</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_300/h_300//v1727821519/embracing-faith-sermon-series-youtube-1000x563_l1vgkp.png"'</span>,
-&nbsp; &nbsp; &nbsp; &nbsp; `id=<span class="hljs-string">"footer-logo"</span> alt=<span class="hljs-string">"Logo"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"rounded-full h-8 w-8 mr-2"</span> src=<span class="hljs-string">"${optimizedImage1}"</span>`
+&nbsp; &nbsp; &nbsp; .replace(
+&nbsp; &nbsp; &nbsp; &nbsp; 'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_300/h_300//v1727821519/embracing-faith-sermon-series-youtube-1000x563_l1vgkp.png"',
+&nbsp; &nbsp; &nbsp; &nbsp; `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
 &nbsp; &nbsp; &nbsp; );
-&nbsp; &nbsp; <span class="hljs-comment">// Write the populated HTML to a temporary file</span>
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">tempHtmlPath</span> = path.<span class="hljs-title function_ invoke__">join</span>(process.<span class="hljs-title function_ invoke__">cwd</span>(), <span class="hljs-string">"temp.html"</span>);
-&nbsp; &nbsp; await fs.<span class="hljs-title function_ invoke__">writeFile</span>(tempHtmlPath, populatedHtml);
+&nbsp; &nbsp; // Write the populated HTML to a temporary file
+&nbsp; &nbsp; const tempHtmlPath = path.join(process.cwd(), "temp.html");
+&nbsp; &nbsp; await fs.writeFile(tempHtmlPath, populatedHtml);
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Navigate to the temporary HTML file</span>
-&nbsp; &nbsp; await page.<span class="hljs-keyword">goto</span>(`file:<span class="hljs-comment">//${tempHtmlPath}`, { waitUntil: "networkidle0" });</span>
+&nbsp; &nbsp; // Navigate to the temporary HTML file
+&nbsp; &nbsp; await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Generate the PDF</span>
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">pdfBuffer</span> = await page.<span class="hljs-title function_ invoke__">pdf</span>({
-&nbsp; &nbsp; &nbsp; <span class="hljs-attr">format</span>: <span class="hljs-string">"A4"</span>,
-&nbsp; &nbsp; &nbsp; <span class="hljs-attr">printBackground</span>: <span class="hljs-literal">true</span>,
-&nbsp; &nbsp; &nbsp; <span class="hljs-attr">preferCSSPageSize</span>: <span class="hljs-literal">true</span>
+&nbsp; &nbsp; // Generate the PDF
+&nbsp; &nbsp; const pdfBuffer = await page.pdf({
+&nbsp; &nbsp; &nbsp; format: "A4",
+&nbsp; &nbsp; &nbsp; printBackground: true,
+&nbsp; &nbsp; &nbsp; preferCSSPageSize: true
 &nbsp; &nbsp; });
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Close the browser</span>
-&nbsp; &nbsp; await browser.<span class="hljs-title function_ invoke__">close</span>();
+&nbsp; &nbsp; // Close the browser
+&nbsp; &nbsp; await browser.close();
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Upload PDF to Cloudinary</span>
+&nbsp; &nbsp; // Upload PDF to Cloudinary
 
 
-&nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">formData</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>();
-&nbsp; &nbsp; formData.<span class="hljs-title function_ invoke__">append</span>(
-&nbsp; &nbsp; &nbsp; <span class="hljs-string">"file"</span>,
-&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([pdfBuffer], { <span class="hljs-attr">type</span>: <span class="hljs-string">"application/pdf"</span> }),
-&nbsp; &nbsp; &nbsp; `${title.<span class="hljs-title function_ invoke__">replace</span>(/\s+/g, <span class="hljs-string">"-"</span>)}.pdf`
+&nbsp; &nbsp; const formData = new FormData();
+&nbsp; &nbsp; formData.append(
+&nbsp; &nbsp; &nbsp; "file",
+&nbsp; &nbsp; &nbsp; new Blob([pdfBuffer], { type: "application/pdf" }),
+&nbsp; &nbsp; &nbsp; `${title.replace(/\s+/g, "-")}.pdf`
 &nbsp; &nbsp; );
-&nbsp; &nbsp; formData.<span class="hljs-title function_ invoke__">append</span>(<span class="hljs-string">"upload_preset"</span>, <span class="hljs-string">"ml_default"</span>);
+&nbsp; &nbsp; formData.append("upload_preset", "ml_default");
 &nbsp; &nbsp; let pdfUrl;
-&nbsp; &nbsp; <span class="hljs-keyword">try</span> {
-&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">response</span> = await axios.<span class="hljs-title function_ invoke__">post</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">"https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload"</span>,
+&nbsp; &nbsp; try {
+&nbsp; &nbsp; &nbsp; const response = await axios.post(
+&nbsp; &nbsp; &nbsp; &nbsp; "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
 &nbsp; &nbsp; &nbsp; &nbsp; formData,
 &nbsp; &nbsp; &nbsp; &nbsp; {
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">headers</span>: {
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"multipart/form-data"</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; headers: {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Content-Type": "multipart/form-data"
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
 &nbsp; &nbsp; &nbsp; &nbsp; }
 &nbsp; &nbsp; &nbsp; );
 &nbsp; &nbsp; &nbsp; pdfUrl = response.data.secure_url;
-&nbsp; &nbsp; } <span class="hljs-keyword">catch</span> (error: any) {
-&nbsp; &nbsp; &nbsp; <span class="hljs-keyword">if</span> (error.response) {
-&nbsp; &nbsp; &nbsp; &nbsp; console.<span class="hljs-title function_ invoke__">error</span>(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-string">"Server responded with:"</span>,
+&nbsp; &nbsp; } catch (error: any) {
+&nbsp; &nbsp; &nbsp; if (error.response) {
+&nbsp; &nbsp; &nbsp; &nbsp; console.error(
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Server responded with:",
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; error.response.status,
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; error.response.data
 &nbsp; &nbsp; &nbsp; &nbsp; );
-&nbsp; &nbsp; &nbsp; } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error.request) {
-&nbsp; &nbsp; &nbsp; &nbsp; console.<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">"No response received:"</span>, error.request);
-&nbsp; &nbsp; &nbsp; } <span class="hljs-keyword">else</span> {
-&nbsp; &nbsp; &nbsp; &nbsp; console.<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">"Error setting up request:"</span>, error.message);
+&nbsp; &nbsp; &nbsp; } else if (error.request) {
+&nbsp; &nbsp; &nbsp; &nbsp; console.error("No response received:", error.request);
+&nbsp; &nbsp; &nbsp; } else {
+&nbsp; &nbsp; &nbsp; &nbsp; console.error("Error setting up request:", error.message);
 &nbsp; &nbsp; &nbsp; }
-&nbsp; &nbsp; &nbsp; <span class="hljs-comment">// Implement retry logic here</span>
+&nbsp; &nbsp; &nbsp; // Implement retry logic here
 &nbsp; &nbsp; }
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Create the new product</span>
-&nbsp; &nbsp; await Article.<span class="hljs-title function_ invoke__">findByIdAndUpdate</span>(
+&nbsp; &nbsp; // Create the new product
+&nbsp; &nbsp; await Article.findByIdAndUpdate(
 &nbsp; &nbsp; &nbsp; id,
 &nbsp; &nbsp; &nbsp; {
 &nbsp; &nbsp; &nbsp; &nbsp; title,
 &nbsp; &nbsp; &nbsp; &nbsp; description,
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">imageUrl</span>: image,
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">numView</span>: <span class="hljs-number">0</span>,
+&nbsp; &nbsp; &nbsp; &nbsp; imageUrl: image,
+&nbsp; &nbsp; &nbsp; &nbsp; numView: 0,
 &nbsp; &nbsp; &nbsp; &nbsp; blurImage,
 &nbsp; &nbsp; &nbsp; &nbsp; pdfUrl,
 &nbsp; &nbsp; &nbsp; &nbsp; shortSummary,
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">embedding</span>: newEmbedding
+&nbsp; &nbsp; &nbsp; &nbsp; embedding: newEmbedding
 &nbsp; &nbsp; &nbsp; },
 &nbsp; &nbsp; &nbsp; {
-&nbsp; &nbsp; &nbsp; &nbsp; <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; new: true
 &nbsp; &nbsp; &nbsp; }
 &nbsp; &nbsp; );
 
 
-&nbsp; &nbsp; <span class="hljs-comment">// Return success response</span>
-&nbsp; &nbsp; <span class="hljs-keyword">return</span> NextResponse.<span class="hljs-title function_ invoke__">json</span>(
-&nbsp; &nbsp; &nbsp; { <span class="hljs-attr">status</span>: <span class="hljs-string">"success"</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">"Article edited successfully"</span>, pdfUrl },
-&nbsp; &nbsp; &nbsp; { <span class="hljs-attr">status</span>: <span class="hljs-number">200</span> }
+&nbsp; &nbsp; // Return success response
+&nbsp; &nbsp; return NextResponse.json(
+&nbsp; &nbsp; &nbsp; { status: "success", message: "Article edited successfully", pdfUrl },
+&nbsp; &nbsp; &nbsp; { status: 200 }
 &nbsp; &nbsp; );
-&nbsp; } <span class="hljs-keyword">catch</span> (error: any) {
-&nbsp; &nbsp; console.<span class="hljs-title function_ invoke__">log</span>(<span class="hljs-string">"error"</span>, error);
-&nbsp; &nbsp; <span class="hljs-comment">// Handle errors</span>
-&nbsp; &nbsp; <span class="hljs-keyword">return</span> NextResponse.<span class="hljs-title function_ invoke__">json</span>({ <span class="hljs-attr">error</span>: error.message }, { <span class="hljs-attr">status</span>: <span class="hljs-number">500</span> });
+&nbsp; } catch (error: any) {
+&nbsp; &nbsp; console.log("error", error);
+&nbsp; &nbsp; // Handle errors
+&nbsp; &nbsp; return NextResponse.json({ error: error.message }, { status: 500 });
 &nbsp; }
 };
-</pre><p><br></p><h2>This is another heading</h2><p>One of the most significant benefits of Christian games and puzzles is their ability to make scripture memorable. By engaging with Bible verses through interactive play, players are more likely to internalize and reflect on spiritual teachings. For instance, a game that challenges players to answer questions about Bible characters or events not only tests their knowledge but also reinforces their understanding of the material.</p><p>&nbsp;</p><p>In addition to educational value, Christian games and puzzles serve as excellent tools for building community. Whether used in church groups, family gatherings, or youth ministries, these activities create opportunities for fellowship and discussion. They provide a relaxed setting where individuals can bond over shared experiences and deepen their relationships with one another while exploring their faith.</p><h3>Here’s a bullet list of the key points from the updated approach:</h3><ul><li><strong>Removed </strong><code><strong>onSuccess</strong></code>:</li><li class="ql-indent-1">React Query v5 no longer supports <code>onSuccess</code> in the <code>useQuery</code> options.</li><li><strong>Moved success handling to </strong><code><strong>useEffect</strong></code>:</li><li class="ql-indent-1">Used a <code>useEffect</code> to watch the <code>isSuccess</code> state returned by <code>useQuery</code>.</li><li class="ql-indent-1">After a successful fetch, the <code>shouldFetch</code> state is set to <code>false</code>, preventing further queries.</li><li><strong>Used </strong><code><strong>enabled</strong></code><strong> option</strong>:</li><li class="ql-indent-1">Controlled query triggering using the <code>enabled</code> option based on <code>shouldFetch</code>.</li><li><strong>Fetch only on initial render</strong>:</li><li class="ql-indent-1">Set <code>shouldFetch</code> to <code>true</code> after the component mounts via <code>useEffect</code>.</li></ul><p><br></p><h3>This is an Ordered Bullet List</h3><ol><li>Moreover, Christian puzzles, such as those featuring scripture-based crosswords or word searches, offer a solitary yet contemplative experience. These puzzles allow individuals to engage in personal reflection and meditation, helping them to connect with their faith on a deeper level.</li><li>Christian games and puzzles also address various age groups and learning styles. For children, they offer a playful way to learn about Bible stories and values, encouraging early spiritual development. For adults, these activities provide a means to revisit and reflect on their faith in a meaningful way, often serving as conversation starters or teaching tools in group settings.</li></ol><p><br></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">@tailwind</span> base;
-<span class="hljs-keyword">@tailwind</span> components;
-<span class="hljs-keyword">@tailwind</span> utilities;
+</pre><p><br></p><h2>This is another heading</h2><p>One of the most significant benefits of Christian games and puzzles is their ability to make scripture memorable. By engaging with Bible verses through interactive play, players are more likely to internalize and reflect on spiritual teachings. For instance, a game that challenges players to answer questions about Bible characters or events not only tests their knowledge but also reinforces their understanding of the material.</p><p>&nbsp;</p><p>In addition to educational value, Christian games and puzzles serve as excellent tools for building community. Whether used in church groups, family gatherings, or youth ministries, these activities create opportunities for fellowship and discussion. They provide a relaxed setting where individuals can bond over shared experiences and deepen their relationships with one another while exploring their faith.</p><h3>Here’s a bullet list of the key points from the updated approach:</h3><ul><li><strong>Removed </strong><code><strong>onSuccess</strong></code>:</li><li class="ql-indent-1">React Query v5 no longer supports <code>onSuccess</code> in the <code>useQuery</code> options.</li><li><strong>Moved success handling to </strong><code><strong>useEffect</strong></code>:</li><li class="ql-indent-1">Used a <code>useEffect</code> to watch the <code>isSuccess</code> state returned by <code>useQuery</code>.</li><li class="ql-indent-1">After a successful fetch, the <code>shouldFetch</code> state is set to <code>false</code>, preventing further queries.</li><li><strong>Used </strong><code><strong>enabled</strong></code><strong> option</strong>:</li><li class="ql-indent-1">Controlled query triggering using the <code>enabled</code> option based on <code>shouldFetch</code>.</li><li><strong>Fetch only on initial render</strong>:</li><li class="ql-indent-1">Set <code>shouldFetch</code> to <code>true</code> after the component mounts via <code>useEffect</code>.</li></ul><p><br></p><h3>This is an Ordered Bullet List</h3><ol><li>Moreover, Christian puzzles, such as those featuring scripture-based crosswords or word searches, offer a solitary yet contemplative experience. These puzzles allow individuals to engage in personal reflection and meditation, helping them to connect with their faith on a deeper level.</li><li>Christian games and puzzles also address various age groups and learning styles. For children, they offer a playful way to learn about Bible stories and values, encouraging early spiritual development. For adults, these activities provide a means to revisit and reflect on their faith in a meaningful way, often serving as conversation starters or teaching tools in group settings.</li></ol><p><br></p><pre class="ql-syntax" spellcheck="false">@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-<span class="hljs-keyword">@layer</span> base {
+@layer base {
 &nbsp; :root {
-&nbsp; &nbsp; <span class="hljs-attr">--background</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--buttonBackground</span>: <span class="hljs-number">99</span> <span class="hljs-number">64%</span> <span class="hljs-number">85%</span>;
+&nbsp; &nbsp; --background: 0 0% 100%;
+&nbsp; &nbsp; --foreground: 240 10% 3.9%;
+&nbsp; &nbsp; --buttonBackground: 99 64% 85%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--card</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--card-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; --card: 0 0% 100%;
+&nbsp; &nbsp; --card-foreground: 240 10% 3.9%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--popover</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--popover-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; --popover: 0 0% 100%;
+&nbsp; &nbsp; --popover-foreground: 240 10% 3.9%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--primary</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--primary-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --primary: 240 5.9% 10%;
+&nbsp; &nbsp; --primary-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--secondary</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--secondary-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+&nbsp; &nbsp; --secondary: 240 4.8% 95.9%;
+&nbsp; &nbsp; --secondary-foreground: 240 5.9% 10%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--muted</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--muted-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.8%</span> <span class="hljs-number">46.1%</span>;
+&nbsp; &nbsp; --muted: 240 4.8% 95.9%;
+&nbsp; &nbsp; --muted-foreground: 240 3.8% 46.1%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--accent</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.8%</span> <span class="hljs-number">95.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--accent-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+&nbsp; &nbsp; --accent: 240 4.8% 95.9%;
+&nbsp; &nbsp; --accent-foreground: 240 5.9% 10%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--destructive</span>: <span class="hljs-number">0</span> <span class="hljs-number">84.2%</span> <span class="hljs-number">60.2%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--destructive-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --destructive: 0 84.2% 60.2%;
+&nbsp; &nbsp; --destructive-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--border</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">90%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--input</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">90%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--ring</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
+&nbsp; &nbsp; --border: 240 5.9% 90%;
+&nbsp; &nbsp; --input: 240 5.9% 90%;
+&nbsp; &nbsp; --ring: 240 10% 3.9%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--radius</span>: <span class="hljs-number">0.5rem</span>;
+&nbsp; &nbsp; --radius: 0.5rem;
 &nbsp; }
 
 
 &nbsp; .dark {
-&nbsp; &nbsp; <span class="hljs-attr">--background</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--buttonBackground</span>: <span class="hljs-number">99</span> <span class="hljs-number">64%</span> <span class="hljs-number">85%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--card</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--card-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --background: 240 10% 3.9%;
+&nbsp; &nbsp; --foreground: 0 0% 98%;
+&nbsp; &nbsp; --buttonBackground: 99 64% 85%;
+&nbsp; &nbsp; --card: 240 10% 3.9%;
+&nbsp; &nbsp; --card-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--popover</span>: <span class="hljs-number">240</span> <span class="hljs-number">10%</span> <span class="hljs-number">3.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--popover-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --popover: 240 10% 3.9%;
+&nbsp; &nbsp; --popover-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--primary</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--primary-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5.9%</span> <span class="hljs-number">10%</span>;
+&nbsp; &nbsp; --primary: 0 0% 98%;
+&nbsp; &nbsp; --primary-foreground: 240 5.9% 10%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--secondary</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--secondary-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --secondary: 240 3.7% 15.9%;
+&nbsp; &nbsp; --secondary-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--muted</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--muted-foreground</span>: <span class="hljs-number">240</span> <span class="hljs-number">5%</span> <span class="hljs-number">64.9%</span>;
+&nbsp; &nbsp; --muted: 240 3.7% 15.9%;
+&nbsp; &nbsp; --muted-foreground: 240 5% 64.9%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--accent</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--accent-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --accent: 240 3.7% 15.9%;
+&nbsp; &nbsp; --accent-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--destructive</span>: <span class="hljs-number">0</span> <span class="hljs-number">62.8%</span> <span class="hljs-number">30.6%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--destructive-foreground</span>: <span class="hljs-number">0</span> <span class="hljs-number">0%</span> <span class="hljs-number">98%</span>;
+&nbsp; &nbsp; --destructive: 0 62.8% 30.6%;
+&nbsp; &nbsp; --destructive-foreground: 0 0% 98%;
 
 
-&nbsp; &nbsp; <span class="hljs-attr">--border</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--input</span>: <span class="hljs-number">240</span> <span class="hljs-number">3.7%</span> <span class="hljs-number">15.9%</span>;
-&nbsp; &nbsp; <span class="hljs-attr">--ring</span>: <span class="hljs-number">240</span> <span class="hljs-number">4.9%</span> <span class="hljs-number">83.9%</span>;
+&nbsp; &nbsp; --border: 240 3.7% 15.9%;
+&nbsp; &nbsp; --input: 240 3.7% 15.9%;
+&nbsp; &nbsp; --ring: 240 4.9% 83.9%;
 &nbsp; }
 }
 
 
 .ql-syntax {
-&nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#282c34</span> <span class="hljs-meta">!important</span>;
+&nbsp; background-color: #282c34 !important;
 }
 
 
 ol {
-&nbsp; <span class="hljs-attribute">list-style-type</span>: decimal; letters, etc. */
-&nbsp; <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">20px</span>;
+&nbsp; list-style-type: decimal; letters, etc. */
+&nbsp; margin-left: 20px;
 }
 
 
-<span class="hljs-comment">/* Set unordered lists to have dots */</span>
+/* Set unordered lists to have dots */
 ul {
-&nbsp; <span class="hljs-attribute">list-style-type</span>: disc; 
-&nbsp; <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">14px</span>;
+&nbsp; list-style-type: disc; 
+&nbsp; margin-left: 14px;
 }
 ul li {
-&nbsp; <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">8px</span>;
+&nbsp; padding-left: 8px;
 }
 ol li {
-&nbsp; <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">15px</span>;
+&nbsp; padding-left: 15px;
 }
-<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">hover</span>: <span class="hljs-attribute">hover</span>) {
+@media (hover: hover) {
 &nbsp; .ql-syntax::-webkit-scrollbar {
-&nbsp; &nbsp; <span class="hljs-attribute">width</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; &nbsp; width: 7px;
+&nbsp; &nbsp; height: 7px;
+&nbsp; &nbsp; cursor: grab;
 &nbsp; }
 
 
 &nbsp; .ql-syntax::-webkit-scrollbar-thumb {
-&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#c8c8c8</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
+&nbsp; &nbsp; background-color: #c8c8c8;
+&nbsp; &nbsp; border-radius: 7px;
+&nbsp; &nbsp; height: 7px;
 &nbsp; }
 
 
 &nbsp; .ql-syntax::-webkit-scrollbar-track {
-&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: transparent;
-&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>;
+&nbsp; &nbsp; background-color: transparent;
+&nbsp; &nbsp; border-radius: 6px;
 &nbsp; }
 }
 
 
 
-<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">hover</span>: <span class="hljs-attribute">hover</span>) {
+@media (hover: hover) {
 &nbsp; .custom-scrollbar::-webkit-scrollbar {
 &nbsp; &nbsp; scroll-behavior: smooth;
-&nbsp; &nbsp; <span class="hljs-attribute">width</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; &nbsp; width: 7px;
+&nbsp; &nbsp; height: 7px;
+&nbsp; &nbsp; cursor: grab;
 &nbsp; }
 
 
 &nbsp; .custom-scrollbar::-webkit-scrollbar-thumb {
-&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#565658</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">height</span>: <span class="hljs-number">7px</span>;
-&nbsp; &nbsp; <span class="hljs-attribute">cursor</span>: grab;
+&nbsp; &nbsp; background-color: #565658;
+&nbsp; &nbsp; border-radius: 7px;
+&nbsp; &nbsp; height: 7px;
+&nbsp; &nbsp; cursor: grab;
 &nbsp; }
 
 
 &nbsp; .custom-scrollbar::-webkit-scrollbar-track {
-&nbsp; &nbsp; <span class="hljs-attribute">background-color</span>: transparent;
-&nbsp; &nbsp; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+&nbsp; &nbsp; background-color: transparent;
+&nbsp; &nbsp; border-radius: 10px;
 &nbsp; }
 }
-</pre><p><br></p><p><br></p><p>The impact of Christian games and puzzles extends beyond personal enrichment. They can be used as effective outreach tools, helping to introduce individuals to faith in a non-threatening and engaging manner. By offering a blend of entertainment and education, these resources have the potential to reach a wider audience and facilitate discussions about faith in diverse settings.</p><p>made changes now</p><p class="ql-direction-rtl ql-align-right"><br></p><blockquote>In summary, Christian games and puzzles are invaluable resources that blend fun with faith, providing opportunities for spiritual growth, community building, and personal reflection. As they continue to evolve and adapt to new formats, they remain a testament to the creative ways in which faith can be woven into everyday life. Embracing these activities not only enhances one's spiritual journey but</blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><img src="http://res.cloudinary.com/dztt3ldiy/image/upload/f_auto,q_auto/v1729444703/about_oezfwv.png"></p><p><br></p><p><br></p><p>also fosters a deeper connection with both scripture and fellow believers.</p>
+</pre><p><br></p><p><br></p><p>The impact of Christian games and puzzles extends beyond personal enrichment. They can be used as effective outreach tools, helping to introduce individuals to faith in a non-threatening and engaging manner. By offering a blend of entertainment and education, these resources have the potential to reach a wider audience and facilitate discussions about faith in diverse settings.</p><p>made changes now</p><p class="ql-align-right ql-direction-rtl"><br></p><blockquote>In summary, Christian games and puzzles are invaluable resources that blend fun with faith, providing opportunities for spiritual growth, community building, and personal reflection. As they continue to evolve and adapt to new formats, they remain a testament to the creative ways in which faith can be woven into everyday life. Embracing these activities not only enhances one's spiritual journey but</blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><img src="http://res.cloudinary.com/dztt3ldiy/image/upload/f_auto,q_auto/v1729444703/about_oezfwv.png"></p><p><br></p><p><br></p><p>also fosters a deeper connection with both scripture and fellow believers.</p>
                 <!-- Quill content will be inserted here -->
             </div>
         </main>

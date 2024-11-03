@@ -3,7 +3,7 @@ import { Apple, Chrome, Film } from "lucide-react";
 
 const companies = [
   {
-    name: "ABC Capital Ltd",
+    name: "ABC Capital",
     icon: "/assets/images/abc-logo (1).svg",
     experience: {
       title: "Software Engineer",
@@ -56,9 +56,9 @@ const WorkExperience = () => {
   const [activeCompany, setActiveCompany] = useState(companies[0]);
 
   return (
-    <div className="">
+    <div className="w-full">
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2 mt-10 lg:mt-20 max-w-2xl mx-auto relative">
-        <div className="">
+        <div className="w-full md:w-40">
           <div className="absolute -left-6 w-px h-full bg-zinc-800 overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-500 to-purple-500 animate-shooting-star"></div>
           </div>
@@ -91,11 +91,11 @@ const WorkExperience = () => {
             }
           `}</style>
 
-          <div className="flex flex-row md:flex-col h-full relative overflow-x-auto md:overflow-x-visible">
+          <div className="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
             {companies.map((company, index) => (
               <button
                 key={index}
-                className={`px-4 py-2 my-4 text-zinc-400 relative z-20 min-w-28 w-full text-left rounded-md flex flex-row space-x-2 items-center group 
+                className={`flex-shrink-0 px-3 py-2 text-zinc-400 relative z-20 md:w-full text-left rounded-md flex items-center group 
                   ${
                     activeCompany.name === company.name
                       ? "bg-gradient-to-br from-zinc-700 to-zinc-800"
@@ -103,14 +103,14 @@ const WorkExperience = () => {
                   } transition-all duration-300 ease-in-out`}
                 onClick={() => setActiveCompany(company)}
               >
-                <div className="bg-red-500 p-1 h-7 w-7 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 group-hover:scale-110 transition-transform duration-300 ease-in-out">
+                <div className="bg-red-500 p-1 h-7 w-7 flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 group-hover:scale-110 transition-transform duration-300 ease-in-out">
                   <img
                     src={company.icon}
                     alt={`${company.name} icon`}
-                    className="h-5 w-5"
+                    className="h-4 w-4 object-contain"
                   />
                 </div>
-                <span className="ml-2 group-hover:text-white transition-colors duration-300 ease-in-out">
+                <span className="ml-2 whitespace-nowrap text-sm md:text-base group-hover:text-white transition-colors duration-300 ease-in-out">
                   {company.name}
                 </span>
               </button>

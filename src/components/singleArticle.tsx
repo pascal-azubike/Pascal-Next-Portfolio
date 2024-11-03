@@ -22,6 +22,7 @@ import "react-quill/dist/quill.snow.css";
 import { Copy } from "lucide-react";
 import hljs from "highlight.js";
 import { useSearchStore } from "@/hooks/use-search-store";
+import PascalSpinner from "./LoadingSpinner";
 
 interface HeadingObject {
   id: string;
@@ -52,7 +53,7 @@ const ArticleLayout: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const articleContentRef = useRef<HTMLDivElement>(null);
   const [articleHtml, setArticleHtml] = useState<string>("");
-
+  const { toggleOpen } = useSearchStore();
   const pathname = usePathname();
   const id = pathname.split("/").pop() || "";
 
@@ -287,6 +288,11 @@ const ArticleLayout: React.FC = () => {
     }
     setIsDrawerOpen(false);
   };
+
+  if (isPending) {
+    return <PascalSpinner />;
+  }
+
   // left sidebar.......................................................................................
   const LeftSidebar: React.FC = () => {
     const [hoveredSection, setHoveredSection] = useState<string | null>(null);
@@ -380,7 +386,6 @@ const ArticleLayout: React.FC = () => {
       </div>
     );
   };
-  const { toggleOpen } = useSearchStore();
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
@@ -435,7 +440,7 @@ const ArticleLayout: React.FC = () => {
             {/* Hero Section */}
             <section className="pt-48 lg:pt-32 pb-12 px-4">
               <div className="mx-auto max-w-4xl">
-                <h1 className="text-3xl md:text-4xl font-bold mb-6">
+                <h1 className="text-2xl md:text-4xl font-bold mb-6">
                   {article?.title}
                 </h1>
                 <p className="text-gray-400 text-lg mb-8 max-w-2xl">
@@ -459,21 +464,23 @@ const ArticleLayout: React.FC = () => {
 
             <div className="mb-16 relative">
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800">
-                <Image
-                  alt={article?.title || "Article image"}
-                  className="max-w-[90vw] max-h-[90vh] mx-auto my-auto"
-                  src={article?.imageUrl || "/"}
-                  blurDataURL={`data:image/jpeg;base64,${
-                    article && article.blurImage
-                  }`}
-                  placeholder="blur"
-                  layout="fill"
-                  objectFit="cover"
-                />
+                {article && (
+                  <Image
+                    alt={article?.title || "Article image"}
+                    className="max-w-[90vw] max-h-[90vh] mx-auto my-auto"
+                    src={article?.imageUrl}
+                    blurDataURL={`data:image/jpeg;base64,${article.blurImage}`}
+                    placeholder="blur"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-50 blur-3xl" />
-              <div className="absolute -inset-x-10 -inset-y-10 z-0 bg-blue-400/10 opacity-30 blur-2xl" />
+              {/* Decorative elements - Fixed positioning */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-50 blur-3xl" />
+                <div className="absolute inset-0 bg-blue-400/10 opacity-30 blur-2xl" />
+              </div>
             </div>
 
             {/* Article Content */}

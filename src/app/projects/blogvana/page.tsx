@@ -6,9 +6,9 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function BlogvanaCaseStudy() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-white">
+    <div className="min-h-min-h-screen bg-zinc-900 pt-28  text-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4">
+      <section className="lg:pt-24 pt-11 pb-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Blogvana
@@ -37,7 +37,7 @@ export default function BlogvanaCaseStudy() {
       </section>
 
       {/* Project Details */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 overflow-hidden">
         <div className="c mx-auto max-w-5xl">
           <div className="mb-16 relative">
             <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800">
@@ -55,7 +55,9 @@ export default function BlogvanaCaseStudy() {
 
           <div className="space-y-16">
             <div>
-              <h2 className="text-3xl font-bold mb-8">Project Overview</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">
+                Project Overview
+              </h2>
               <div className="space-y-6 text-gray-400">
                 <p className="text-lg">
                   I spearheaded the creation of a feature-rich and user-centric
@@ -110,7 +112,9 @@ export default function BlogvanaCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold mb-8">Tools Used</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">
+                Tools Used
+              </h2>
               <div className="flex flex-wrap gap-3">
                 {[
                   "HTML",
