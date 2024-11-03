@@ -121,7 +121,8 @@ export const POST = async (request: NextRequest) => {
         console.error(
           "Server responded with:",
           error.response.status,
-          error.response.data
+          error,
+          pdfUrl
         );
       } else if (error.request) {
         console.error("No response received:", error.request);
