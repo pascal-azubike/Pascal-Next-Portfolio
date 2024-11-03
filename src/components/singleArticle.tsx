@@ -171,25 +171,6 @@ const ArticleLayout: React.FC = () => {
   };
 
  
-  useEffect(() => {
-    const handleScroll = () => {
-      const headings =
-        articleContentRef?.current?.querySelectorAll("h1, h2, h3");
-      if (headings) {
-        for (let i = headings.length - 1; i >= 0; i--) {
-          const heading = headings[i];
-          const rect = heading.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(heading.id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
