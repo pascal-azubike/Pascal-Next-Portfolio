@@ -283,68 +283,69 @@ const ArticleLayout: React.FC = () => {
   const LeftSidebar: React.FC = () => {
     const [hoveredSection, setHoveredSection] = useState<string | null>(null);
     const renderSidebarItems = (items: HeadingObject[]) => {
-      return items?.map((item, index) => (
-        <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
-          <a
-            href={`#${item.id}`}
-            className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${
-              activeSection === item.id
-                ? "text-[#4b9bff] font-semibold"
-                : hoveredSection === item.id
-                ? "text-white"
-                : "text-gray-400"
-            }`}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(item.id);
-            }}
-            onMouseEnter={() => setHoveredSection(item.id)}
-            onMouseLeave={() => setHoveredSection(null)}
-          >
-            {item.text}
-          </a>
-          {/* {item?.items && item.items.length > 0 && (
-            <div className={`relative ${item.level === 2 ? "ml-0h mt-2" : ""}`}>
-              {item.level === 2 && (
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-700" />
-              )}
-              {item?.items?.map((subItem, subIndex) => (
-                <div key={subIndex} className="relative">
-                  {item.level === 2 && (
-                    <div
-                      className={cn(
-                        activeSection === subItem.id
-                          ? "absolute left-0 top-0 bottom-0 w-px bg-[#4b9bff] "
-                          : hoveredSection === subItem.id
-                          ? "absolute left-0 top-0 bottom-0 w-px bg-white"
-                          : ""
-                      )}
-                    />
-                  )}
-                  <a
-                    href={`#${subItem.id}`}
-                    className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${
-                      activeSection === subItem.id
-                        ? "text-[#4b9bff] font-semibold"
-                        : hoveredSection === subItem.id
-                        ? "text-white"
-                        : "text-gray-400"
-                    }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(subItem.id);
-                    }}
-                    onMouseEnter={() => setHoveredSection(subItem.id)}
-                    onMouseLeave={() => setHoveredSection(null)}
-                  >
-                    {subItem.text}
-                  </a>
-                </div>
-              ))}
-            </div>
-          )} */}
-        </div>
-      ));
+      //   return items?.map((item, index) => (
+      //     <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
+      //       <a
+      //         href={`#${item.id}`}
+      //         className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${
+      //           activeSection === item.id
+      //             ? "text-[#4b9bff] font-semibold"
+      //             : hoveredSection === item.id
+      //             ? "text-white"
+      //             : "text-gray-400"
+      //         }`}
+      //         onClick={(e) => {s
+      //           e.preventDefault();
+      //           scrollToSection(item.id);
+      //         }}
+      //         onMouseEnter={() => setHoveredSection(item.id)}
+      //         onMouseLeave={() => setHoveredSection(null)}
+      //       >
+      //         {item.text}
+      //       </a>
+      //       {item?.items && item.items.length > 0 && (
+      //         <div className={`relative ${item.level === 2 ? "ml-0h mt-2" : ""}`}>
+      //           {item.level === 2 && (
+      //             <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-700" />
+      //           )}
+      //           {item?.items?.map((subItem, subIndex) => (
+      //             <div key={subIndex} className="relative">
+      //               {item.level === 2 && (
+      //                 <div
+      //                   className={cn(
+      //                     activeSection === subItem.id
+      //                       ? "absolute left-0 top-0 bottom-0 w-px bg-[#4b9bff] "
+      //                       : hoveredSection === subItem.id
+      //                       ? "absolute left-0 top-0 bottom-0 w-px bg-white"
+      //                       : ""
+      //                   )}
+      //                 />
+      //               )}
+      //               <a
+      //                 href={`#${subItem.id}`}
+      //                 className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${
+      //                   activeSection === subItem.id
+      //                     ? "text-[#4b9bff] font-semibold"
+      //                     : hoveredSection === subItem.id
+      //                     ? "text-white"
+      //                     : "text-gray-400"
+      //                 }`}
+      //                 onClick={(e) => {
+      //                   e.preventDefault();
+      //                   scrollToSection(subItem.id);
+      //                 }}
+      //                 onMouseEnter={() => setHoveredSection(subItem.id)}
+      //                 onMouseLeave={() => setHoveredSection(null)}
+      //               >
+      //                 {subItem.text}
+      //               </a>
+      //             </div>
+      //           ))}
+      //         </div>
+      //       )}
+      //     </div>
+      //   ));
+      return <div></div>;
     };
 
     return (
