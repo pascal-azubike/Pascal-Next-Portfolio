@@ -484,7 +484,7 @@ const ArticleLayout: React.FC = () => {
 
               <div className="bg-zinc-800/50 backdrop-blur-sm text-gray-400 rounded-lg p-6">
                 <h3 className="text-xl font-bold mb-2">Related Articles</h3>
-                <ul>
+                {/* <ul>
                   {data?.similarArticles
                     ?.slice(0, 5)
                     .map((similarArticle, index) => (
@@ -497,7 +497,7 @@ const ArticleLayout: React.FC = () => {
                         </a>
                       </li>
                     ))}
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
