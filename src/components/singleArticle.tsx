@@ -63,7 +63,6 @@ const ArticleLayout: React.FC = () => {
         (res) => res.data
       )
   });
-
   const article = data?.article;
 
   const handleDownload = async (pdfUrl: any) => {
@@ -373,7 +372,10 @@ const ArticleLayout: React.FC = () => {
     );
   };
   const { toggleOpen } = useSearchStore();
-
+  if (isPending) {
+    return <div>loading</div>;
+  }
+  console.log(article)
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
       {/* Mobile Navigation */}
@@ -451,17 +453,17 @@ const ArticleLayout: React.FC = () => {
 
             <div className="mb-16 relative">
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800">
-                <Image
-                  alt={article?.title || "Article image"}
-                  className="max-w-[90vw] max-h-[90vh] mx-auto my-auto"
-                  src={article?.imageUrl || "/"}
-                  blurDataURL={`data:image/jpeg;base64,${
-                    article && article.blurImage
-                  }`}
-                  placeholder="blur"
-                  layout="fill"
-                  objectFit="cover"
-                />
+                {article && (
+                  <Image
+                    alt={article?.title || "Article image"}
+                    className="max-w-[90vw] max-h-[90vh] mx-auto my-auto"
+                    src={article.imageUrl}
+                    blurDataURL={`data:image/jpeg;base64,${article.blurImage}`}
+                    placeholder="blur"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
               </div>
               {/* Decorative elements */}
               <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-50 blur-3xl" />
