@@ -120,6 +120,7 @@ export const POST = async (request: NextRequest) => {
       if (error.response) {
         console.error(
           "Server responded with:",
+          "i just return this error ",
           error.response.status,
           error,
           pdfUrl
