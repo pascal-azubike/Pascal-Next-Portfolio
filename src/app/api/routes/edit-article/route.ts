@@ -5,12 +5,12 @@ import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
 
 import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import fs from "fs/promises";
 import path from "path";
 
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
-
 import { embedding } from "@/utils/getEmbeddins";
 import { pdfTemplate } from "../create-article/pdfTemplate";
 
@@ -50,18 +50,18 @@ export const POST = async (request: NextRequest) => {
       "/q_auto/f_auto/w_800",
       image
     );
+
     console.log("Generating PDF from Quill content...");
     const newEmbedding = await embedding(
-      `${title},
-          ${shortSummary},
-                ${description},`
+      `${title}, ${shortSummary}, ${description}`
     );
 
-    // Launch a headless browser instance
+    // Launch a headless browser instance with @sparticuz/chromium settings
     const browser = await puppeteer.launch({
-      // Use the Puppeteer-core version for Vercel production
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-      args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
+      executablePath: await chromium.executablePath(),
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      headless: chromium.headless,
     });
     const page = await browser.newPage();
 
@@ -111,7 +111,7 @@ export const POST = async (request: NextRequest) => {
     const pdfBuffer = await page.pdf({
       format: "a4",
       printBackground: true,
-      preferCSSPageSize: true
+      preferCSSPageSize: true,
     });
 
     // Close the browser
@@ -132,8 +132,8 @@ export const POST = async (request: NextRequest) => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       pdfUrl = response.data.secure_url;
@@ -149,7 +149,6 @@ export const POST = async (request: NextRequest) => {
       } else {
         console.error("Error setting up request:", error.message);
       }
-      // Implement retry logic here
     }
 
     // Create the new product
@@ -163,10 +162,10 @@ export const POST = async (request: NextRequest) => {
         blurImage,
         pdfUrl,
         shortSummary,
-        embedding: newEmbedding
+        embedding: newEmbedding,
       },
       {
-        new: true
+        new: true,
       }
     );
 
