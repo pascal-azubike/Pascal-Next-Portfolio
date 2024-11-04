@@ -16,6 +16,7 @@ import { pdfTemplate } from "../create-article/pdfTemplate";
 
 // Define the POST handler
 export const POST = async (request: NextRequest) => {
+  let pdfname;
   try {
     await connectDB();
 
@@ -61,7 +62,7 @@ export const POST = async (request: NextRequest) => {
       executablePath: await chromium.executablePath(),
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      headless: chromium.headless,
+      headless: chromium.headless
     });
     const page = await browser.newPage();
 
@@ -109,11 +110,12 @@ export const POST = async (request: NextRequest) => {
 
     // Generate the PDF
     const pdfBuffer = await page.pdf({
-      format: "a4",
+      format: "A4",
       printBackground: true,
-      preferCSSPageSize: true,
+      preferCSSPageSize: true
     });
 
+    pdfname = pdfBuffer;
     // Close the browser
     await browser.close();
 
@@ -132,8 +134,8 @@ export const POST = async (request: NextRequest) => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       );
       pdfUrl = response.data.secure_url;
@@ -162,10 +164,10 @@ export const POST = async (request: NextRequest) => {
         blurImage,
         pdfUrl,
         shortSummary,
-        embedding: newEmbedding,
+        embedding: newEmbedding
       },
       {
-        new: true,
+        new: true
       }
     );
 
@@ -177,6 +179,9 @@ export const POST = async (request: NextRequest) => {
   } catch (error: any) {
     console.log("error", error);
     // Handle errors
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message, errorDisplayed: error, pdfname },
+      { status: 500 }
+    );
   }
 };
