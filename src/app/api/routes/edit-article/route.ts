@@ -59,6 +59,7 @@ export const POST = async (request: NextRequest) => {
       defaultViewport: chromium.defaultViewport,
       headless: chromium.headless
     });
+
     const page = await browser.newPage();
 
     // Populate the template with the content
