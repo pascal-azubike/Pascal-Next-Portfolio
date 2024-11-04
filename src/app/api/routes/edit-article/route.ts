@@ -6,8 +6,6 @@ import Article from "../../models/Article";
 
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
-import fs from "fs/promises";
-import path from "path";
 
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
@@ -16,7 +14,6 @@ import { pdfTemplate } from "../create-article/pdfTemplate";
 
 // Define the POST handler
 export const POST = async (request: NextRequest) => {
-  let pdfname;
   try {
     await connectDB();
 
@@ -43,6 +40,7 @@ export const POST = async (request: NextRequest) => {
     const reqBody = await request.json();
     const { title, description, image, blurImage, shortSummary } = reqBody;
 
+    // Optimize images
     const optimizedImage1 = await uptimizeCloudinaryImage(
       "/q_auto/f_auto/w_300/h_300",
       image
@@ -53,9 +51,6 @@ export const POST = async (request: NextRequest) => {
     );
 
     console.log("Generating PDF from Quill content...");
-    const newEmbedding = await embedding(
-      `${title}, ${shortSummary}, ${description}`
-    );
 
     // Launch a headless browser instance with @sparticuz/chromium settings
     const browser = await puppeteer.launch({
@@ -66,11 +61,8 @@ export const POST = async (request: NextRequest) => {
     });
     const page = await browser.newPage();
 
-    // HTML template (you would typically load this from a file)
-    const htmlTemplate = pdfTemplate;
-
     // Populate the template with the content
-    const populatedHtml = htmlTemplate
+    const populatedHtml = pdfTemplate
       .replace(
         '<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>',
         `<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4">${title}</h1>`
@@ -101,12 +93,8 @@ export const POST = async (request: NextRequest) => {
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
 
-    // Write the populated HTML to a temporary file
-    const tempHtmlPath = path.join(process.cwd(), "temp.html");
-    await fs.writeFile(tempHtmlPath, populatedHtml);
-
-    // Navigate to the temporary HTML file
-    await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
+    // Set the HTML content directly
+    await page.setContent(populatedHtml, { waitUntil: "domcontentloaded" });
 
     // Generate the PDF
     const pdfBuffer = await page.pdf({
@@ -115,7 +103,6 @@ export const POST = async (request: NextRequest) => {
       preferCSSPageSize: true
     });
 
-    pdfname = pdfBuffer;
     // Close the browser
     await browser.close();
 
@@ -152,8 +139,11 @@ export const POST = async (request: NextRequest) => {
         console.error("Error setting up request:", error.message);
       }
     }
-
-    // Create the new product
+    console.log(pdfUrl);
+    const newEmbedding = await embedding(
+      `${title}, ${shortSummary}, ${description}`
+    );
+    // Update the article
     await Article.findByIdAndUpdate(
       id,
       {
@@ -179,9 +169,6 @@ export const POST = async (request: NextRequest) => {
   } catch (error: any) {
     console.log("error", error);
     // Handle errors
-    return NextResponse.json(
-      { error: error.message, errorDisplayed: error, pdfname },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
