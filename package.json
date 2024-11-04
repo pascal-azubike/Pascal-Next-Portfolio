@@ -43,7 +43,6 @@
     "@types/three": "^0.163.0",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
-    "chrome-aws-lambda": "^10.1.0",
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^2.2.0",
     "clsx": "^2.1.1",
