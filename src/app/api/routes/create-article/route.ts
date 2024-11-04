@@ -10,7 +10,7 @@ import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
 import { embedding } from "@/utils/getEmbeddins";
-// Define the POST handler
+
 export const POST = async (request: NextRequest) => {
   try {
     // if (loginUser?.privateMetadata?.admin !== true) {
