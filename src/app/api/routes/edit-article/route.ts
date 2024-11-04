@@ -1,12 +1,9 @@
 import Product from "../../models/Product";
 import { NextRequest, NextResponse } from "next/server";
-
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
-
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
-
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 import { embedding } from "@/utils/getEmbeddins";
@@ -52,15 +49,32 @@ export const POST = async (request: NextRequest) => {
 
     console.log("Generating PDF from Quill content...");
 
-    // Launch a headless browser instance with @sparticuz/chromium settings
+    // Configure chrome-aws-lambda options
+    const executablePath = await chromium.executablePath();
+
+    if (!executablePath) {
+      throw new Error("Could not find Chrome executable path");
+    }
+
+    // Launch browser with proper Lambda configuration
     const browser = await puppeteer.launch({
-      executablePath: await chromium.executablePath(),
-      args: chromium.args,
+      args: [
+        ...chromium.args,
+        "--hide-scrollbars",
+        "--disable-web-security",
+        "--disable-features=IsolateOrigins",
+        "--disable-site-isolation-trials",
+        "--no-sandbox",
+        "--disable-setuid-sandbox"
+      ],
       defaultViewport: chromium.defaultViewport,
-      headless: chromium.headless
+      executablePath: executablePath,
+      headless: true
     });
 
+    // Set a reasonable timeout for page operations
     const page = await browser.newPage();
+    page.setDefaultTimeout(30000); // 30 second timeout
 
     // Populate the template with the content
     const populatedHtml = pdfTemplate
@@ -94,82 +108,90 @@ export const POST = async (request: NextRequest) => {
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
 
-    // Set the HTML content directly
-    await page.setContent(populatedHtml, { waitUntil: "domcontentloaded" });
-
-    // Generate the PDF
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true,
-      preferCSSPageSize: true
-    });
-
-    // Close the browser
-    await browser.close();
-
-    // Upload PDF to Cloudinary
-    const formData = new FormData();
-    formData.append(
-      "file",
-      new Blob([pdfBuffer], { type: "application/pdf" }),
-      `${title.replace(/\s+/g, "-")}.pdf`
-    );
-    formData.append("upload_preset", "ml_default");
-    let pdfUrl;
     try {
+      // Set the HTML content with proper error handling
+      await page.setContent(populatedHtml, {
+        waitUntil: ["domcontentloaded", "networkidle0"],
+        timeout: 30000
+      });
+
+      // Generate PDF with specific settings for Lambda
+      const pdfBuffer = await page.pdf({
+        format: "A4",
+        printBackground: true,
+        preferCSSPageSize: true,
+        margin: {
+          top: "20px",
+          right: "20px",
+          bottom: "20px",
+          left: "20px"
+        }
+      });
+
+      // Upload PDF to Cloudinary
+      const formData = new FormData();
+      formData.append(
+        "file",
+        new Blob([pdfBuffer], { type: "application/pdf" }),
+        `${title.replace(/\s+/g, "-")}.pdf`
+      );
+      formData.append("upload_preset", "ml_default");
+
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data"
-          }
+          },
+          timeout: 30000 // 30 second timeout for upload
         }
       );
-      pdfUrl = response.data.secure_url;
+
+      const pdfUrl = response.data.secure_url;
+      const newEmbedding = await embedding(
+        `${title}, ${shortSummary}, ${description}`
+      );
+
+      // Update the article
+      await Article.findByIdAndUpdate(
+        id,
+        {
+          title,
+          description,
+          imageUrl: image,
+          numView: 0,
+          blurImage,
+          pdfUrl,
+          shortSummary,
+          embedding: newEmbedding
+        },
+        {
+          new: true
+        }
+      );
+
+      // Return success response
+      return NextResponse.json(
+        { status: "success", message: "Article edited successfully", pdfUrl },
+        { status: 200 }
+      );
     } catch (error: any) {
-      if (error.response) {
-        console.error(
-          "Server responded with:",
-          error.response.status,
-          error.response.data
-        );
-      } else if (error.request) {
-        console.error("No response received:", error.request);
-      } else {
-        console.error("Error setting up request:", error.message);
+      throw new Error(`PDF generation failed: ${error.message}`);
+    } finally {
+      // Always close the browser
+      if (browser) {
+        await browser.close();
       }
     }
-    console.log(pdfUrl);
-    const newEmbedding = await embedding(
-      `${title}, ${shortSummary}, ${description}`
-    );
-    // Update the article
-    await Article.findByIdAndUpdate(
-      id,
-      {
-        title,
-        description,
-        imageUrl: image,
-        numView: 0,
-        blurImage,
-        pdfUrl,
-        shortSummary,
-        embedding: newEmbedding
-      },
-      {
-        new: true
-      }
-    );
-
-    // Return success response
-    return NextResponse.json(
-      { status: "success", message: "Article edited successfully", pdfUrl },
-      { status: 200 }
-    );
   } catch (error: any) {
-    console.log("error", error);
-    // Handle errors
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("Error in POST handler:", error);
+    return NextResponse.json(
+      {
+        status: "error",
+        message: error.message || "An unexpected error occurred"
+      },
+      { status: 500 }
+    );
   }
 };
