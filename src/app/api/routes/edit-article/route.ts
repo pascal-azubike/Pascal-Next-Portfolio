@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
 
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 import fs from "fs/promises";
 import path from "path";
 
@@ -58,14 +58,17 @@ export const POST = async (request: NextRequest) => {
     );
 
     // Launch a headless browser instance
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      // Use the Puppeteer-core version for Vercel production
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
+    });
     const page = await browser.newPage();
 
     // HTML template (you would typically load this from a file)
     const htmlTemplate = pdfTemplate;
 
     // Populate the template with the content
-
     const populatedHtml = htmlTemplate
       .replace(
         '<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>',
@@ -96,6 +99,7 @@ export const POST = async (request: NextRequest) => {
         'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src=""',
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
+
     // Write the populated HTML to a temporary file
     const tempHtmlPath = path.join(process.cwd(), "temp.html");
     await fs.writeFile(tempHtmlPath, populatedHtml);
@@ -105,7 +109,7 @@ export const POST = async (request: NextRequest) => {
 
     // Generate the PDF
     const pdfBuffer = await page.pdf({
-      format: "A4",
+      format: "a4",
       printBackground: true,
       preferCSSPageSize: true
     });
@@ -114,7 +118,6 @@ export const POST = async (request: NextRequest) => {
     await browser.close();
 
     // Upload PDF to Cloudinary
-
     const formData = new FormData();
     formData.append(
       "file",
