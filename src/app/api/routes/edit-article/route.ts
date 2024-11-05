@@ -9,8 +9,8 @@ import { embedding } from "@/utils/getEmbeddins";
 import { pdfTemplate } from "../create-article/pdfTemplate";
 
 export const POST = async (request: NextRequest) => {
-  let browser = null;
-  
+  let browser;
+
   try {
     await connectDB();
 
@@ -25,7 +25,6 @@ export const POST = async (request: NextRequest) => {
     }
 
     const article = await Article.findById(id);
-
     if (!article) {
       return NextResponse.json(
         { message: "Article not found" },
@@ -47,45 +46,37 @@ export const POST = async (request: NextRequest) => {
 
     console.log("Starting PDF generation process...");
 
-    // More robust browser launch configuration
+    // Launch Puppeteer with serverless-friendly settings
     browser = await puppeteer.launch({
       args: [
         ...chromium.args,
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--single-process',
-        '--no-zygote',
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--single-process",
+        "--no-zygote"
       ],
-      defaultViewport: {
-        width: 1200,
-        height: 800,
-        deviceScaleFactor: 1,
-        isMobile: false,
-        hasTouch: false,
-        isLandscape: true
-      },
+      defaultViewport: chromium.defaultViewport || { width: 1200, height: 800 },
       executablePath: await chromium.executablePath(),
-      headless: true,
-      ignoreHTTPSErrors: true,
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true
     });
 
-    // Create and configure page with error handling
     const page = await browser.newPage();
-    await page.setDefaultNavigationTimeout(0);
+    await page.setDefaultNavigationTimeout(60000); // Extend navigation timeout
+
+    // Intercept requests to block unnecessary resources
     await page.setRequestInterception(true);
-    
-    // Optimize page performance
-    page.on('request', (request) => {
-      if (['image', 'stylesheet', 'font'].indexOf(request.resourceType()) !== -1) {
-        request.abort();
+    page.on("request", (req) => {
+      if (["image", "stylesheet", "font"].includes(req.resourceType())) {
+        req.abort();
       } else {
-        request.continue();
+        req.continue();
       }
     });
 
-    // Populate HTML template
+    // Populate the HTML template with dynamic content
     const populatedHtml = pdfTemplate
       .replace(
         '<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>',
@@ -117,25 +108,26 @@ export const POST = async (request: NextRequest) => {
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
 
-    // Set content with more reliable wait conditions
+    // Set page content
     await page.setContent(populatedHtml, {
-      waitUntil: 'networkidle0',
-      timeout: 30000,
+      waitUntil: "networkidle2",
+      timeout: 60000
     });
 
-    // Generate PDF with optimal settings for Lambda
+    // Generate PDF
     const pdfBuffer = await page.pdf({
-      format: 'A4',
+      format: "A4",
       printBackground: true,
-      margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' },
-      timeout: 30000,
-      scale: 0.8 // Slightly reduce scale to ensure content fits
+      margin: { top: "20px", right: "20px", bottom: "20px", left: "20px" },
+      scale: 0.75, // Adjust scale for more efficient rendering
+      timeout: 60000
     });
 
+    // Close the browser
     await browser.close();
     browser = null;
 
-    // Upload to Cloudinary
+    // Upload PDF to Cloudinary
     const formData = new FormData();
     formData.append(
       "file",
@@ -149,7 +141,7 @@ export const POST = async (request: NextRequest) => {
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },
-        timeout: 30000
+        timeout: 60000
       }
     );
 
@@ -158,7 +150,7 @@ export const POST = async (request: NextRequest) => {
       `${title}, ${shortSummary}, ${description}`
     );
 
-    // Update article
+    // Update article in MongoDB
     await Article.findByIdAndUpdate(
       id,
       {
@@ -178,15 +170,10 @@ export const POST = async (request: NextRequest) => {
       { status: "success", message: "Article edited successfully", pdfUrl },
       { status: 200 }
     );
-
-  } catch (error: any) {
+  } catch (error:any) {
     console.error("Error in PDF generation:", error);
     return NextResponse.json(
-      { 
-        status: "error", 
-        message: `PDF generation failed: ${error.message}`,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-      }, 
+      { status: "error", message: `PDF generation failed: ${error.message}` },
       { status: 500 }
     );
   } finally {
