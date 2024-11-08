@@ -59,7 +59,7 @@ export const POST = async (request: NextRequest) => {
 
     // Launch a headless browser instance
     const browser = await puppeteer.launch({
-      headless: "new",
+      headless: true,
       executablePath: process.env.NODE_ENV === 'development' 
         ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
         : undefined,

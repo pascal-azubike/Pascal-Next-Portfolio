@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
-import puppeteer from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer";
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 import { embedding } from "@/utils/getEmbeddins";
@@ -48,13 +47,14 @@ export const POST = async (request: NextRequest) => {
     console.log("Generating PDF from Quill content...");
 
     // Set up chrome-aws-lambda
-    const executablePath = await chromium.executablePath();
+    const executablePath = await puppeteer.executablePath();
 
-    // Launch browser with AWS Lambda-specific configuration
+    // Launch browser with environment-specific configuration
     browser = await puppeteer.launch({
-      args: chromium.args,
-      executablePath: executablePath,
-      headless: chromium.headless,
+      headless: true,
+      executablePath: process.env.NODE_ENV === 'development' 
+        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
+        : undefined,
       defaultViewport: {
         width: 1280,
         height: 720,
