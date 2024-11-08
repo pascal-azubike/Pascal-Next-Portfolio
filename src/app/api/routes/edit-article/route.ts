@@ -63,20 +63,29 @@ export const POST = async (request: NextRequest) => {
     // Before launching the browser, add this:
     await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
     
-    // Launch browser directly (removed chromium.init())
+    // Launch browser with minimal settings for faster startup
     const browser = await puppeteer.launch({
       args: [
         ...chromium.args,
         '--hide-scrollbars',
         '--disable-web-security',
         '--no-sandbox',
-        '--disable-setuid-sandbox'
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--single-process'
       ],
-      defaultViewport: chromium.defaultViewport,
+      defaultViewport: {
+        width: 1200,
+        height: 900,
+        deviceScaleFactor: 1,
+      },
       executablePath: await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar'),
       headless: true,
     });
+
+    // Set a shorter timeout for page operations
     const page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(5000);
 
     // HTML template (you would typically load this from a file)
     const htmlTemplate = pdfTemplate;
