@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['puppeteer-core', '@sparticuz/chromium'],
+    serverComponentsExternalPackages: ['puppeteer-core', '@sparticuz/chromium-min'],
     serverActions: true
   },
   webpack: (config) => {
-    config.externals = [...(config.externals || []), 'chrome-aws-lambda'];
+    config.externals = [...(config.externals || []), 'puppeteer-core', '@sparticuz/chromium-min'];
     return config;
   },
   images: {

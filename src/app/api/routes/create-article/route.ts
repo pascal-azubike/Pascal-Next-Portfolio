@@ -4,9 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
 
-import puppeteer from "puppeteer";
-import fs from "fs/promises";
-import path from "path";
+import puppeteer from "puppeteer-core";
+import chromium from '@sparticuz/chromium-min';
 
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
@@ -42,16 +41,10 @@ export const POST = async (request: NextRequest) => {
 
     // Launch a headless browser instance
     const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: process.env.NODE_ENV === 'development'
-        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
-        : undefined,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu'
-      ],
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
     const page = await browser.newPage();
 
@@ -90,12 +83,9 @@ export const POST = async (request: NextRequest) => {
         'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src=""',
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
-    // Write the populated HTML to a temporary file
-    const tempHtmlPath = path.join(process.cwd(), "temp.html");
-    await fs.writeFile(tempHtmlPath, populatedHtml);
 
-    // Navigate to the temporary HTML file
-    await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
+    // Load HTML content directly instead of using a temp file
+    await page.setContent(populatedHtml, { waitUntil: 'networkidle0' });
 
     // Generate the PDF
     const pdfBuffer = await page.pdf({
@@ -165,7 +155,7 @@ export const POST = async (request: NextRequest) => {
     );
   } catch (error: any) {
     console.log("error", error);
-    // Handle errors
+    console.error("Puppeteer error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };

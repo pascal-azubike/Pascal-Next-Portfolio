@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
 
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 import fs from "fs/promises";
 import path from "path";
 
@@ -13,6 +13,9 @@ import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 
 import { embedding } from "@/utils/getEmbeddins";
 import { pdfTemplate } from "../create-article/pdfTemplate";
+
+// Add new import for chrome-aws-lambda
+import chromium from '@sparticuz/chromium-min';
 
 // Define the POST handler
 export const POST = async (request: NextRequest) => {
@@ -59,16 +62,10 @@ export const POST = async (request: NextRequest) => {
 
     // Launch a headless browser instance
     const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: process.env.NODE_ENV === 'development' 
-        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
-        : undefined,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu'
-      ],
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
     const page = await browser.newPage();
 
@@ -107,12 +104,9 @@ export const POST = async (request: NextRequest) => {
         'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src=""',
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
-    // Write the populated HTML to a temporary file
-    const tempHtmlPath = path.join(process.cwd(), "temp.html");
-    await fs.writeFile(tempHtmlPath, populatedHtml);
 
-    // Navigate to the temporary HTML file
-    await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
+    // Load HTML content directly
+    await page.setContent(populatedHtml, { waitUntil: 'networkidle0' });
 
     // Generate the PDF
     const pdfBuffer = await page.pdf({
@@ -185,6 +179,7 @@ export const POST = async (request: NextRequest) => {
     );
   } catch (error: any) {
     console.log("error", error);
+    console.error("Puppeteer error:", error);
     // Handle errors
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
