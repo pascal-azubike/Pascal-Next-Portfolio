@@ -60,12 +60,21 @@ export const POST = async (request: NextRequest) => {
                 ${description},`
     );
 
-    // Launch a headless browser instance
+    // Before launching the browser, add this:
+    await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
+    
+    // Launch browser directly (removed chromium.init())
     const browser = await puppeteer.launch({
-      args: chromium.args,
+      args: [
+        ...chromium.args,
+        '--hide-scrollbars',
+        '--disable-web-security',
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+      ],
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      executablePath: await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar'),
+      headless: true,
     });
     const page = await browser.newPage();
 
