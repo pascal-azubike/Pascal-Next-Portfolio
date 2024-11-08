@@ -67,16 +67,13 @@ export const POST = async (request: NextRequest) => {
     const browser = await puppeteer.launch({
       args: [
         ...chromium.args,
-        '--hide-scrollbars',
-        '--disable-web-security',
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
-        '--single-process'
       ],
       defaultViewport: {
-        width: 1200,
-        height: 900,
+        width: 800,
+        height: 600,
         deviceScaleFactor: 1,
       },
       executablePath: await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar'),
@@ -85,7 +82,8 @@ export const POST = async (request: NextRequest) => {
 
     // Set a shorter timeout for page operations
     const page = await browser.newPage();
-    await page.setDefaultNavigationTimeout(5000);
+    await page.setDefaultNavigationTimeout(8000);
+    await page.setDefaultTimeout(8000);
 
     // HTML template (you would typically load this from a file)
     const htmlTemplate = pdfTemplate;
