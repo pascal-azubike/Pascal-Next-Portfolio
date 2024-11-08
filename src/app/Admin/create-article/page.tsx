@@ -148,6 +148,7 @@ function ProductForm() {
     const resizedImage: any = await resizeFile(file);
 
     form.setValue("blurImage", resizedImage.split(",")[1]);
+    console.log(resizedImage.split(",")[1], "resizedImage");
     setImagePreview(imageUrl);
     setIsFetchingImage(false);
     form.setValue("image", imageUrl);
@@ -190,7 +191,7 @@ function ProductForm() {
         shortSummary: product.shortSummary || "",
         description: product.description,
         image: product.imageUrl,
-        blurImage: product.imageUrl
+        blurImage: product.blurImage
       });
       setImagePreview(product.imageUrl);
       setEditorContent(product.description);

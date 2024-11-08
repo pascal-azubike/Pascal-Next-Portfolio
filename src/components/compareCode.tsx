@@ -15,8 +15,8 @@ export function CompareDemo() {
         Hover to compare initial implementation with optimized solution
       </p>
       <Compare
-        firstImage="https://assets.aceternity.com/code-problem.png"
-        secondImage="https://assets.aceternity.com/code-solution.png"
+        firstImage="assets/images/beforeOptimized.png"
+        secondImage="assets/images/afterOptimization.png"
         firstImageClassName="object-cover object-left-top"
         secondImageClassname="object-cover object-left-top"
         className=""

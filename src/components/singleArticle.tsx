@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Share2, Eye, Menu, Search, ArrowUpRight } from "lucide-react";
+import { Share2, Eye, Menu, Search, ArrowUpRight, Loader } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -57,32 +57,43 @@ const ArticleLayout: React.FC = () => {
   const pathname = usePathname();
   const id = pathname.split("/").pop() || "";
 
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const { isPending, error, data } = useQuery<ApiResponse, Error>({
     queryKey: [id],
     queryFn: () =>
       axios(`/api/routes/fetchSingleArticle?articleId=${id}`).then(
         (res) => res.data
-      )
+      ),
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    gcTime: 1000 * 60 * 30, // Cache data for 30 minutes (formerly cacheTime)
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
+    refetchOnMount: false // Don't refetch on component mount if data exists
   });
 
   const article = data?.article;
 
   const handleDownload = async (pdfUrl: any) => {
-    console.log(pdfUrl, "pdfurl....................");
+    setIsDownloading(true);
     try {
       const response = await fetch(pdfUrl);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "Christian-Games-and-Puzzles.pdf";
+      const sanitizedTitle = article?.title
+        ?.replace(/[^a-z0-9]/gi, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase() || 'article';
+      link.download = `${sanitizedTitle}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error downloading PDF:", error);
-      // You might want to show an error message to the user here
+    } finally {
+      setIsDownloading(false);
     }
   };
   // Modify code blocks and other elements
@@ -454,8 +465,17 @@ const ArticleLayout: React.FC = () => {
                     <Button
                       onClick={() => handleDownload(article?.pdfUrl)}
                       className="inline-flex items-center justify-center px-6 py-3 border border-blue-400 text-white font-semibold rounded-lg hover:bg-blue-400 hover:text-black transition-all"
+                      disabled={isDownloading}
                     >
-                      <Eye className="mr-2" size={20} /> Read Later
+                      {isDownloading ? (
+                        <>
+                          <Loader className="mr-2 h-4 w-4 animate-spin" /> Downloading...
+                        </>
+                      ) : (
+                        <>
+                          <Eye className="mr-2" size={20} /> Read Later
+                        </>
+                      )}
                     </Button>
                   </div>
                 </div>

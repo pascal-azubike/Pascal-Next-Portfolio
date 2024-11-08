@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Command, Clock, X, Search, Trash2 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useSearchStore } from "@/hooks/use-search-store";
 import { useRouter } from "next/navigation";
+import { debounce } from "lodash";
 
 const GlobalSearch = () => {
   const router = useRouter();
@@ -20,19 +21,32 @@ const GlobalSearch = () => {
     clearHistory
   } = useSearchStore();
 
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
   const { data: searchResults, isLoading } = useQuery({
-    queryKey: ["search", search],
+    queryKey: ["search", debouncedSearch],
     queryFn: async () => {
-      if (search.length < 2) return [];
-      const response = await fetch(`/api/routes/search?q=${search}`);
+      if (debouncedSearch.length < 2) return [];
+      const response = await fetch(`/api/routes/search?q=${debouncedSearch}`);
       const data = await response.json();
-      if (search.length >= 3) {
-        addToHistory(search);
+      if (debouncedSearch.length >= 3) {
+        addToHistory(debouncedSearch);
       }
       return data;
     },
-    enabled: search.length >= 2
+    enabled: debouncedSearch.length >= 2
   });
+
+  useEffect(() => {
+    const handler = debounce(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    handler();
+    return () => {
+      handler.cancel();
+    };
+  }, [search]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -126,6 +140,10 @@ const GlobalSearch = () => {
                       </button>
                     </button>
                   ))}
+                </div>
+              ) : debouncedSearch.length < 2 ? (
+                <div className="px-4 py-12 text-center text-sm text-zinc-500">
+                  Type at least 2 characters to search...
                 </div>
               ) : isLoading ? (
                 <div className="px-4 py-12 text-center text-sm text-zinc-500">
