@@ -1,37 +1,27 @@
+import Product from "../../models/Product";
 import { NextRequest, NextResponse } from "next/server";
+
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
+
 import puppeteer from "puppeteer";
+import fs from "fs/promises";
+import path from "path";
+
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
+
 import { embedding } from "@/utils/getEmbeddins";
 import { pdfTemplate } from "../create-article/pdfTemplate";
 
+// Define the POST handler
 export const POST = async (request: NextRequest) => {
-  let browser = null;
-
   try {
     await connectDB();
 
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get("productId")?.trim();
 
-    if (!id) {
-      return NextResponse.json(
-        { message: "Product ID is required" },
-        { status: 400 }
-      );
-    }
 
-    const article = await Article.findById(id);
-
-    if (!article) {
-      return NextResponse.json(
-        { message: "Article not found" },
-        { status: 404 }
-      );
-    }
-
+    // Parse the request body
     const reqBody = await request.json();
     const { title, description, image, blurImage, shortSummary } = reqBody;
 
@@ -43,30 +33,34 @@ export const POST = async (request: NextRequest) => {
       "/q_auto/f_auto/w_800",
       image
     );
-
     console.log("Generating PDF from Quill content...");
+    const newEmbedding = await embedding(
+      `${title},
+          ${shortSummary},
+                ${description},`
+    );
 
-    // Set up chrome-aws-lambda
-    const executablePath = await puppeteer.executablePath();
-
-    // Launch browser with environment-specific configuration
-    browser = await puppeteer.launch({
+    // Launch a headless browser instance
+    const browser = await puppeteer.launch({
       headless: true,
-      executablePath: process.env.NODE_ENV === 'development' 
+      executablePath: process.env.NODE_ENV === 'development'
         ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
         : undefined,
-      defaultViewport: {
-        width: 1280,
-        height: 720,
-        deviceScaleFactor: 1
-      }
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu'
+      ],
     });
-
     const page = await browser.newPage();
-    await page.setDefaultNavigationTimeout(0); // Disable navigation timeout
 
-    // Populate the template with content
-    const populatedHtml = pdfTemplate
+    // HTML template (you would typically load this from a file)
+    const htmlTemplate = pdfTemplate;
+
+    // Populate the template with the content
+
+    const populatedHtml = htmlTemplate
       .replace(
         '<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>',
         `<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4">${title}</h1>`
@@ -96,25 +90,25 @@ export const POST = async (request: NextRequest) => {
         'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src=""',
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
+    // Write the populated HTML to a temporary file
+    const tempHtmlPath = path.join(process.cwd(), "temp.html");
+    await fs.writeFile(tempHtmlPath, populatedHtml);
 
-    // Set content and wait for it to load
-    await page.setContent(populatedHtml, {
-      waitUntil: ["load", "networkidle0"]
-    });
+    // Navigate to the temporary HTML file
+    await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
 
-    // Generate PDF
+    // Generate the PDF
     const pdfBuffer = await page.pdf({
       format: "A4",
       printBackground: true,
-      margin: {
-        top: "20px",
-        right: "20px",
-        bottom: "20px",
-        left: "20px"
-      }
+      preferCSSPageSize: true
     });
 
-    // Upload to Cloudinary
+    // Close the browser
+    await browser.close();
+
+    // Upload PDF to Cloudinary
+
     const formData = new FormData();
     formData.append(
       "file",
@@ -122,25 +116,35 @@ export const POST = async (request: NextRequest) => {
       `${title.replace(/\s+/g, "-")}.pdf`
     );
     formData.append("upload_preset", "ml_default");
-
-    const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data"
+    let pdfUrl;
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         }
+      );
+      pdfUrl = response.data.secure_url;
+    } catch (error: any) {
+      if (error.response) {
+        console.error(
+          "Server responded with:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up request:", error.message);
       }
-    );
+      // Implement retry logic here
+    }
 
-    const pdfUrl = response.data.secure_url;
-    const newEmbedding = await embedding(
-      `${title}, ${shortSummary}, ${description}`
-    );
-
-    // Update article
-    await Article.findByIdAndUpdate(
-      id,
+    // Create the new product
+    await Article.create(
       {
         title,
         description,
@@ -150,27 +154,18 @@ export const POST = async (request: NextRequest) => {
         pdfUrl,
         shortSummary,
         embedding: newEmbedding
-      },
-      { new: true }
+      }
+
     );
 
+    // Return success response
     return NextResponse.json(
       { status: "success", message: "Article edited successfully", pdfUrl },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error("Error in POST handler:", error);
-    return NextResponse.json(
-      {
-        status: "error",
-        message: error.message || "An unexpected error occurred",
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined
-      },
-      { status: 500 }
-    );
-  } finally {
-    if (browser) {
-      await browser.close();
-    }
+    console.log("error", error);
+    // Handle errors
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
