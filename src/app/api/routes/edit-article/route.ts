@@ -1,16 +1,21 @@
+import Product from "../../models/Product";
 import { NextRequest, NextResponse } from "next/server";
+
 import { connectDB } from "../../config/MongoDbConfig";
 import Article from "../../models/Article";
-import puppeteer from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+
+import puppeteer from "puppeteer";
+import fs from "fs/promises";
+import path from "path";
+
 import axios from "axios";
 import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
+
 import { embedding } from "@/utils/getEmbeddins";
 import { pdfTemplate } from "../create-article/pdfTemplate";
 
+// Define the POST handler
 export const POST = async (request: NextRequest) => {
-  let browser;
-
   try {
     await connectDB();
 
@@ -25,6 +30,7 @@ export const POST = async (request: NextRequest) => {
     }
 
     const article = await Article.findById(id);
+
     if (!article) {
       return NextResponse.json(
         { message: "Article not found" },
@@ -32,6 +38,7 @@ export const POST = async (request: NextRequest) => {
       );
     }
 
+    // Parse the request body
     const reqBody = await request.json();
     const { title, description, image, blurImage, shortSummary } = reqBody;
 
@@ -43,41 +50,34 @@ export const POST = async (request: NextRequest) => {
       "/q_auto/f_auto/w_800",
       image
     );
+    console.log("Generating PDF from Quill content...");
+    const newEmbedding = await embedding(
+      `${title},
+          ${shortSummary},
+                ${description},`
+    );
 
-    console.log("Starting PDF generation process...");
-
-    // Launch Puppeteer with serverless-friendly settings
-    browser = await puppeteer.launch({
+    // Launch a headless browser instance
+    const browser = await puppeteer.launch({
+      headless: "new",
+      executablePath: process.env.NODE_ENV === 'development' 
+        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'  // Windows Chrome path
+        : undefined,
       args: [
-        ...chromium.args,
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-gpu",
-        "--disable-dev-shm-usage",
-        "--single-process",
-        "--no-zygote"
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu'
       ],
-      defaultViewport: chromium.defaultViewport || { width: 1200, height: 800 },
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true
     });
-
     const page = await browser.newPage();
-    await page.setDefaultNavigationTimeout(60000); // Extend navigation timeout
 
-    // Intercept requests to block unnecessary resources
-    await page.setRequestInterception(true);
-    page.on("request", (req) => {
-      if (["image", "stylesheet", "font"].includes(req.resourceType())) {
-        req.abort();
-      } else {
-        req.continue();
-      }
-    });
+    // HTML template (you would typically load this from a file)
+    const htmlTemplate = pdfTemplate;
 
-    // Populate the HTML template with dynamic content
-    const populatedHtml = pdfTemplate
+    // Populate the template with the content
+
+    const populatedHtml = htmlTemplate
       .replace(
         '<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>',
         `<h1 id="article-title" class="text-3xl md:text-4xl font-bold mb-4">${title}</h1>`
@@ -107,27 +107,25 @@ export const POST = async (request: NextRequest) => {
         'id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src=""',
         `id="footer-logo" alt="Logo" class="rounded-full h-8 w-8 mr-2" src="${optimizedImage1}"`
       );
+    // Write the populated HTML to a temporary file
+    const tempHtmlPath = path.join(process.cwd(), "temp.html");
+    await fs.writeFile(tempHtmlPath, populatedHtml);
 
-    // Set page content
-    await page.setContent(populatedHtml, {
-      waitUntil: "networkidle2",
-      timeout: 60000
-    });
+    // Navigate to the temporary HTML file
+    await page.goto(`file://${tempHtmlPath}`, { waitUntil: "networkidle0" });
 
-    // Generate PDF
+    // Generate the PDF
     const pdfBuffer = await page.pdf({
       format: "A4",
       printBackground: true,
-      margin: { top: "20px", right: "20px", bottom: "20px", left: "20px" },
-      scale: 0.75, // Adjust scale for more efficient rendering
-      timeout: 60000
+      preferCSSPageSize: true
     });
 
     // Close the browser
     await browser.close();
-    browser = null;
 
     // Upload PDF to Cloudinary
+
     const formData = new FormData();
     formData.append(
       "file",
@@ -135,22 +133,34 @@ export const POST = async (request: NextRequest) => {
       `${title.replace(/\s+/g, "-")}.pdf`
     );
     formData.append("upload_preset", "ml_default");
-
-    const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-        timeout: 60000
+    let pdfUrl;
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dztt3ldiy/raw/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }
+      );
+      pdfUrl = response.data.secure_url;
+    } catch (error: any) {
+      if (error.response) {
+        console.error(
+          "Server responded with:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up request:", error.message);
       }
-    );
+      // Implement retry logic here
+    }
 
-    const pdfUrl = response.data.secure_url;
-    const newEmbedding = await embedding(
-      `${title}, ${shortSummary}, ${description}`
-    );
-
-    // Update article in MongoDB
+    // Create the new product
     await Article.findByIdAndUpdate(
       id,
       {
@@ -163,26 +173,19 @@ export const POST = async (request: NextRequest) => {
         shortSummary,
         embedding: newEmbedding
       },
-      { new: true }
+      {
+        new: true
+      }
     );
 
+    // Return success response
     return NextResponse.json(
       { status: "success", message: "Article edited successfully", pdfUrl },
       { status: 200 }
     );
-  } catch (error:any) {
-    console.error("Error in PDF generation:", error);
-    return NextResponse.json(
-      { status: "error", message: `PDF generation failed: ${error.message}` },
-      { status: 500 }
-    );
-  } finally {
-    if (browser) {
-      try {
-        await browser.close();
-      } catch (err) {
-        console.error("Error closing browser:", err);
-      }
-    }
+  } catch (error: any) {
+    console.log("error", error);
+    // Handle errors
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
