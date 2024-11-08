@@ -16,6 +16,9 @@ const nextConfig = {
       "devpro-aceternity.vercel.app",
       "images.unsplash.com"
     ]
+  },
+  serverRuntimeConfig: {
+    maxDuration: 60
   }
 };
 
