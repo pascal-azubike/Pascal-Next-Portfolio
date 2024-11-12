@@ -60,12 +60,12 @@ function ProductForm() {
   const [quillIsFocus, setQuillIsFocus] = useState(false);
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const [shouldFetch, setShouldFetch] = useState(false); // Control fetch trigger
 
   const url = id
-    ? `/api/routes/edit-article?productId=${id}`
-    : "/api/routes/create-article";
+    ? `https://pascal-portfolio-backend.onrender.com/api/articles/${id}`  // Updated URL for edit
+    : "https://pascal-portfolio-backend.onrender.com/api/articles";       // Updated URL for create
 
-  const [shouldFetch, setShouldFetch] = useState(false); // Control fetch trigger
 
   const {
     isPending: fetchEditIsPending,
@@ -78,6 +78,7 @@ function ProductForm() {
       axios(`/api/routes/fetchSingleArticle?articleId=${id}&place=create`), // Query function
     enabled: shouldFetch // Trigger query only when `shouldFetch` is true
   });
+  const quillRef = useRef<any>(null);
 
   useEffect(() => {
     if (fetchEditIsSuccess) {
@@ -148,6 +149,7 @@ function ProductForm() {
     const resizedImage: any = await resizeFile(file);
 
     form.setValue("blurImage", resizedImage.split(",")[1]);
+    console.log(resizedImage.split(",")[1], "resizedImage");
     setImagePreview(imageUrl);
     setIsFetchingImage(false);
     form.setValue("image", imageUrl);
@@ -190,7 +192,7 @@ function ProductForm() {
         shortSummary: product.shortSummary || "",
         description: product.description,
         image: product.imageUrl,
-        blurImage: product.imageUrl
+        blurImage: product.blurImage
       });
       setImagePreview(product.imageUrl);
       setEditorContent(product.description);
@@ -302,9 +304,8 @@ function ProductForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl
-                    className={`${
-                      quillIsFocus ? "h-[75vh] relative top-0 z-50" : "h-[30vh]"
-                    }`}
+                    className={`${quillIsFocus ? "h-[75vh] relative top-0 z-50" : "h-[30vh]"
+                      }`}
                   >
                     <ReactQuill
                       value={editorContent}
