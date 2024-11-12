@@ -31,11 +31,10 @@ const HomePage: React.FC = () => {
                 <span className="text-blue-400"> code writing</span>
               </h2>
               <p className="text-gray-400 mb-8">
-                Meet Azubike Pascal, the self-proclaimed code wizard who
-                transforms ideas into beautiful, responsive websites. His
-                passion for crafting clean, functional designs is matched only
-                by his dedication to creating seamless user experiences and
-                finding the perfect GIF to celebrate every project milestone.
+                I'm a software engineer who loves turning ideas into beautiful, 
+                responsive websites. I'm passionate about clean design and user 
+                experience. When I'm not coding, you'll find me hunting for the 
+                perfect GIF to celebrate shipped features.
               </p>
               <p className="text-zinc-400">
                 Createing <span className="font-semibold">Blog posts</span> and{" "}
@@ -49,9 +48,7 @@ const HomePage: React.FC = () => {
                 Work Experience
               </h3>
               <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide ">
-                Driven by a passion for growth and cultural fit, I’ve gained
-                diverse experience across multiple companies, refining my skills
-                and adapting to new challenges along the way.
+                I've worked across diverse companies, growing my skills and embracing new challenges.
               </p>
               <WorkExperience />
             </section>
