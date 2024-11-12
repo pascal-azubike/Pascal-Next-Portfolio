@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
                 Work Experience
               </h3>
               <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide ">
-                I've worked across diverse companies, growing my skills and embracing new challenges.
+                I&apos;ve worked across diverse companies, growing my skills and embracing new challenges.
               </p>
               <WorkExperience />
             </section>
