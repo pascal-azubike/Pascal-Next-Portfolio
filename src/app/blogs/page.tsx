@@ -15,9 +15,9 @@ const Project = () => {
           place
         </h1>
         <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-          I'm passionate about writing clean, efficient code and sharing knowledge.
+          I&apos;m passionate about writing clean, efficient code and sharing knowledge.
           Here, I write about my experiences with software development and the
-          valuable lessons I've learned along the way.
+          valuable lessons I&apos;ve learned along the way.
         </p>
       </div>
 
