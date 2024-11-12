@@ -31,14 +31,14 @@ const HomePage: React.FC = () => {
                 <span className="text-blue-400"> code writing</span>
               </h2>
               <p className="text-gray-400 mb-8">
-                I'm a software engineer who loves turning ideas into beautiful, 
-                responsive websites. I'm passionate about clean design and user 
-                experience. When I'm not coding, you'll find me hunting for the 
+                I&apos;m a software engineer who loves turning ideas into beautiful, 
+                responsive websites. I&apos;m passionate about clean design and user 
+                experience. When I&apos;m not coding, you&apos;ll find me hunting for the 
                 perfect GIF to celebrate shipped features.
               </p>
               <p className="text-zinc-400">
                 Createing <span className="font-semibold">Blog posts</span> and{" "}
-                <span className="font-semibold">YouTube videos</span> when Im
+                <span className="font-semibold">YouTube videos</span> when I&apos;m
                 not working on my day job.
               </p>
             </section>
