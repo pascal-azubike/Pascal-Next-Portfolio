@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
 
 interface CompareProps {
-  firstImage?: string;
-  secondImage?: string;
+  firstContent?: React.ReactNode;
+  secondContent?: React.ReactNode;
   className?: string;
   firstImageClassName?: string;
   secondImageClassname?: string;
@@ -20,8 +20,8 @@ interface CompareProps {
 }
 
 export const Compare = ({
-  firstImage = "",
-  secondImage = "",
+  firstContent,
+  secondContent,
   className,
   firstImageClassName,
   secondImageClassname,
@@ -198,7 +198,7 @@ export const Compare = ({
 
         <div className="overflow-hidden w-full h-full relative z-20 pointer-events-none">
           <AnimatePresence initial={false}>
-            {firstImage && (
+            {firstContent && (
               <motion.div
                 className={cn(
                   "absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none overflow-hidden",
@@ -209,28 +209,22 @@ export const Compare = ({
                 }}
                 transition={{ duration: 0 }}
               >
-                <img
-                  alt="first image"
-                  src={firstImage}
-                  className="w-full h-full object-contain"
-                  draggable={false}
-                />
+                {firstContent}
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
         <AnimatePresence initial={false}>
-          {secondImage && (
-            <motion.img
+          {secondContent && (
+            <motion.div
               className={cn(
-                "absolute inset-0 z-[19] rounded-2xl w-full h-full object-contain select-none",
+                "absolute inset-0 z-[19] rounded-2xl w-full h-full select-none",
                 secondImageClassname
               )}
-              alt="second image"
-              src={secondImage}
-              draggable={false}
-            />
+            >
+              {secondContent}
+            </motion.div>
           )}
         </AnimatePresence>
       </div>

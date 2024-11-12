@@ -27,16 +27,7 @@ export const gridItems = [
     spareImg: ""
   },
 
-  {
-    id: 5,
-    title: "Currently building a JS Animation library",
-    description: "The Inside Scoop",
-    className: "md:col-span-full md:row-span-2",
-    imgClassName: "",
-    titleClassName: " !hidden ",
-    img: "",
-    spareImg: "/grid.svg"
-  },
+
 
 ];
 

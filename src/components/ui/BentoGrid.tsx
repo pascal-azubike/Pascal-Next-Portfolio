@@ -1,17 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+
 
 // Also install this npm i --save-dev @types/react-lottie
 
 import { cn } from "@/lib/utils";
 
-import { BackgroundGradientAnimation } from "./GradientBg";
+
 import GridGlobe from "./GridGlobe";
-import animationData from "@/data/confetti.json";
-import MagicButton from "../MagicButton";
-import { Copy } from "lucide-react";
-import Lottie from "react-lottie";
-import { CompareDemo } from "../compareCode";
+
+
 
 export const BentoGrid = ({
   className,
@@ -79,22 +75,10 @@ export const BentoGridItem = ({
     "Scikit learn"
   ];
 
-  const [copied, setCopied] = useState(false);
 
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
 
-  const handleCopy = () => {
-    const text = "hsu@jsmastery.pro";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-  };
+
+
 
   return (
     <div
@@ -114,9 +98,8 @@ export const BentoGridItem = ({
           )}
         </div>
         <div
-          className={`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          }`}
+          className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"
+            }`}
         >
           {spareImg && (
             <img
@@ -127,7 +110,7 @@ export const BentoGridItem = ({
           )}
         </div>
 
-        {id === 5 && <CompareDemo />}
+
 
         <div
           className={cn(
@@ -137,7 +120,7 @@ export const BentoGridItem = ({
         >
           <div
             className={cn(
-              id === 5 || id === 3 ? "hidden" : "flex",
+              id === 3 ? "hidden" : "flex",
               "font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-zinc-300 z-10"
             )}
           >
@@ -146,7 +129,7 @@ export const BentoGridItem = ({
 
           <div
             className={cn(
-              id === 5 || id === 3 ? "hidden" : "flex",
+              id === 3 ? "hidden" : "flex",
               "font-sans text-zinc-300 text-lg lg:text-xl max-w-96 font-bold z-10"
             )}
           >

@@ -43,7 +43,7 @@ const imageHandler = function (this: { quill: Quill }) {
           this.quill.insertEmbed(cursorPosition, "image", imageUrl);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -70,7 +70,9 @@ export const modulesObject = {
     handlers: {
       image: imageHandler
     }
-  }
+  }, clipboard: {
+    matchVisual: false, // Helps maintain formatting consistency
+  },
   //   blotFormatter: {
   //     overlay: {
   //       style: {

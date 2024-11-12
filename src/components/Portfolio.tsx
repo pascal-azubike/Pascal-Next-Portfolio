@@ -11,36 +11,29 @@ export const projects = [
   {
     title: "PlumbreedPuzzle",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
+      "Faith-based e-commerce platform with seamless Jumia integration, dynamic product management, content management system",
     link: "/projects/plumbreedPuzzle",
     image: "/assets/images/plumbreedpuzzle.png"
   },
   {
-    title: "Wellcresttherapy",
+    title: "Analytical Dashboard",
     description:
-      "A web app that allows users to practice for front-end and UI interviews.",
-    link: "/projects/wellcrestherapy",
-    image: "/assets/images/wellcrstherapy.png"
+      "Interactive data visualization platform with real-time charting, dynamic filtering, and axis toggling using Flask and React.js.",
+    link: "/projects/analyticalDashboard",
+    image: "/assets/images/analyticaldashboard.png"
   },
   {
     title: "Denmarkmultibuzltd",
     description:
-      "An e-commerce platform with advanced product management and optimized user experience.",
+      "Modern e-commerce platform with advanced product management, real-time search, and optimized media delivery using Next.js and MongoDB.",
     link: "/projects/denmarkMultibuz",
     image: "/assets/images/denmark.png"
   },
   {
     title: "BlogVana",
     description:
-      "A feature-rich blog platform with semantic search and personalized content recommendations.",
+      "Feature-rich blog platform with semantic search using ML algorithms, MongoDB vector search, and comprehensive user authentication.",
     link: "/projects/blogvana",
     image: "/assets/images/blogvana.png"
-  },
-  {
-    title: "Analytical Dashboard",
-    description:
-      "An interactive data visualization tool for real-time business analytics and insights.",
-    link: "/projects/analyticalDashboard",
-    image: "/assets/images/analyticaldashboard.png"
   }
 ];

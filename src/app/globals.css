@@ -158,3 +158,21 @@ blockquote {
 .code-div {
   @apply relative  px-2 py-4 pt-6 pb-2   text-sm  !bg-[#282C34]  rounded-lg p-4;
 }
+
+
+.ql-editor pre.ql-syntax {
+  padding: 0;
+  overflow: visible;
+}
+
+.cm-editor {
+  height: auto;
+  min-height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cm-focused {
+  outline: none !important;
+  border-color: #2563eb;
+}

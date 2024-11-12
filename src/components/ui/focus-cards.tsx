@@ -201,7 +201,7 @@ const AllArticles = ({ max }: { max: any }) => {
 
           {!hasNextPage && isSuccess && !max && (
             <h1 className="ml-10 mx-auto text-yellow-600 my-4">
-              No more products.
+              Thats All for Now Buddy.
             </h1>
           )}
           {isFetchingNextPage && <SkeletonLoading />}

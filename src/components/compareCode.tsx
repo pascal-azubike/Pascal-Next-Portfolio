@@ -15,11 +15,18 @@ export function CompareDemo() {
         Hover to compare initial implementation with optimized solution
       </p>
       <Compare
-        firstImage="assets/images/beforeOptimized.png"
-        secondImage="assets/images/afterOptimization.png"
-        firstImageClassName="object-cover object-left-top"
-        secondImageClassname="object-cover object-left-top"
-        className=""
+        firstContent={
+          <img 
+            src="/before.png" 
+            className="object-cover object-left-top"
+          />
+        }
+        secondContent={
+          <img 
+            src="/after.png"
+            className="object-cover object-left-top"
+          />
+        }
         slideMode="hover"
       />
     </div>
