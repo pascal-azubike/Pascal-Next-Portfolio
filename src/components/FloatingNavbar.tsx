@@ -102,7 +102,7 @@ export const FloatingNavbar = () => {
               <Menu className="h-4 w-4 " />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="bg-zinc-900 text-white">
+          <SheetContent side="right" className="bg-zinc-900 z-[9999] text-white">
             <div className="flex flex-col space-y-4 mt-8">
               {navItems.map((item, index) => (
                 <Link key={index} href={item.href}>

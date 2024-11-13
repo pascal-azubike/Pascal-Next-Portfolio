@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useSearchStore } from "@/hooks/use-search-store";
 import { useRouter } from "next/navigation";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
 const GlobalSearch = () => {
   const router = useRouter();
@@ -58,16 +59,24 @@ const GlobalSearch = () => {
 
   return (
     <>
-      <button
-        onClick={toggleOpen}
-        className="fixed right-4 top-4 flex items-center gap-2 rounded-lg bg-zinc-800/30 backdrop-blur-sm border border-zinc-700/50 px-4 py-2 text-sm text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700/40 transition-all"
-      >
-        <Search className="h-4 w-4" />
-        <span>Search</span>
-        <kbd className="pointer-events-none ml-2 hidden rounded border border-zinc-700/50 bg-zinc-800/50 px-1.5 font-mono text-xs sm:inline-block">
-          ⌘K
-        </kbd>
-      </button>
+      <div className="fixed right-4 top-4 hidden sm:block">
+        <TooltipProvider>
+          <Tooltip defaultOpen delayDuration={0}>
+            <TooltipTrigger asChild>
+              <div></div>
+            </TooltipTrigger>
+            <TooltipContent
+              className="z-[9999] bg-zinc-800 mt-[80px] mr-[40px] text-zinc-100 px-4 py-2.5 border border-zinc-700 shadow-lg"
+              sideOffset={5}
+              side="top"
+            >
+              <div className="text-sm flex flex-col gap-1 font-medium">
+                <p>Press <kbd className="px-2 py-1 bg-zinc-700 rounded">⌘K</kbd> (Mac) or <kbd className="px-2 py-1 bg-zinc-700 rounded">Ctrl+K</kbd> (Windows) to search</p>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
 
       <Dialog open={isOpen} onOpenChange={setOpen}>
         <DialogContent className="p-0 bg-[#1a1b1e] border border-zinc-800 shadow-2xl rounded-xl overflow-hidden">

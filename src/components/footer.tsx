@@ -30,7 +30,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-slate-900/5 py-10 max-w-6xl mx-auto px-8 mt-40">
+    <footer className="border-t border-slate-900/5 py-10 max-w-6xl mx-auto px-8 mt-40 ">
       {/* ... existing footer content ... */}
       <div className="flex flex-col justify-center items-center py-10  relative">
         <Link href={"/"} className="flex items-center mb-4">
@@ -110,7 +110,7 @@ const Footer = () => {
         <div className="fixed right-4 md:right-10 bottom-10 flex flex-col items-end z-[999999]">
           <button
             onClick={toggleMessageForm}
-            className="bg-zinc-700 w-14 h-14 rounded-full flex items-center justify-center hover:scale-105 hover:shadow-xl transition duration-200 shadow-lg"
+            className="bg-zinc-700 w-14 h-14  rounded-full flex items-center justify-center hover:scale-105 hover:shadow-xl transition duration-200 shadow-lg"
           >
             <MessageCircle className="w-6 h-6 text-zinc-100" />
           </button>
