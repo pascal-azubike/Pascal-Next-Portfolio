@@ -48,19 +48,20 @@ const Footer = () => {
         </Link>
         {/* ... rest of the existing content ... */}
         <div className="flex items-center flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
-          <a className="text-zinc-100 text-sm relative" href="/about">
+          <Link className="text-zinc-100 text-sm relative" href="/about">
             <span className="relative z-10 px-2 py-2 inline-block">About</span>
-          </a>
-          <a className="text-zinc-100 text-sm relative" href="/projects">
+          </Link>
+          <Link className="text-zinc-100 text-sm relative" href="/projects">
             <span className="relative z-10 px-2 py-2 inline-block">
               Projects
             </span>
-          </a>
-         
-          <a className="text-zinc-100 text-sm relative" href="/blogs">
+          </Link>
+          <Link className="text-zinc-100 text-sm relative" href="/blogs">
             <span className="relative z-10 px-2 py-2 inline-block">Blogs</span>
-          </a>
-         
+          </Link>
+          <Link className="text-zinc-100 text-sm relative" href="/book-call">
+            <span className="relative z-10 px-2 py-2 inline-block">Book a Call</span>
+          </Link>
         </div>
         <p className="text-zinc-200 text-sm font-light text-center max-w-fit mx-auto mt-8 border-t border-zinc-800 pt-4">
           © {new Date().getFullYear()} Azubike Pascal. All rights reserved.

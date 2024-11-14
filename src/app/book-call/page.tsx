@@ -9,7 +9,7 @@ export default function BookCallPage() {
           Let&apos;s Connect
         </h2>
         <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide mb-8">
-          Schedule a time to discuss your project, get technical advice, or explore how we can work together.
+          Schedule a time to discuss your project, get technical advice, explore job opportunities, or learn how we can work together.
         </p>
         <div className="mt-8">
           <CalendlyEmbed />

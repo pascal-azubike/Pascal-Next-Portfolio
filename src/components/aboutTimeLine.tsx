@@ -1,10 +1,4 @@
-import Head from "next/head";
 
-import Link from "next/link";
-
-// Import the new component
-
-import Image from "next/image";
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 

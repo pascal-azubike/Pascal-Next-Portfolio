@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 interface CalendlyEmbedProps {
-  onButtonClick?: () => void;
+    onButtonClick?: () => void;
 }
 
 export function CalendlyEmbed({ onButtonClick }: CalendlyEmbedProps) {
@@ -17,7 +17,7 @@ export function CalendlyEmbed({ onButtonClick }: CalendlyEmbedProps) {
     }, []);
 
     return (
-        <div 
+        <div
             className="calendly-inline-widget"
             data-url="https://calendly.com/pascalazubike003?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=18181b&text_color=ffffff&primary_color=3b82f6"
             style={{ minWidth: '320px', height: '700px' }}

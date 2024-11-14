@@ -13,7 +13,7 @@ import Grid from "@/components/Grid";
 import PortfolioGrid from "@/components/Portfolio";
 import Footer from "@/components/footer";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { CalendlyEmbed } from "@/components/CalendlyEmbed";
+
 
 const HomePage: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
         <header className=" mx-auto max-w-5xl  py-6">
           <main className=" max-w-5xl mx-auto mt-32  md:mt-40 px-8  ">
             <section className="max-w-3xl">
-              <h2 className=" text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
+              <h2 className=" text-3xl md:text-4xl lg:text-[43px] font-bold mb-6">
                 I&apos;m a software engineer who builds{" "}
                 <span className="text-blue-400">solutions that drive results</span>
               </h2>
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
 
               <div className="mt-8">
                 <a
-                  href="#calendly-section"
+                  href=""
                   className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-150 ease-in-out"
                 >
                   Schedule a Call
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
           </section>
         </div>
         <div className="mt-24 lg:mt-40 max-w-5xl mx-auto px-4 md:px-8 ">
-          <h2 className="text-2xl md:text-3xl text-white font-bold max-w-5xl mx-auto px-4 md:px-8 mb-6">
+          <h2 className="text-2xl md:text-3xl text-white font-bold max-w-5xl mx-auto  mb-6">
             Featured Articles
           </h2>
           <p className="text-zinc-400 mb-8 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide">
