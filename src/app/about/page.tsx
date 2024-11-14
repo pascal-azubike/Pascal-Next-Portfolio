@@ -1,7 +1,7 @@
 import { TimelineDemo } from "@/components/aboutTimeLine";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
+
 
 export default function About() {
   return (
@@ -32,15 +32,15 @@ export default function About() {
       <main className="max-w-5xl bg-zinc-900  mx-auto px-4 md:px-8 pt-20 md:pt-44 relative flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10 justify-between">
         <div>
           <h1 className="font-bold text-3xl md:text-5xl md:leading-tight text-zinc-50 max-w-3xl">
-            Hey! I&apos;m<span className="text-cyan-500">Azubike Pascal</span>{" "}
-            and I&apos;m a full stack soap engineer.
+            Hi there! I&apos;m <span className="text-cyan-500">Azubike Pascal</span>{" "}
+            and I work as a full stack soap engineer.
           </h1>
           <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-            I&apos;ve been obsessed with technology ever since I was a kid. When
-            I wasn&apos;t taking apart my family&apos;s computer (sorry, mom), I
-            was teaching myself how to code. Fast forward a few years, and now
-            I&apos;m a full-fledged code ninja with an insatiable thirst for
-            creating beautiful websites and functional applications.
+            Technology has captivated me since my childhood days. Between dismantling my
+            parents&apos; computer (my apologies, mum) and teaching myself programming,
+            I developed a deep passion for tech. Now, years later, I&apos;ve evolved into
+            a seasoned developer who loves crafting elegant websites and building powerful
+            applications.
           </p>
         </div>
         <div className="order-first md:order-last">
@@ -116,10 +116,7 @@ export default function About() {
           </div>
         </div>
       </main>
-      <div className=" overflow-y-hidden flex lg:hidden">
-        <TimelineDemo />
-      </div>
-      <div className=" hidden lg:flex">
+      <div className="  flex ">
         <TimelineDemo />
       </div>
     </div>
