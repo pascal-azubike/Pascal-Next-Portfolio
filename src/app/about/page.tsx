@@ -43,6 +43,56 @@ export default function About() {
             applications.
           </p>
           <div className="mt-8">
+            <h2 className="text-xl md:text-2xl font-bold text-zinc-50 mb-4">Technical Expertise</h2>
+            
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-cyan-500 font-semibold mb-2">Frontend Development</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React.js', 'Next.js', 'Redux Toolkit', 
+                    'React Query', 'Zustand', 'SCSS', 'Tailwind CSS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-cyan-500 font-semibold mb-2">Backend Development</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['Node.js', 'Express.js', 'Python', 'Flask', 'REST APIs', 'GraphQL'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-cyan-500 font-semibold mb-2">Database & Tools</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Git', 'Docker', 'AWS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-cyan-500 font-semibold mb-2">Data Science</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['NumPy', 'Pandas', 'Seaborn', 'Scikit-learn'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8">
             <a
               href="/book-call"
               className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-150 ease-in-out"

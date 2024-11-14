@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
 
               <div className="mt-8">
                 <a
-                  href=""
+                  href="/book-call"
                   className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-150 ease-in-out"
                 >
                   Schedule a Call
