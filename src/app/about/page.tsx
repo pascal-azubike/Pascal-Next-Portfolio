@@ -106,7 +106,7 @@ export default function About() {
         </div>
         <div className="order-first md:order-last">
           <Image
-            src={"/header.jpg"}
+            src={"/assets/images/pascal.jpg"}
             width={400}
             height={400}
             alt="pascal azubike"

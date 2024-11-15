@@ -36,7 +36,7 @@ const Footer = () => {
         <Link href={"/"} className="flex items-center mb-4">
           <div className="font-bold text-sm flex items-center justify-center text-white space-x-2 md:text-xl">
             <Image
-              src="/assets/images/5617318_family-gathered-around-jigsaw-puzzle.jpg"
+              src="/assets/images/pascal.jpg"
               alt="Azubike"
               width={32}
               height={32}

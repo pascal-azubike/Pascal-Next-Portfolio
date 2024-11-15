@@ -39,7 +39,7 @@ const ProfileSection = () => {
         <DialogTrigger asChild>
           <div onClick={handleImageClick}>
             <Image
-              src="/header.jpg"
+              src="/assets/images/pascal.jpg"
               alt="Azubike Pascal"
               width={300}
               height={300}
@@ -53,7 +53,7 @@ const ProfileSection = () => {
         <DialogContent className="sm:max-w-[425px] bg-zinc-900 border-zinc-700">
           <div className="relative aspect-square w-full">
             <Image
-              src="/header.jpg"
+              src="/assets/images/pascal.jpg"
               alt="Azubike Pascal"
               layout="fill"
               objectFit="cover"
