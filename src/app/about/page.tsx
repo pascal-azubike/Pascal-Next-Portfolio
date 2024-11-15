@@ -115,37 +115,39 @@ export default function About() {
 
           <div className="flex flex-row justify-start mb-10 md:mb-0 md:justify-center space-x-2 mt-2">
             <a
-              href="https://twitter.com/mannupaaji"
-              className="text-zinc-500 text-sm relative"
-              target="__blank"
+              href="https://wa.me/+2349095606300"
+              className="text-zinc-400 hover:text-cyan-500 transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <span className="relative z-10 px-2 py-2 inline-block hover:text-cyan-500">
+              <span className="relative z-10 px-2 py-2 inline-block">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 1024 1024"
-                  className="h-5 w-5 hover:text-primary transition duration-150"
+                  strokeWidth="0"
+                  viewBox="0 0 16 16"
+                  className="h-5 w-5"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0 0 75-94 336.64 336.64 0 0 1-108.2 41.2A170.1 170.1 0 0 0 672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 0 0-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 0 1-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 0 1-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z"></path>
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
                 </svg>
               </span>
             </a>
             <a
-              href="https://www.linkedin.com/in/manuarora28/"
-              className="text-zinc-500 text-sm relative"
-              target="__blank"
+              href="https://www.linkedin.com/in/azubike-pascal"
+              className="text-zinc-400 hover:text-cyan-500 transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <span className="relative z-10 px-2 py-2 inline-block hover:text-cyan-500">
+              <span className="relative z-10 px-2 py-2 inline-block">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 1024 1024"
-                  className="h-5 w-5 hover:text-primary transition duration-150"
+                  className="h-5 w-5"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -155,17 +157,18 @@ export default function About() {
               </span>
             </a>
             <a
-              href="https://github.com/manuarora700"
-              className="text-zinc-500 text-sm relative"
-              target="__blank"
+              href="https://github.com/pascal-tech1"
+              className="text-zinc-400 hover:text-cyan-500 transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <span className="relative z-10 px-2 py-2 inline-block hover:text-cyan-500">
+              <span className="relative z-10 px-2 py-2 inline-block">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 1024 1024"
-                  className="h-5 w-5 hover:text-primary transition duration-150"
+                  className="h-5 w-5"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
