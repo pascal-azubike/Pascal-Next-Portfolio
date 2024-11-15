@@ -43,7 +43,7 @@ const imageHandler = function (this: { quill: Quill }) {
           this.quill.insertEmbed(cursorPosition, "image", imageUrl);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 

@@ -301,13 +301,12 @@ const ArticleLayout: React.FC = () => {
         <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
           <a
             href={`#${item.id}`}
-            className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${
-              activeSection === item.id
+            className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${activeSection === item.id
                 ? "text-[#4b9bff] font-semibold"
                 : hoveredSection === item.id
-                ? "text-white"
-                : "text-gray-400"
-            }`}
+                  ? "text-white"
+                  : "text-gray-400"
+              }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection(item.id);
@@ -330,20 +329,19 @@ const ArticleLayout: React.FC = () => {
                         activeSection === subItem.id
                           ? "absolute left-0 top-0 bottom-0 w-px bg-[#4b9bff] "
                           : hoveredSection === subItem.id
-                          ? "absolute left-0 top-0 bottom-0 w-px bg-white"
-                          : ""
+                            ? "absolute left-0 top-0 bottom-0 w-px bg-white"
+                            : ""
                       )}
                     />
                   )}
                   <a
                     href={`#${subItem.id}`}
-                    className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${
-                      activeSection === subItem.id
+                    className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${activeSection === subItem.id
                         ? "text-[#4b9bff] font-semibold"
                         : hoveredSection === subItem.id
-                        ? "text-white"
-                        : "text-gray-400"
-                    }`}
+                          ? "text-white"
+                          : "text-gray-400"
+                      }`}
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToSection(subItem.id);
