@@ -2,6 +2,65 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Wellcrest Therapy | Projects | ${siteConfig.name}`,
+  description: "Case study of Wellcrest Therapy, a comprehensive mental health platform featuring secure patient management, HIPAA-compliant scheduling, and integrated telehealth solutions.",
+  openGraph: {
+    title: `Wellcrest Therapy | Projects | ${siteConfig.name}`,
+    description: "Modern mental health platform with secure patient management, HIPAA-compliant scheduling, and integrated telehealth solutions for enhanced therapeutic care.",
+    url: `${siteConfig.url}/projects/wellcrestTherapy`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Wellcrest Therapy Project Preview"
+      }
+    ],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Wellcrest Therapy | Projects | ${siteConfig.name}`,
+    description: "Modern mental health platform with secure patient management, HIPAA-compliant scheduling, and integrated telehealth solutions for enhanced therapeutic care.",
+    images: [siteConfig.ogImage],
+  },
+  keywords: [
+    "Wellcrest Therapy",
+    "mental health platform",
+    "telehealth solutions",
+    "therapy management",
+    "HIPAA-compliant",
+    "patient scheduling",
+    "healthcare software",
+    "therapy sessions",
+    "mental wellness",
+    "healthcare technology"
+  ],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: `${siteConfig.url}/projects/wellcrestTherapy`,
+  },
+};
 
 export default function WellcrestTherapyCaseStudy() {
   return (

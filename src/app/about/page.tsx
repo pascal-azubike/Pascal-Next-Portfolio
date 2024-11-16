@@ -1,34 +1,69 @@
 import { TimelineDemo } from "@/components/aboutTimeLine";
 import Head from "next/head";
 import Image from "next/image";
+import { siteConfig } from "@/lib/site-config";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `About | ${siteConfig.name}`,
+  description: "Learn more about Azubike Pascal, a passionate full-stack developer with expertise in modern web technologies and a drive for creating impactful digital solutions.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Developer Biography",
+    "Professional Background",
+    "Tech Experience",
+    "Developer Skills",
+    "Career Journey",
+    "Professional Experience",
+    "Technical Expertise",
+    "Developer Story",
+    "Tech Stack",
+    "Development Philosophy",
+    "Software Engineering Background",
+    "Professional Development",
+    "Technical Skills",
+    "Developer Portfolio"
+  ],
+  openGraph: {
+    title: `About | ${siteConfig.name}`,
+    description: "Learn more about Azubike Pascal, a passionate full-stack developer with expertise in modern web technologies and a drive for creating impactful digital solutions.",
+    url: `${siteConfig.url}/about`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `About ${siteConfig.name}`
+      }
+    ],
+    locale: "en_US",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `About | ${siteConfig.name}`,
+    description: "Learn more about Azubike Pascal, a passionate full-stack developer with expertise in modern web technologies and a drive for creating impactful digital solutions.",
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 export default function About() {
   return (
     <div>
-      <Head>
-        <title>About Azubike Pascal - Full Stack Soap Engineer</title>
-        <meta
-          name="description"
-          content="Azubike Pascal is a full stack soap engineer obsessed with technology, creating beautiful websites and functional applications. Learn about his journey and hobbies."
-        />
-        <meta
-          name="keywords"
-          content="Azubike Pascal, full stack developer, soap engineer,frontend engineer, backend engineer, web development, technology"
-        />
-        <meta
-          property="og:title"
-          content="About Azubike Pascal- Full Stack Soap Engineer"
-        />
-        <meta
-          property="og:description"
-          content="Meet Azubike Pascal, a full stack soap engineer with a passion for technology and web development."
-        />
-        <meta property="og:image" content="/path-to-tyler-image.jpg" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourdomain.com/about" />
-        <link rel="canonical" href="https://yourdomain.com/about" />
-      </Head>
+      
       <main className="max-w-5xl bg-zinc-900  mx-auto px-4 md:px-8 pt-20 md:pt-44 relative flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10 justify-between">
         <div>
           <h1 className="font-bold text-3xl md:text-5xl md:leading-tight text-zinc-50 max-w-3xl">

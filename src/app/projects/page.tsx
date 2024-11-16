@@ -1,7 +1,65 @@
-"use client";
 import PortfolioGrid from "@/components/Portfolio";
 import WorkExperience from "@/components/workExperience";
 import React from "react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Projects | ${siteConfig.name}`,
+  description: "Explore my portfolio of full-stack development projects, showcasing expertise in web development, e-commerce solutions, and interactive applications.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Web Projects",
+    "Portfolio Projects",
+    "Full Stack Applications",
+    "E-commerce Solutions",
+    "Web Applications",
+    "React Projects",
+    "Next.js Projects",
+    "Node.js Projects",
+    "MongoDB Projects",
+    "API Development",
+    "Database Design",
+    "User Interface Design",
+    "Responsive Design",
+    "Performance Optimization",
+    "Technical Case Studies"
+  ],
+  openGraph: {
+    title: `Projects | ${siteConfig.name}`,
+    description: "Explore my portfolio of full-stack development projects, showcasing expertise in web development, e-commerce solutions, and interactive applications.",
+    url: `${siteConfig.url}/projects`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name}'s Projects`
+      }
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Projects | ${siteConfig.name}`,
+    description: "Explore my portfolio of full-stack development projects, showcasing expertise in web development, e-commerce solutions, and interactive applications.",
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 const Project = () => {
   return (

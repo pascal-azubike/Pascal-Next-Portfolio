@@ -1,8 +1,73 @@
-"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Blogvana - Blogging Platform | ${siteConfig.name}`,
+  description: "A modern blogging platform built with semantic search capabilities, comprehensive authentication, and dynamic user experience.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Blogging Platform",
+    "Content Management System",
+    "CMS Development",
+    "Semantic Search",
+    "User Authentication",
+    "Blog Development",
+    "Content Creation",
+    "Machine Learning",
+    "MongoDB Vector",
+    "User Management",
+    "Content Platform",
+    "Blog Engine",
+    "Publishing Platform",
+    "Content Analytics",
+    "Editorial System"
+  ],
+  openGraph: {
+    title: `Blogvana - Blogging Platform | ${siteConfig.name}`,
+    description: "A modern blogging platform built with semantic search capabilities, comprehensive authentication, and dynamic user experience.",
+    url: `${siteConfig.url}/projects/blogvana`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Blogvana Project"
+      }
+    ],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Blogvana - Blogging Platform | ${siteConfig.name}`,
+    description: "A modern blogging platform built with semantic search capabilities, comprehensive authentication, and dynamic user experience.",
+    images: [siteConfig.ogImage],
+  },
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: `${siteConfig.url}/projects/blogvana`,
+  },
+};
 
 export default function BlogvanaCaseStudy() {
   return (

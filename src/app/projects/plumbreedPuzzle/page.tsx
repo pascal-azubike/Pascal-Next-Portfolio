@@ -2,6 +2,64 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ShoppingBag, Shield, Sparkles } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Plumbreed Puzzles | Projects | ${siteConfig.name}`,
+  description: "Case study of Plumbreed Puzzles, an innovative faith-based gaming platform featuring dynamic product management, secure authentication, and optimized performance.",
+  openGraph: {
+    title: `Plumbreed Puzzles | Projects | ${siteConfig.name}`,
+    description: "Innovative faith-based gaming platform with dynamic product management, secure authentication, and optimized performance for an engaging user experience.",
+    url: `${siteConfig.url}/projects/plumbreedPuzzle`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Plumbreed Puzzles Project Preview"
+      }
+    ],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Plumbreed Puzzles | Projects | ${siteConfig.name}`,
+    description: "Innovative faith-based gaming platform with dynamic product management, secure authentication, and optimized performance for an engaging user experience.",
+    images: [siteConfig.ogImage],
+  },
+  keywords: [
+    "Plumbreed Puzzles",
+    "faith-based games",
+    "Christian puzzles",
+    "e-commerce platform",
+    "game development",
+    "puzzle games",
+    "religious games",
+    "board games",
+    "educational games",
+  ],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: `${siteConfig.url}/projects/plumbreedPuzzle`,
+  },
+};
 
 export default function PlumbreedPuzzlesCaseStudy() {
   return (

@@ -2,6 +2,71 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Analytics Dashboard Project | ${siteConfig.name}`,
+  description: "A comprehensive analytics dashboard project showcasing data visualization, real-time analytics, and interactive reporting capabilities.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Analytics Dashboard",
+    "Data Visualization",
+    "Chart.js",
+    "React Dashboard",
+    "Business Analytics",
+    "Interactive Charts",
+    "Data Analysis",
+    "Real-time Analytics",
+    "Dashboard Development",
+    "Performance Metrics",
+    "Business Intelligence",
+    "Data Reporting",
+    "Analytics Platform",
+    "Metrics Dashboard",
+    "Data Management"
+  ],
+  openGraph: {
+    title: `Analytics Dashboard Project | ${siteConfig.name}`,
+    description: "A comprehensive analytics dashboard project showcasing data visualization, real-time analytics, and interactive reporting capabilities.",
+    url: `${siteConfig.url}/projects/analyticalDashboard`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Analytics Dashboard Project"
+      }
+    ],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Analytics Dashboard Project | ${siteConfig.name}`,
+    description: "A comprehensive analytics dashboard project showcasing data visualization, real-time analytics, and interactive reporting capabilities.",
+    images: [siteConfig.ogImage],
+  },
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: `${siteConfig.url}/projects/blogvana`,
+  },
+};
 
 export default function AnalyticalDashboardCaseStudy() {
   return (

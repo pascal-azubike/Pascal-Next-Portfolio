@@ -1,27 +1,64 @@
-"use client"
-import { CalendlyEmbed } from "@/components/CalendlyEmbed";
-import { Suspense } from "react";
-import { Loader2 } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+import BookCallContent from "@/components/BookCallContent";
 
-export default function BookCallPage() {
-  return (
-    <div className="min-h-screen bg-zinc-900 text-white pt-32 md:pt-40">
-      <div className="max-w-5xl mx-auto px-4 md:px-8">
-        <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">
-          Let&apos;s Connect
-        </h2>
-        <p className="text-zinc-400 text-sm md:text-base mb-8">
-          Schedule a time to discuss your project, get technical advice, explore job
-          opportunities, or learn how we can work together.
-        </p>
-        <Suspense fallback={
-          <div className="flex items-center justify-center min-h-[700px]">
-            <Loader2 className="w-8 h-8 animate-spin text-cyan-500" />
-          </div>
-        }>
-          <CalendlyEmbed />
-        </Suspense>
-      </div>
-    </div>
-  );
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Schedule a Call | ${siteConfig.name}`,
+  description: "Book a consultation call with Azubike Pascal to discuss your project needs, technical requirements, or potential collaboration opportunities.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Book Consultation",
+    "Developer Consultation",
+    "Technical Consultation",
+    "Project Discussion",
+    "Development Planning",
+    "Technical Meeting",
+    "Code Review",
+    "Project Consultation",
+    "Developer Meeting",
+    "Technical Advisory",
+    "Development Consultation",
+    "Professional Consultation",
+    "Technical Discussion",
+    "Project Planning"
+  ],
+  openGraph: {
+    title: `Schedule a Call | ${siteConfig.name}`,
+    description: "Book a consultation call with Azubike Pascal to discuss your project needs, technical requirements, or potential collaboration opportunities.",
+    url: `${siteConfig.url}/book-call`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `Schedule a Call with ${siteConfig.name}`
+      }
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Schedule a Call | ${siteConfig.name}`,
+    description: "Book a consultation call with Azubike Pascal to discuss your project needs, technical requirements, or potential collaboration opportunities.",
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+export default function BookCall() {
+  return <BookCallContent />;
 } 

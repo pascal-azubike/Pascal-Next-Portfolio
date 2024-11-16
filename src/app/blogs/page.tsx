@@ -1,33 +1,67 @@
-"use client";
-import MediumLikeLayout from "@/components/articlesComp";
-import PortfolioGrid from "@/components/Portfolio";
-import AllArticles from "@/components/ui/focus-cards";
-import WorkExperience from "@/components/workExperience";
-import React from "react";
 
-const Project = () => {
-  return (
-    <div className=" bg-zinc-900">
-      <div className="max-w-5xl mx-auto px-8 pt-32 md:pt-40 relative">
-        <h1 className="font-bold text-3xl md:text-5xl md:leading-tight text-zinc-50 max-w-3xl">
-          All of my
-          <span className="text-cyan-500"> Technical Knowledge</span> in one
-          place
-        </h1>
-        <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-          I&apos;m passionate about writing clean, efficient code and sharing knowledge.
-          Here, I write about my experiences with software development and the
-          valuable lessons I&apos;ve learned along the way.
-        </p>
-      </div>
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+import BlogContent from "@/components/BlogContent";
 
-      <div className="max-w-5xl  mx-4 md:mx-8 lg:mx-auto mt-24 ">
-        <div className=" mt-10 ">
-          <AllArticles max={false} />
-        </div>
-      </div>
-    </div>
-  );
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Technical Blog | ${siteConfig.name}`,
+  description: "Explore technical articles and insights about software development, clean code practices, and valuable lessons learned throughout my development journey.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Technical Blog",
+    "Software Development Blog",
+    "Coding Tutorials",
+    "Programming Tips",
+    "Web Development Blog",
+    "Software Engineering Articles",
+    "Code Examples",
+    "Best Practices",
+    "Development Tutorials",
+    "Tech Insights",
+    "Software Architecture",
+    "Clean Code",
+    "Development Patterns",
+    "Technical Writing",
+    "Developer Resources"
+  ],
+  openGraph: {
+    title: `Technical Blog | ${siteConfig.name}`,
+    description: "Explore technical articles and insights about software development, clean code practices, and valuable lessons learned throughout my development journey.",
+    url: `${siteConfig.url}/blogs`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name}'s Technical Blog`
+      }
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Technical Blog | ${siteConfig.name}`,
+    description: "Explore technical articles and insights about software development, clean code practices, and valuable lessons learned throughout my development journey.",
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
-export default Project;
+const BlogPage = () => {
+  return <BlogContent />;
+};
+
+export default BlogPage;

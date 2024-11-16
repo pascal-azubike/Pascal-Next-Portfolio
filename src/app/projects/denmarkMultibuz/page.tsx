@@ -1,8 +1,73 @@
-"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: `Denmark Multibuz - E-commerce Platform | ${siteConfig.name}`,
+  description: "A sophisticated e-commerce platform featuring real-time data management, advanced search capabilities, and optimized user experience.",
+  keywords: [
+    ...siteConfig.keywords,
+    "E-commerce Platform",
+    "Online Store",
+    "Real-time Data",
+    "MongoDB Atlas",
+    "Search Optimization",
+    "Product Management",
+    "Shopping Platform",
+    "Digital Commerce",
+    "Inventory Management",
+    "Order Processing",
+    "E-commerce Development",
+    "Online Retail",
+    "Shopping Cart",
+    "Payment Integration",
+    "Product Catalog"
+  ],
+  openGraph: {
+    title: `Denmark Multibuz - E-commerce Platform | ${siteConfig.name}`,
+    description: "A sophisticated e-commerce platform featuring real-time data management, advanced search capabilities, and optimized user experience.",
+    url: `${siteConfig.url}/projects/denmarkMultibuz`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Denmark Multibuz E-commerce Platform"
+      }
+    ],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Denmark Multibuz - E-commerce Platform | ${siteConfig.name}`,
+    description: "A sophisticated e-commerce platform featuring real-time data management, advanced search capabilities, and optimized user experience.",
+    images: [siteConfig.ogImage],
+  },
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: `${siteConfig.url}/projects/denmarkMultibuz`,
+  },
+};
 
 export default function CaseStudyPage() {
   return (
