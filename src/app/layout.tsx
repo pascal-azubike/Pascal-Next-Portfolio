@@ -58,8 +58,10 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="theme-color" content="#18181b" />
         
-        <link rel="preconnect" href="https://assets.calendly.com" />
+        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://assets.calendly.com" />
+        <link rel="dns-prefetch" href="https://calendly.com" />
       </head>
       <body className={GeistSans.className}>
         <ClientSetup>{children}</ClientSetup>

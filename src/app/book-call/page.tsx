@@ -1,5 +1,7 @@
 "use client"
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function BookCallPage() {
   return (
@@ -8,12 +10,17 @@ export default function BookCallPage() {
         <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">
           Let&apos;s Connect
         </h2>
-        <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide mb-8">
-          Schedule a time to discuss your project, get technical advice, explore job opportunities, or learn how we can work together.
+        <p className="text-zinc-400 text-sm md:text-base mb-8">
+          Schedule a time to discuss your project, get technical advice, explore job
+          opportunities, or learn how we can work together.
         </p>
-        <div className="mt-8">
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-[700px]">
+            <Loader2 className="w-8 h-8 animate-spin text-cyan-500" />
+          </div>
+        }>
           <CalendlyEmbed />
-        </div>
+        </Suspense>
       </div>
     </div>
   );
