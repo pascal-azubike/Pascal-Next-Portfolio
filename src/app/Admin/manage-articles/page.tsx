@@ -60,22 +60,7 @@ import { useToast } from "@/components/ui/use-toast";
 import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
 import { useStore } from "zustand";
 import { useProductStore } from "@/hooks/use-product";
-import { Metadata } from "next";
-import { siteConfig } from "@/lib/site-config";
 
-
-export const metadata: Metadata = {
-  title: `Admin Dashboard | ${siteConfig.name}`,
-  description: "Administrative dashboard for managing articles and content.",
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
-};
 
 export default function AllProducts() {
   const { setProducts, products } = useStore(useProductStore, (state) => ({

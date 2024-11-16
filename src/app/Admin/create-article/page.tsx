@@ -35,21 +35,7 @@ import useUploadMutation from "@/hooks/useUploadMutation";
 import { handleImageUpload } from "@/hooks/handleImageUpload";
 import { Textarea } from "@/components/ui/textarea";
 import { modulesObject } from "@/components/admin-panel/modules";
-import { Metadata } from "next";
-import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: `Create Article | ${siteConfig.name}`,
-  description: "Create and publish new articles.",
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
-};
 
 
 const formSchema = z.object({
