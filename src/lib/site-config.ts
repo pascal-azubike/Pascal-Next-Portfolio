@@ -1,10 +1,12 @@
+const baseUrl =  'https://www.pascal-azubike.dev'
+
 export const siteConfig = {
-    url: "https://www.pascal-azubike.dev",
+    url: baseUrl,
     name: "Azubike Pascal",
     title: "Azubike Pascal - Full Stack Developer",
     description: "Meet Azubike Pascal, a software engineer specializing in beautiful, responsive websites that drive business results. Creating engaging digital experiences that help businesses grow.",
     author: "Azubike Pascal",
-    ogImage: "/api/og",
+    ogImage: `${baseUrl}/api/og`,
     links: {
         github: "https://github.com/pascal-azubike",
         linkedin: "https://www.linkedin.com/in/pascal-azubike/",
