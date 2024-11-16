@@ -6,7 +6,7 @@ export const siteConfig = {
     title: "Azubike Pascal - Full Stack Developer",
     description: "Meet Azubike Pascal, a software engineer specializing in beautiful, responsive websites that drive business results. Creating engaging digital experiences that help businesses grow.",
     author: "Azubike Pascal",
-    ogImage: `${baseUrl}/api/og`,
+    ogImage: `${baseUrl}/og-preview`,
     links: {
         github: "https://github.com/pascal-azubike",
         linkedin: "https://www.linkedin.com/in/pascal-azubike/",

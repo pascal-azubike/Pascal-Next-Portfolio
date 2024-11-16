@@ -4,6 +4,7 @@ import OgImage from '@/components/OgImage'
 export const runtime = 'edge'
 
 export async function GET() {
+  console.log('og image route')
   try {
     return new ImageResponse(
       (
