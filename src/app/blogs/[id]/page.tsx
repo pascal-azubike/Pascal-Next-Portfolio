@@ -56,8 +56,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       },
       locale: "en_US",
       type: "article",
-      publishedTime: article.publishedDate,
-      authors: [article.author],
+      publishedTime: article.updatedAt,
+      authors: ["AZubike Pascal"],
     },
     twitter: {
       card: "summary_large_image",
