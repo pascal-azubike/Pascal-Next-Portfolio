@@ -6,12 +6,13 @@ export const siteConfig = {
     title: "Azubike Pascal - Full Stack Developer",
     description: "Meet Azubike Pascal, a software engineer specializing in beautiful, responsive websites that drive business results. Creating engaging digital experiences that help businesses grow.",
     author: "Azubike Pascal",
-    ogImage: `${baseUrl}/og-preview`,
+    ogImage: `https://res.cloudinary.com/dztt3ldiy/image/upload/v1731814914/PascalportfolioOg_ryuigj.png`,
     links: {
         github: "https://github.com/pascal-azubike",
-        linkedin: "https://www.linkedin.com/in/pascal-azubike/",
+        linkedin: "https://www.linkedin.com/in/pascal-azubike",
         twitter: "https://x.com/pascal_azubike",
-        email: "hello@pascal-azubike.dev"
+        email: "mailto:hello@pascal-azubike.dev",
+        whatsapp: "https://wa.me/+2349046779214"
     },
     social: {
         twitter: {
@@ -77,7 +78,8 @@ export const siteConfig = {
             rel: "canonical",
             href: "https://www.pascal-azubike.dev"
         }
-    ]
+    ],
+    
 } as const;
 
 export type SiteConfig = typeof siteConfig; 
