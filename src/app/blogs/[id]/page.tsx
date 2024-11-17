@@ -49,10 +49,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       url,
       siteName: siteConfig.name,
       images: {
-        url: imageUrl,
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: article.title
+        alt: `About ${siteConfig.name}`
       },
       locale: "en_US",
       type: "article",

@@ -30,11 +30,11 @@ export const metadata: Metadata = {
     description: "Explore technical articles and insights about software development, clean code practices, and valuable lessons learned throughout my development journey.",
     url: `${siteConfig.url}/blogs`,
     siteName: siteConfig.name,
-    images:
-    {
+    images: {
       url: siteConfig.ogImage,
-    
-      alt: `${siteConfig.name}'s Technical Blog`
+      width: 1200,
+      height: 630,
+      alt: `Blogs ${siteConfig.name}`
     }
     ,
     locale: "en_US",

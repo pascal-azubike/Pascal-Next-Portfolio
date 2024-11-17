@@ -32,7 +32,8 @@ export const metadata: Metadata = {
     images: 
       {
         url: siteConfig.ogImage,
-       
+        width: 1200,
+        height: 630,
         alt: `Schedule a Call with ${siteConfig.name}`
       }
     ,
