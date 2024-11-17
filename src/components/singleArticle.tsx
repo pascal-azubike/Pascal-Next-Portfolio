@@ -23,6 +23,7 @@ import { Copy } from "lucide-react";
 import hljs from "highlight.js";
 import { useSearchStore } from "@/hooks/use-search-store";
 import PascalSpinner from "./LoadingSpinner";
+import { toast } from "./ui/use-toast";
 
 interface HeadingObject {
   id: string;
@@ -302,10 +303,10 @@ const ArticleLayout: React.FC = () => {
           <a
             href={`#${item.id}`}
             className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${activeSection === item.id
-                ? "text-[#4b9bff] font-semibold"
-                : hoveredSection === item.id
-                  ? "text-white"
-                  : "text-gray-400"
+              ? "text-[#4b9bff] font-semibold"
+              : hoveredSection === item.id
+                ? "text-white"
+                : "text-gray-400"
               }`}
             onClick={(e) => {
               e.preventDefault();
@@ -337,10 +338,10 @@ const ArticleLayout: React.FC = () => {
                   <a
                     href={`#${subItem.id}`}
                     className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${activeSection === subItem.id
-                        ? "text-[#4b9bff] font-semibold"
-                        : hoveredSection === subItem.id
-                          ? "text-white"
-                          : "text-gray-400"
+                      ? "text-[#4b9bff] font-semibold"
+                      : hoveredSection === subItem.id
+                        ? "text-white"
+                        : "text-gray-400"
                       }`}
                     onClick={(e) => {
                       e.preventDefault();
@@ -445,7 +446,7 @@ const ArticleLayout: React.FC = () => {
                   {article?.shortSummary}
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button className="inline-flex items-center justify-center px-6 py-3 bg-blue-400 text-black font-semibold rounded-lg hover:bg-blue-300 transition-colors">
+                  <Button onClick={() => shareArticle(article)} className="inline-flex items-center justify-center px-6 py-3 bg-blue-400 text-black font-semibold rounded-lg hover:bg-blue-300 transition-colors">
                     Share <Share2 className="ml-2" size={20} />
                   </Button>
                   <div>
@@ -521,3 +522,30 @@ const ArticleLayout: React.FC = () => {
 };
 
 export default ArticleLayout;
+
+
+
+
+// Add this share function
+async function shareArticle(article: any) {
+  const shareData = {
+    title: article.title,
+    text: article.shortSummary || article.description.substring(0, 160),
+    url: window.location.href,
+  };
+
+  try {
+    if (navigator.share) {
+      // Use Web Share API if available
+      await navigator.share(shareData);
+      toast({ description: "Article shared successfully!" });
+    } else {
+      // Fallback to copying URL
+      await navigator.clipboard.writeText(window.location.href);
+      toast({ description: "Link copied to clipboard!" });
+    }
+  } catch (error) {
+    console.error("Error sharing article:", error);
+    toast({ variant: "destructive", description: "Failed to share article" });
+  }
+}

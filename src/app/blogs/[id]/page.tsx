@@ -1,9 +1,12 @@
+
+
 import ArticleLayout from "@/components/singleArticle";
 import React from "react";
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { connectDB } from "@/app/api/config/MongoDbConfig";
 import Article from "@/app/api/models/Article";
+
 
 // Function to fetch article data
 async function getArticle(id: string) {
@@ -18,6 +21,7 @@ async function getArticle(id: string) {
 
   return article;
 }
+
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const article = await getArticle(params.id);
@@ -81,6 +85,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     },
   };
 }
+
 
 const page = () => {
   return (
