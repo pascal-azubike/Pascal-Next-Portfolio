@@ -4,16 +4,22 @@ import { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { connectDB } from "@/app/api/config/MongoDbConfig";
 import Article from "@/app/api/models/Article";
+import { notFound } from "next/navigation";
 
 // Function to fetch article data
 async function getArticle(id: string) {
   await connectDB();
+  
+  // Add ObjectId validation
+  const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+  if (!isValidObjectId) {
+    notFound();
+  }
+
   const article = await Article.findById(id);
 
-  article && console.log(article._id, "meteadd .....................1");
-
   if (!article) {
-    throw new Error('Article not found');
+    notFound();
   }
 
   return article;
@@ -52,7 +58,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `About ${siteConfig.name}`
+        alt: `${article.title} | Blog | ${siteConfig.name}`
       },
       locale: "en_US",
       type: "article",
