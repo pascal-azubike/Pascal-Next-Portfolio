@@ -8,8 +8,10 @@ import Article from "@/app/api/models/Article";
 // Function to fetch article data
 async function getArticle(id: string) {
   await connectDB();
-  const article = await Article.findById(id).lean();
-  
+  const article = await Article.findById(id);
+
+  article && console.log(article._id, "meteadd .....................1");
+
   if (!article) {
     throw new Error('Article not found');
   }
@@ -19,7 +21,7 @@ async function getArticle(id: string) {
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const article = await getArticle(params.id);
-  console.log(article);
+  console.log(article._id, "meteadd .....................2");
 
   const title = `${article.title} | Blog | ${siteConfig.name}`;
   const description = article.shortSummary || article.description.substring(0, 160);
@@ -37,9 +39,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       "Programming Tutorial",
       "Code Example",
       "Development Guide",
-      ...(article.tags || []),
+      // ...(article.tags || []),
     ],
-    authors: [{ name: article.author }],
+    authors: [{ name: "Azubike Pascal" }],
     publisher: siteConfig.name,
     openGraph: {
       title,
