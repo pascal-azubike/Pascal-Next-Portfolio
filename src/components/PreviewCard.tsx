@@ -5,11 +5,11 @@ export function PreviewCard() {
     return (
         <div className="relative w-[1200px] h-[630px] bg-black/95 flex">
             {/* Left side - Name and Designation */}
-            <div className="flex-1 flex flex-col justify-center pl-32">
-                <h1 className="text-6xl font-bold text-purple-500 mb-1">
+            <div className="flex-1 flex flex-col justify-center pl-[6rem]">
+                <h1 className="text-[4.2rem] font-bold text-purple-500 mb-1">
                     {siteConfig.author}
                 </h1>
-                <p className="text-xl text-center text-gray-500 tracking-[0.2em] ml-1 opacity-80">
+                <p className="text-2xl text-center text-gray-500 tracking-[0.2em] ml-1 font-bold opacity-80">
                     FULL STACK DEVELOPER
                 </p>
             </div>
@@ -33,15 +33,15 @@ export function PreviewCard() {
                     <div className="flex flex-col gap-5">
 
                         <ContactItem
-                            icon={<Mail className="w-4 h-4 " />}
+                            icon={<Mail className="w-8 h-8" />}
                             text="hello@pascal-azubike.dev"
                         />
                         <ContactItem
-                            icon={<XIcon className="w-4 h-4" />}
+                            icon={<XIcon className="w-8 h-8" />}
                             text={`${siteConfig.social.twitter.handle}`}
                         />
                         <ContactItem
-                            icon={<Linkedin className="w-4 h-4 " />}
+                            icon={<Linkedin className="w-8 h-8" />}
                             text={siteConfig.links.linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\//, '')}
                         />
 
@@ -61,10 +61,10 @@ function ContactItem({
 }) {
     return (
         <div className="flex items-center gap-3">
-            <div className="text-purple-500 opacity-90">
+            <div className="text-purple-500 opacity-90 text-3xl font-bold">
                 {icon}
             </div>
-            <span className="text-gray-500 text-xl font-bold">
+            <span className="text-gray-500 text-3xl font-bold">
                 {text}
             </span>
         </div>
