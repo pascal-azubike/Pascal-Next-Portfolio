@@ -69,21 +69,27 @@ const ArticleLayout: React.FC = () => {
   const article = data?.article;
 
   const handleDownload = async (pdfUrl: any) => {
-    console.log(pdfUrl, "pdfurl....................");
     try {
       const response = await fetch(pdfUrl);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "Christian-Games-and-Puzzles.pdf";
+      const filename = article?.title
+        ?.replace(/[^a-zA-Z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase() || 'article';
+      link.download = `${filename}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error downloading PDF:", error);
-      // You might want to show an error message to the user here
+      toast({ 
+        variant: "destructive", 
+        description: "Failed to download PDF" 
+      });
     }
   };
   // Modify code blocks and other elements
