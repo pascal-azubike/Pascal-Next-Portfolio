@@ -105,7 +105,11 @@ const config = {
             opacity: "1",
             transform: "translate(-50%,-40%) scale(1)"
           }
-        }
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -115,7 +119,9 @@ const config = {
         shimmer: "shimmer 2s linear infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-        spotlight: "spotlight 2s ease .75s 1 forwards"
+        spotlight: "spotlight 2s ease .75s 1 forwards",
+        'fade-in-slow': 'fadeIn 1.5s ease-in',
+        'bounce-gentle': 'bounce 2s infinite',
       }
     }
   },
