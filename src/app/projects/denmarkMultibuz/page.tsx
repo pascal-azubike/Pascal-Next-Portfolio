@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     description: "A sophisticated e-commerce platform featuring real-time data management, advanced search capabilities, and optimized user experience.",
     url: `${siteConfig.url}/projects/denmarkMultibuz`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Denmark Multibuz E-commerce Platform"
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: "Denmark Multibuz E-commerce Platform"
+    }
+    ,
     locale: "en_US",
     type: "article",
   },

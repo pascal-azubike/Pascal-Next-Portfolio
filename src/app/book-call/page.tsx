@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     description: "Book a consultation call with Azubike Pascal to discuss your project needs, technical requirements, or potential collaboration opportunities.",
     url: `${siteConfig.url}/book-call`,
     siteName: siteConfig.name,
-    images: [
+    images: 
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
         alt: `Schedule a Call with ${siteConfig.name}`
       }
-    ],
+    ,
     locale: "en_US",
     type: "website",
   },

@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     description: "Innovative faith-based gaming platform with dynamic product management, secure authentication, and optimized performance for an engaging user experience.",
     url: `${siteConfig.url}/projects/plumbreedPuzzle`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Plumbreed Puzzles Project Preview"
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: "Plumbreed Puzzles Project Preview"
+    }
+    ,
     locale: "en_US",
     type: "article",
   },

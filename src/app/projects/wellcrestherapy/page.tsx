@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     description: "Modern mental health platform with secure patient management, HIPAA-compliant scheduling, and integrated telehealth solutions for enhanced therapeutic care.",
     url: `${siteConfig.url}/projects/wellcrestTherapy`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Wellcrest Therapy Project Preview"
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: "Wellcrest Therapy Project Preview"
+    }
+    ,
     locale: "en_US",
     type: "article",
   },

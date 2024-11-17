@@ -27,19 +27,21 @@ export const metadata: Metadata = {
     "Metrics Dashboard",
     "Data Management"
   ],
+
   openGraph: {
     title: `Analytics Dashboard Project | ${siteConfig.name}`,
     description: "A comprehensive analytics dashboard project showcasing data visualization, real-time analytics, and interactive reporting capabilities.",
     url: `${siteConfig.url}/projects/analyticalDashboard`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Analytics Dashboard Project"
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: "Analytics Dashboard Project"
+    }
+    ,
+
     locale: "en_US",
     type: "article",
   },

@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     description: "Explore my portfolio of full-stack development projects, showcasing expertise in web development, e-commerce solutions, and interactive applications.",
     url: `${siteConfig.url}/projects`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name}'s Projects`
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: `${siteConfig.name}'s Projects`
+    }
+    ,
     locale: "en_US",
     type: "website",
   },

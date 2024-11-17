@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     description: "A modern blogging platform built with semantic search capabilities, comprehensive authentication, and dynamic user experience.",
     url: `${siteConfig.url}/projects/blogvana`,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Blogvana Project"
-      }
-    ],
+    images:
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt: "Blogvana Project"
+    }
+    ,
     locale: "en_US",
     type: "article",
   },

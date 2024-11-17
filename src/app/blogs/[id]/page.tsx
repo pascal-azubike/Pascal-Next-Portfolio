@@ -56,14 +56,14 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       description,
       url,
       siteName: siteConfig.name,
-      images: [
+      images: 
         {
           url: imageUrl,
           width: 1200,
           height: 630,
           alt: article.title
         }
-      ],
+      ,
       locale: "en_US",
       type: "article",
       publishedTime: article.publishedDate,
