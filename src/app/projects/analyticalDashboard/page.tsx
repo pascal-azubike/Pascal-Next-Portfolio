@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
-
+// ramdom comment
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: `Analytics Dashboard Project | ${siteConfig.name}`,
