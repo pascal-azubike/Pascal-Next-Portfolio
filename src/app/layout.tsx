@@ -6,41 +6,39 @@ import { Toaster } from "@/components/ui/toaster";
 
 import ClientSetup from "@/components/clientSetup";
 import { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.APP_URL
-      ? `${process.env.APP_URL}`
-      : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : `http://localhost:${process.env.PORT || 3000}`
-  ),
-  title: "Plumbreed Puzzles",
-  description:
-    "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
+  metadataBase: new URL(siteConfig.url),
+  title: siteConfig.title,
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
   alternates: {
-    canonical: "/"
+    canonical: siteConfig.url
   },
   openGraph: {
-    url: "/",
-    title: "Plumbreed Puzzles",
-    description:
-      "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name
+      }
+    ],
+    locale: "en_US",
     type: "website",
-    images: {
-      url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
-      alt: "Biblical Puzzles"
-    }
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plumbreed Puzzles",
-    images: {
-      url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
-      alt: "Biblical Puzzles"
-    },
-    description:
-      "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide."
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: siteConfig.social.twitter.handle,
+    site: siteConfig.social.twitter.site,
   },
   icons: {
     icon: [
@@ -52,6 +50,22 @@ export const metadata: Metadata = {
     shortcut: '/favicon/favicon.ico',
     apple: '/favicon/apple-touch-icon.png',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  themeColor: siteConfig.metadata.themeColor,
+  manifest: siteConfig.metadata.manifestPath,
 }
 
 export default function RootLayout({
