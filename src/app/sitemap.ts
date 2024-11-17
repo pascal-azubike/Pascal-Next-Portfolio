@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Add article routes
     const articleRoutes = articles.map((article) => ({
-        url: `${process.env.NEXT_PUBLIC_APP_URL}/blog/${article._id.toString()}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}/blogs/${article._id.toString()}`,
         lastModified: article.updatedAt || new Date(),
         priority: 0.7,
     }))
