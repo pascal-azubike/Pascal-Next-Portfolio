@@ -2,37 +2,27 @@ import ArticleLayout from "@/components/singleArticle";
 import React from "react";
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { connectDB } from "@/app/api/config/MongoDbConfig";
+import Article from "@/app/api/models/Article";
 
-// Type for your article data
-interface Article {
-  title: string;
-  description: string;
-  imageUrl: string;
-  author: string;
-  publishedDate: string;
-  content: string;
-  tags?: string[];  // Added optional tags property
-  // Add other relevant fields
-}
+// Function to fetch article data
+async function getArticle(id: string) {
+  await connectDB();
+  const article = await Article.findById(id).lean();
+  
+  if (!article) {
+    throw new Error('Article not found');
+  }
 
-// Function to fetch article data - implement according to your data fetching logic
-async function getArticle(id: string): Promise<Article> {
-  // Temporary placeholder return until you implement your fetching logic
-  return {
-    title: "",
-    description: "",
-    imageUrl: "",
-    author: "",
-    publishedDate: "",
-    content: "",
-  };
+  return article;
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const article = await getArticle(params.id);
+  console.log(article);
 
   const title = `${article.title} | Blog | ${siteConfig.name}`;
-  const description = article.description;
+  const description = article.shortSummary || article.description.substring(0, 160);
   const url = `${siteConfig.url}/blogs/${params.id}`;
   const imageUrl = article.imageUrl || siteConfig.ogImage;
 
@@ -47,7 +37,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       "Programming Tutorial",
       "Code Example",
       "Development Guide",
-      ...article.tags || [], // Assuming your article has tags
+      ...(article.tags || []),
     ],
     authors: [{ name: article.author }],
     publisher: siteConfig.name,
@@ -56,13 +46,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       description,
       url,
       siteName: siteConfig.name,
-      images:
-      {
+      images: {
         url: imageUrl,
-
+        width: 1200,
+        height: 630,
         alt: article.title
-      }
-      ,
+      },
       locale: "en_US",
       type: "article",
       publishedTime: article.publishedDate,
@@ -93,7 +82,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
 const page = () => {
   return (
-    <div className="  ">
+    <div>
       <ArticleLayout />
     </div>
   );
