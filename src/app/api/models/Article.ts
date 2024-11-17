@@ -11,6 +11,7 @@ interface IArticle extends Document {
   blurImage: string;
   pdfUrl: string;
   embedding: number[];
+  updatedAt: string;
 }
 
 // Create Article schema
