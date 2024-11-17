@@ -5,43 +5,54 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
 import ClientSetup from "@/components/clientSetup";
+import { Metadata } from "next";
 
-// export const metadata: Metadata = {
-//   metadataBase: new URL(
-//     process.env.APP_URL
-//       ? `${process.env.APP_URL}`
-//       : process.env.VERCEL_URL
-//       ? `https://${process.env.VERCEL_URL}`
-//       : `http://localhost:${process.env.PORT || 3000}`
-//   ),
-//   title: "Plumbreed Puzzles",
-//   description:
-//     "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
-//   alternates: {
-//     canonical: "/"
-//   },
-//   openGraph: {
-//     url: "/",
-//     title: "Plumbreed Puzzles",
-//     description:
-//       "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
-//     type: "website",
-//     images: {
-//       url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
-//       alt: "Biblical Puzzles"
-//     }
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "Plumbreed Puzzles",
-//     images: {
-//       url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
-//       alt: "Biblical Puzzles"
-//     },
-//     description:
-//       "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide."
-//   }
-// };
+export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.APP_URL
+      ? `${process.env.APP_URL}`
+      : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : `http://localhost:${process.env.PORT || 3000}`
+  ),
+  title: "Plumbreed Puzzles",
+  description:
+    "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
+  alternates: {
+    canonical: "/"
+  },
+  openGraph: {
+    url: "/",
+    title: "Plumbreed Puzzles",
+    description:
+      "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide.",
+    type: "website",
+    images: {
+      url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
+      alt: "Biblical Puzzles"
+    }
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Plumbreed Puzzles",
+    images: {
+      url: "https://res.cloudinary.com/dvuvrb47d/image/upload/q_auto/f_auto/w_1200/v1725344577/plumbreespuzzle_b1on2q.png",
+      alt: "Biblical Puzzles"
+    },
+    description:
+      "Discover the richness of Biblical stories through engaging and faith-based puzzles and games. Bringing Scripture to life for families and individuals worldwide."
+  },
+  icons: {
+    icon: [
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon/favicon.ico',
+    apple: '/favicon/apple-touch-icon.png',
+  },
+}
 
 export default function RootLayout({
   children
