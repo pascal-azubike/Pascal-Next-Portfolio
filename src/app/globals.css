@@ -160,3 +160,21 @@ blockquote {
 }
 
 
+.ql-editor .image-caption {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* Style the formatter buttons */
+.blot-formatter__toolbar-button {
+  padding: 5px !important;
+  margin: 2px !important;
+  cursor: pointer !important;
+}
+
+.blot-formatter__toolbar-button:hover {
+  background-color: #f0f0f0 !important;
+}

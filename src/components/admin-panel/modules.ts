@@ -40,27 +40,27 @@ const imageHandler = function (this: { quill: Quill }) {
         const selection = this.quill.getSelection();
         if (selection) {
           const cursorPosition = selection.index;
-          
+
           // Insert the image
           this.quill.insertEmbed(cursorPosition, "image", imageUrl);
-          
+
           // Move cursor to next position and add a caption placeholder
           this.quill.insertText(cursorPosition + 1, "\n");
           this.quill.insertText(
-            cursorPosition + 2, 
-            "Image caption here...", 
+            cursorPosition + 2,
+            "Image caption here...",
             { italic: true, color: '#666' }
           );
           this.quill.insertText(cursorPosition + 3, "\n");
-          
+
           // Set the cursor after the caption
           this.quill.setSelection(cursorPosition + 3, 0);
-          
+
           // Add data attributes for additional metadata if needed
           const imageNode = this.quill.root.querySelector(
             `img[src="${imageUrl}"]`
           ) as HTMLImageElement;
-          
+
           if (imageNode) {
             imageNode.setAttribute("alt", "");
             imageNode.setAttribute("title", "");

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
