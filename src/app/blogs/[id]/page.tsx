@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       url,
       siteName: siteConfig.name,
       images: {
-        url: siteConfig.ogImage,
+        url: imageUrl,
         width: 1200,
         height: 630,
         alt: `${article.title} | Blog | ${siteConfig.name}`
