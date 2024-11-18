@@ -1,7 +1,7 @@
-"use client";
+"use client"
 import * as React from "react";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,8 +21,26 @@ import {
   FormMessage
 } from "@/components/ui/form";
 
-// Dynamically import React Quill
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+// Modify the ReactQuill dynamic import
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+    
+    if (typeof window !== "undefined") {
+      const { default: ImageUploader } = await import("quill-image-uploader");
+      const { default: BlotFormatter } = await import("quill-blot-formatter");
+      const Quill = require("quill");
+      
+      Quill.register("modules/imageUploader", ImageUploader);
+      Quill.register("modules/blotFormatter", BlotFormatter);
+    }
+    return RQ;
+  },
+  { 
+    ssr: false,
+    loading: () => <p>Loading editor...</p>
+  }
+);
 
 import { Loader2 } from "lucide-react";
 import axios from "axios";
