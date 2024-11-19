@@ -90,8 +90,13 @@ export default function RootLayout({
       </head>
       <body className={GeistSans.className}>
         <ClientSetup>{children}</ClientSetup>
-
         <Toaster />
+
+        <script
+          async
+          src="https://embed.tawk.to/673c6dfd4304e3196ae4f455/1id2ff47q"
+
+        />
       </body>
     </html>
   );

@@ -34,6 +34,24 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --tawk-header-background-color: #18181b !important;
+    --tawk-header-text-color: #ffffff !important;
+    --tawk-header-border-color: #27272a !important;
+    
+    --tawk-message-background-color: #27272a !important;
+    --tawk-message-text-color: #ffffff !important;
+    
+    --tawk-chat-background-color: #18181b !important;
+    --tawk-chat-bubble-background-color: #3b82f6 !important;
+    --tawk-chat-bubble-text-color: #ffffff !important;
+    
+    --tawk-input-background-color: #27272a !important;
+    --tawk-input-text-color: #ffffff !important;
+    --tawk-input-border-color: #3f3f46 !important;
+    
+    --tawk-button-background-color: #3b82f6 !important;
+    --tawk-button-text-color: #ffffff !important;
   }
 
   .dark {
@@ -179,25 +197,57 @@ blockquote {
   background-color: #f0f0f0 !important;
 }
 
-/* Target iframes within the editor with higher specificity */
-.ql-editor audio,
-.ql-editor canvas,
-.ql-editor embed,
-.ql-editor iframe,
-.ql-editor img,
-.ql-editor object,
-.ql-editor svg,
-.ql-editor video {
-  max-width: 100% !important;
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 16/9 !important;
-  display: block !important;
-  margin: 1em auto !important;
+
+
+.tawk-branding {
+  display: none !important;
 }
 
-/* Specific override for iframes */
-.ql-editor iframe {
-  min-height: 400px !important;
-  height: 56.25vw !important; /* This maintains 16:9 aspect ratio */
+/* Tawk.to Custom Styling */
+:root {
+  --tawk-header-background-color: #18181b !important;
+  --tawk-header-text-color: #ffffff !important;
+  --tawk-header-border-color: #27272a !important;
+  
+  --tawk-message-background-color: #27272a !important;
+  --tawk-message-text-color: #ffffff !important;
+  
+  --tawk-chat-background-color: #18181b !important;
+  --tawk-chat-bubble-background-color: #3b82f6 !important;
+  --tawk-chat-bubble-text-color: #ffffff !important;
+  
+  --tawk-input-background-color: #27272a !important;
+  --tawk-input-text-color: #ffffff !important;
+  --tawk-input-border-color: #3f3f46 !important;
+  
+  --tawk-button-background-color: #3b82f6 !important;
+  --tawk-button-text-color: #ffffff !important;
+}
+
+/* Hide Tawk.to branding */
+.tawk-branding {
+  display: none !important;
+}
+
+/* Custom scrollbar for chat */
+.tawk-custom-scrollbar::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+.tawk-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #565658 !important;
+  border-radius: 7px !important;
+}
+
+.tawk-custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent !important;
+  border-radius: 10px !important;
+}
+
+/* Adjust chat widget container */
+.tawk-min-container {
+  margin: 0 20px 20px 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
