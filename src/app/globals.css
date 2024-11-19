@@ -178,3 +178,26 @@ blockquote {
 .blot-formatter__toolbar-button:hover {
   background-color: #f0f0f0 !important;
 }
+
+/* Target iframes within the editor with higher specificity */
+.ql-editor audio,
+.ql-editor canvas,
+.ql-editor embed,
+.ql-editor iframe,
+.ql-editor img,
+.ql-editor object,
+.ql-editor svg,
+.ql-editor video {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16/9 !important;
+  display: block !important;
+  margin: 1em auto !important;
+}
+
+/* Specific override for iframes */
+.ql-editor iframe {
+  min-height: 400px !important;
+  height: 56.25vw !important; /* This maintains 16:9 aspect ratio */
+}

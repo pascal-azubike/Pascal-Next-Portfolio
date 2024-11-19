@@ -5,13 +5,10 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { BackgroundGradientAnimation } from "./GradientBg";
+
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
-import MagicButton from "../MagicButton";
-import { Copy } from "lucide-react";
-import Lottie from "react-lottie";
-import { CompareDemo } from "../compareCode";
+
 
 export const BentoGrid = ({
   className,
@@ -114,9 +111,8 @@ export const BentoGridItem = ({
           )}
         </div>
         <div
-          className={`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          }`}
+          className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"
+            }`}
         >
           {spareImg && (
             <img
@@ -127,7 +123,7 @@ export const BentoGridItem = ({
           )}
         </div>
 
-        {id === 5 && <CompareDemo />}
+
 
         <div
           className={cn(

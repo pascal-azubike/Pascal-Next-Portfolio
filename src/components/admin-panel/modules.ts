@@ -2,6 +2,13 @@ import { uptimizeCloudinaryImage } from "@/hooks/imageCloudinaryOptimizer";
 import axios from "axios";
 import Quill from "quill";
 import hljs from "highlight.js";
+import ImageUploader from "quill-image-uploader";
+import BlotFormatter from "quill-blot-formatter/dist/BlotFormatter";
+import "quill-image-uploader/dist/quill.imageUploader.min.css";
+
+// Register the modules
+Quill.register("modules/imageUploader", ImageUploader);
+Quill.register("modules/blotFormatter", BlotFormatter);
 
 // Image handler function
 const imageHandler = function (this: { quill: Quill }) {
