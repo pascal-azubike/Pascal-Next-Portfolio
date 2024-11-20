@@ -251,3 +251,79 @@ blockquote {
   border-radius: 12px !important;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
+
+
+.bubble-input {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 !important;
+  font-size: 1.1rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid #ccc !important;
+  transition: border-color 0.2s ease;
+}
+
+.bubble-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #666 !important;
+}
+
+.bubble-textarea {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 !important;
+  font-size: 1.1rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid #ccc !important;
+  resize: none !important;
+}
+
+.bubble-textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #666 !important;
+}
+
+.bubble-label {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.bubble-form-item {
+  margin-bottom: 2rem;
+}
+
+.bubble-tag-input {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 !important;
+  font-size: 1.1rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+.bubble-tag {
+  background: transparent !important;
+  border: 1px solid #ccc !important;
+  color: #666 !important;
+}
+
+.bubble-image-upload {
+  border: 2px dashed #ccc !important;
+  background: transparent !important;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.bubble-image-upload:hover {
+  border-color: #666 !important;
+}
+
+.bubble-image-upload.dragging {
+  border-color: #666 !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}

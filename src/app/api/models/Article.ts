@@ -12,6 +12,7 @@ interface IArticle extends Document {
   pdfUrl: string;
   embedding: number[];
   updatedAt: string;
+  tags: string[];
 }
 
 // Create Article schema
@@ -27,7 +28,8 @@ const ArticleSchema: Schema<IArticle> = new Schema(
       select: false
     },
     blurImage: { type: String, required: true },
-    pdfUrl: { type: String, required: true }
+    pdfUrl: { type: String, required: true },
+    tags: { type: [String], required: true }
   },
   {
     timestamps: true

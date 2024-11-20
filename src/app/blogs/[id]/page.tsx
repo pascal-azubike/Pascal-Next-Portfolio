@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 // Function to fetch article data
 async function getArticle(id: string) {
   await connectDB();
-  
+
   // Add ObjectId validation
   const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(id);
   if (!isValidObjectId) {
@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const description = article.shortSummary || article.description.substring(0, 160);
   const url = `${siteConfig.url}/blogs/${params.id}`;
   const imageUrl = article.imageUrl || siteConfig.ogImage;
+  const tags = article.tags || [];
+  console.log(tags, "tags .....................2");
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       "Programming Tutorial",
       "Code Example",
       "Development Guide",
-      // ...(article.tags || []),
+      ...(article.tags || []),
     ],
     authors: [{ name: "Azubike Pascal" }],
     publisher: siteConfig.name,

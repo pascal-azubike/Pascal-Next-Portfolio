@@ -92,11 +92,12 @@ export default function RootLayout({
         <ClientSetup>{children}</ClientSetup>
         <Toaster />
 
+        {/* Tawk.to script */}
         <script
           async
           src="https://embed.tawk.to/673c6dfd4304e3196ae4f455/1id2ff47q"
+        ></script>
 
-        />
       </body>
     </html>
   );
