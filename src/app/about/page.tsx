@@ -71,11 +71,12 @@ export default function About() {
             and I work as a full stack soap engineer.
           </h1>
           <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-            Technology has captivated me since my childhood days. Between dismantling my
-            parents&apos; computer (my apologies, mum) and teaching myself programming,
-            I developed a deep passion for tech. Now, years later, I&apos;ve evolved into
-            a seasoned developer who loves crafting elegant websites and building powerful
-            applications.
+            I got hooked on tech pretty early - you know how kids are! I was that 
+            curious kid who took apart my mom's computer (sorry about that, Mom!) 
+            just to see what made it tick. Started messing around with code in my 
+            teens, and honestly, I couldn't get enough of it. Fast forward to today, 
+            and here I am, still getting excited about building cool websites and 
+            solving tricky problems with code.
           </p>
           <div className="mt-8">
             <h2 className="text-xl md:text-2xl font-bold text-zinc-50 mb-4">Technical Expertise</h2>
