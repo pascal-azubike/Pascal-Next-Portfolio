@@ -71,10 +71,10 @@ export default function About() {
             and I work as a full stack soap engineer.
           </h1>
           <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-            I got hooked on tech pretty early - you know how kids are! I was that 
-            curious kid who took apart my mom's computer (sorry about that, Mom!) 
+            I got hooked on tech pretty early, you know how kids are! I was that 
+            curious kid who took apart my mom&apos;s computer (sorry about that, Mom!) 
             just to see what made it tick. Started messing around with code in my 
-            teens, and honestly, I couldn't get enough of it. Fast forward to today, 
+            teens, and honestly, I couldn&apos;t get enough of it. Fast forward to today, 
             and here I am, still getting excited about building cool websites and 
             solving tricky problems with code.
           </p>
