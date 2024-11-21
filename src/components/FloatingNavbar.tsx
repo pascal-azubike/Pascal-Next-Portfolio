@@ -35,37 +35,26 @@ const ProfileSection = () => {
       onClick={handleContainerClick}
       className="flex items-center space-x-4 cursor-pointer"
     >
-      <Dialog>
-        <DialogTrigger asChild>
-          <div onClick={handleImageClick}>
-            <Image
-              src="/assets/images/pascal.jpg"
-              alt="Azubike Pascal"
-              width={300}
-              height={300}
-              className={`rounded-full w-9 h-9 transition-all duration-300 ${
-                isLoading ? "scale-110 blur-sm" : "scale-100 blur-0"
-              }`}
-              onLoadingComplete={() => setLoading(false)}
-            />
-          </div>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-zinc-900 border-zinc-700">
-          <div className="relative aspect-square w-full">
-            <Image
-              src="/assets/images/pascal.jpg"
-              alt="Azubike Pascal"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
+
+
+      <div onClick={handleImageClick}>
+        <Image
+          src="/assets/images/pascal.jpg"
+          alt="Azubike Pascal"
+          width={300}
+          height={300}
+          className={`rounded-full w-9 h-9 transition-all duration-300 ${isLoading ? "scale-110 blur-sm" : "scale-100 blur-0"
+            }`}
+          onLoadingComplete={() => setLoading(false)}
+        />
+      </div>
+
+
+
       <Link href={"/"} className="text-white font-semibold">
         Azubike Pascal
       </Link>
-    </div>
+    </div >
   );
 };
 

@@ -35,7 +35,6 @@ import {
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { useStore } from "zustand";
 import { useProductStore } from "@/hooks/use-product";
-
 const CellActions = ({ row }: any) => {
   const { removeProduct } = useStore(useProductStore, (state) => ({
     removeProduct: state.removeProduct
@@ -43,18 +42,14 @@ const CellActions = ({ row }: any) => {
   const SelectedProduct = row.original;
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
-
   const removeProductFromCache = (id: string) => {
     removeProduct(id);
   };
-
   useEffect(() => {
     document.body.style.pointerEvents = "";
   }, [isDialogOpen]);
-
   const handleDelete = async (id: string) => {
     try {
       const response = await axios.delete(
@@ -63,15 +58,11 @@ const CellActions = ({ row }: any) => {
           data: { productIds: [] }
         }
       );
-
       if (response.data.message) {
         removeProductFromCache(id);
         toast({ description: "Product is Deleted successfully" });
-
         // Add a small timeout to allow the UI to update
-
         closeDialog;
-
         return "success";
       }
     } catch (error) {
@@ -84,7 +75,6 @@ const CellActions = ({ row }: any) => {
       return "failed";
     }
   };
-
   return (
     <>
       <DropdownMenu>
@@ -106,7 +96,6 @@ const CellActions = ({ row }: any) => {
               toast({
                 description: "Product Id copied successfully"
               });
-              console.log("Product Id copied successfully");
             }}
           >
             Copy id
@@ -120,7 +109,6 @@ const CellActions = ({ row }: any) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -145,14 +133,12 @@ const CellActions = ({ row }: any) => {
     </>
   );
 };
-
 export type Product = {
   _id: string;
   title: string;
   numView: number;
   updatedAt: string;
 };
-
 export const columns: ColumnDef<Product>[] = [
   {
     id: "select",
@@ -205,7 +191,6 @@ export const columns: ColumnDef<Product>[] = [
       </TooltipProvider>
     )
   },
-
   {
     accessorKey: "numView",
     header: ({ column }) => {
@@ -224,7 +209,6 @@ export const columns: ColumnDef<Product>[] = [
       return <div className=" ml-6">{numView}</div>;
     }
   },
-
   {
     accessorKey: "updatedAt",
     header: ({ column }) => {
@@ -244,7 +228,6 @@ export const columns: ColumnDef<Product>[] = [
       return <div className="">{formattedDate}</div>;
     }
   },
-
   {
     id: "actions",
     enableHiding: false,

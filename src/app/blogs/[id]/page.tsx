@@ -5,37 +5,27 @@ import { siteConfig } from "@/lib/site-config";
 import { connectDB } from "@/app/api/config/MongoDbConfig";
 import Article from "@/app/api/models/Article";
 import { notFound } from "next/navigation";
-
 // Function to fetch article data
 async function getArticle(id: string) {
   await connectDB();
-
   // Add ObjectId validation
   const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(id);
   if (!isValidObjectId) {
     notFound();
   }
-
   const article = await Article.findById(id);
-
   if (!article) {
     notFound();
   }
-
   return article;
 }
-
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const article = await getArticle(params.id);
-  console.log(article._id, "meteadd .....................2");
-
   const title = `${article.title} | Blog | ${siteConfig.name}`;
   const description = article.shortSummary || article.description.substring(0, 160);
   const url = `${siteConfig.url}/blogs/${params.id}`;
   const imageUrl = article.imageUrl || siteConfig.ogImage;
   const tags = article.tags || [];
-  console.log(tags, "tags ..................... ............................new");
-
   return {
     metadataBase: new URL(siteConfig.url),
     title,
@@ -89,7 +79,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     },
   };
 }
-
 const page = () => {
   return (
     <div>
@@ -97,5 +86,4 @@ const page = () => {
     </div>
   );
 };
-
 export default page;

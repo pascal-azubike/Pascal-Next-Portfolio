@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next"
 import Article from "@/app/api/models/Article"
 import { connectDB } from "@/app/api/config/MongoDbConfig"
+import axios from 'axios'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     await connectDB()
@@ -70,6 +71,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: article.updatedAt || new Date(),
         priority: 0.7,
     }))
+
+    // Function to ping Google
+    const pingGoogle = async (sitemapUrl: string) => {
+        try {
+            const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`
+            await axios.get(pingUrl)
+            console.log('Successfully pinged Google with updated sitemap.................')
+        } catch (error) {
+            console.error('Error pinging Google:', error)
+        }
+    }
+
+    // Ping Google with your sitemap URL after generating it
+    const sitemapUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`
+    await pingGoogle(sitemapUrl)
 
     return [...routes, ...articleRoutes]
 } 
