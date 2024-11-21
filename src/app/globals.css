@@ -177,11 +177,13 @@ blockquote {
   @apply relative  px-2 py-4 pt-6 pb-2   text-sm  !bg-[#282C34]  rounded-lg p-4;
 }
 
-
+.ql-editor{
+  color: white !important;
+}
 .ql-editor .image-caption {
   text-align: center;
   font-style: italic;
-  color: #666;
+  
   margin-top: 0.5em;
   margin-bottom: 1em;
 }

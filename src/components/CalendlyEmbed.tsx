@@ -22,7 +22,7 @@ export function CalendlyEmbed({ onButtonClick }: CalendlyEmbedProps) {
 
         // Add error handling
         script.onerror = () => {
-            console.error('Failed to load Calendly widget');
+            console.error('Failed to load Booking widget');
             setIsLoading(false);
         };
 

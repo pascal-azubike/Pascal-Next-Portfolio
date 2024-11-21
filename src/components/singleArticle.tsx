@@ -308,7 +308,7 @@ const ArticleLayout: React.FC = () => {
         <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
           <a
             href={`#${item.id}`}
-            className={`block py-1 text-sm transition-colors duration-150 ease-in-out ${activeSection === item.id
+            className={`block py-1 text-sm transition-colors duration-150 ease-in-out  ${activeSection === item.id
               ? "text-[#4b9bff] font-semibold"
               : hoveredSection === item.id
                 ? "text-white"

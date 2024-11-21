@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react";
 import Image from "next/image";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,18 +27,18 @@ import { FileUpload } from "@/components/ui/file-upload";
 const ReactQuill = dynamic(
   async () => {
     const { default: RQ } = await import("react-quill");
-    
+
     if (typeof window !== "undefined") {
       const { default: ImageUploader } = await import("quill-image-uploader");
       const { default: BlotFormatter } = await import("quill-blot-formatter");
       const Quill = require("quill");
-      
+
       Quill.register("modules/imageUploader", ImageUploader);
       Quill.register("modules/blotFormatter", BlotFormatter);
     }
     return RQ;
   },
-  { 
+  {
     ssr: false,
     loading: () => <p>Loading editor...</p>
   }
@@ -55,6 +55,7 @@ import useUploadMutation from "@/hooks/useUploadMutation";
 import { handleImageUpload } from "@/hooks/handleImageUpload";
 import { Textarea } from "@/components/ui/textarea";
 import { modulesObject } from "@/components/admin-panel/modules";
+import { pingGoogleIndexing } from '@/app/api/utils/pingGoogle'
 
 
 
@@ -133,9 +134,14 @@ function ProductForm() {
   const [editorContent, setEditorContent] = useState("");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
-    mutate(values);
+    await mutate(values);
+
+    // Ping Google after successful article creation/update
+    if (isSuccess) {
+      await pingGoogleIndexing();
+    }
   };
 
   useEffect(() => {
@@ -165,10 +171,10 @@ function ProductForm() {
 
   const handleImageChange = async (files: File[]) => {
     if (files.length === 0) return;
-    
+
     setIsFetchingImage(true);
     const file = files[0];
-    
+
     try {
       // Create a proper input element
       const input = document.createElement('input');
@@ -181,8 +187,8 @@ function ProductForm() {
       const changeEvent = {
         target: input,
         currentTarget: input,
-        preventDefault: () => {},
-        stopPropagation: () => {},
+        preventDefault: () => { },
+        stopPropagation: () => { },
         nativeEvent: new Event('change'),
         bubbles: true,
         cancelable: true,
@@ -192,7 +198,7 @@ function ProductForm() {
 
       const imageUrl = await handleImageUpload(changeEvent);
       const resizedImage: any = await resizeFile(file);
-      
+
       form.setValue("blurImage", resizedImage.split(",")[1]);
       setImagePreview(imageUrl);
       form.setValue("image", imageUrl);
@@ -242,7 +248,7 @@ function ProductForm() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-zinc-900 p-6 rounded-lg">
+    <div className="max-w-6xl mx-auto bg-zinc-800 p-6 rounded-lg">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -252,10 +258,10 @@ function ProductForm() {
               <FormItem>
                 <FormLabel className="text-lg font-semibold text-blue-400">Title</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="Write a captivating title..." 
-                    className="bg-zinc-800 border-0 focus:ring-2 focus:ring-blue-400/50 text-white placeholder:text-zinc-500 rounded-xl p-4" 
-                    {...field} 
+                  <Input
+                    placeholder="Write a captivating title..."
+                    className="bg-zinc-800 border-0 focus:ring-2 focus:ring-blue-400/50 text-white placeholder:text-zinc-500 rounded-xl p-4"
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage className="text-red-400" />
@@ -329,10 +335,11 @@ function ProductForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem className="bubble-form-item">
-                <FormLabel className="bubble-label">Cover Image</FormLabel>
+                 <FormLabel className="text-lg font-semibold text-blue-400">Cover Image</FormLabel>
+                
                 <FormControl>
                   <div className="relative">
-                    <FileUpload 
+                    <FileUpload
                       onChange={handleImageChange}
                       disabled={isFetchingImage}
                     />
@@ -344,12 +351,12 @@ function ProductForm() {
                   </div>
                 </FormControl>
                 {imagePreview && (
-                  <div className="mt-4 relative h-[200px] overflow-hidden rounded-lg">
+                  <div className=" mt-12 relative h-[200px] overflow-hidden rounded-lg">
                     <Image
                       src={imagePreview}
                       alt="Preview"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 )}
@@ -364,9 +371,9 @@ function ProductForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="bubble-form-item">
-                  <FormLabel className="bubble-label">Content</FormLabel>
+                   <FormLabel className="text-lg font-semibold text-blue-400">Content</FormLabel>
                   <FormControl>
-                    <div className="min-h-[300px]">
+                    <div className="min-h-[300px] text-white">
                       <ReactQuill
                         value={editorContent}
                         onChange={handleQuillChange}
@@ -382,8 +389,8 @@ function ProductForm() {
           </div>
 
           <div className="flex justify-end">
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isPending}
               className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50"
             >

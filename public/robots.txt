@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.pascal-azubike.dev
+Host: https://pascal-azubike.dev
 
 # Sitemaps
-Sitemap: https://www.pascal-azubike.dev/sitemap.xml 
+Sitemap: https://pascal-azubike.dev/sitemap.xml

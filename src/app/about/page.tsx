@@ -75,7 +75,7 @@ export default function About() {
             curious kid who took apart my mom&apos;s computer (sorry about that, Mom!) 
             just to see what made it tick. Started messing around with code in my 
             teens, and honestly, I couldn&apos;t get enough of it. Fast forward to today, 
-            and here I am, still getting excited about building cool websites and 
+            and here I am, still getting excited about buildinsssg cool websites and 
             solving tricky problems with code.
           </p>
           <div className="mt-8">

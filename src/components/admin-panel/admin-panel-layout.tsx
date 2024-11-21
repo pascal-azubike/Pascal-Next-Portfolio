@@ -73,7 +73,7 @@ export default function AdminPanelLayout({
       <SheetMenu />
       <main
         className={cn(
-          "min-h-[calc(100vh_-_56px)] transition-[margin-left] px-2 md:px-8 py-4 lg:py-10 ease-in-out duration-300",
+          "min-h-[calc(100vh_-_56px)] bg-zinc-800 text-white transition-[margin-left] px-2 md:px-8 py-4 lg:py-10 ease-in-out duration-300",
           sidebar?.isOpen === false ? "lg:ml-[90px]" : "lg:ml-72"
         )}
       >

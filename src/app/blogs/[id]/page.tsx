@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const url = `${siteConfig.url}/blogs/${params.id}`;
   const imageUrl = article.imageUrl || siteConfig.ogImage;
   const tags = article.tags || [];
-  console.log(tags, "tags .....................2");
+  console.log(tags, "tags ..................... ............................new");
 
   return {
     metadataBase: new URL(siteConfig.url),
