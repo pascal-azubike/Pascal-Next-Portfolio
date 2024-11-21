@@ -67,51 +67,53 @@ export const FloatingNavbar = () => {
   ];
 
   return (
-    <nav className="bg-zinc-900 max-w-5xl mx-auto py-4 px-6 flex items-center justify-between">
-      <ProfileSection />
+    <nav className="bg-zinc-900 w-full ">
+      <div className=" max-w-5xl mx-auto py-4 px-6 flex items-center justify-between">
+        <ProfileSection />
 
-      <div className="hidden md:flex space-x-6">
-        {navItems.map((item, index) => (
-          <NavbarItem key={index} {...item} />
-        ))}
-      </div>
+        <div className="hidden md:flex space-x-6">
+          {navItems.map((item, index) => (
+            <NavbarItem key={index} {...item} />
+          ))}
+        </div>
 
-      <div className="hidden md:block">
-        <a
-          href="/assets/pascalResume.pdf"
-          download
-          className="bg-gradient-to-br from-zinc-700 to-zinc-800 text-white px-4 py-2 rounded-lg hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800 hover:shadow-lg hover:shadow-zinc-700/50 transition-all duration-300"
-        >
-          Download CV
-        </a>
-      </div>
+        <div className="hidden md:block">
+          <a
+            href="/assets/pascalResume.pdf"
+            download
+            className="bg-gradient-to-br from-zinc-700 to-zinc-800 text-white px-4 py-2 rounded-lg hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800 hover:shadow-lg hover:shadow-zinc-700/50 transition-all duration-300"
+          >
+            Download CV
+          </a>
+        </div>
 
-      <div className="md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="h-4 w-4 " />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-zinc-900 z-[9999] text-white">
-            <div className="flex flex-col space-y-4 mt-8">
-              {navItems.map((item, index) => (
-                <Link key={index} href={item.href}>
-                  <span className="text-white hover:text-gray-300 transition-colors duration-200">
-                    {item.label}
-                  </span>
-                </Link>
-              ))}
-              <a
-                href="/assets/pascalResume.pdf"
-                download
-                className="bg-gradient-to-br from-zinc-700 to-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-700 transition-colors duration-200 mt-4"
-              >
-                Download CV
-              </a>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-4 w-4 " />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-zinc-900 z-[9999] text-white">
+              <div className="flex flex-col space-y-4 mt-8">
+                {navItems.map((item, index) => (
+                  <Link key={index} href={item.href}>
+                    <span className="text-white hover:text-gray-300 transition-colors duration-200">
+                      {item.label}
+                    </span>
+                  </Link>
+                ))}
+                <a
+                  href="/assets/pascalResume.pdf"
+                  download
+                  className="bg-gradient-to-br from-zinc-700 to-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-700 transition-colors duration-200 mt-4"
+                >
+                  Download CV
+                </a>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </nav>
   );
