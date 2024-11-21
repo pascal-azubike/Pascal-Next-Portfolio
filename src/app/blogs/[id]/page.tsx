@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       "Programming Tutorial",
       "Code Example",
       "Development Guide",
-      ...(article.tags || []),
+      ...tags || [],
     ],
     authors: [{ name: "Azubike Pascal" }],
     publisher: siteConfig.name,

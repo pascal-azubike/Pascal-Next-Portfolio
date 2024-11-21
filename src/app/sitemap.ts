@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.7,
         }
     ]
-
+    console.log(articles)
     // Add article routes
     const articleRoutes = articles.map((article) => ({
         url: `${process.env.NEXT_PUBLIC_APP_URL}/blogs/${article._id.toString()}`,
@@ -72,20 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }))
 
-    // Function to ping Google
-    const pingGoogle = async (sitemapUrl: string) => {
-        try {
-            const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`
-            await axios.get(pingUrl)
-            console.log('Successfully pinged Google with updated sitemap.................')
-        } catch (error) {
-            console.error('Error pinging Google:', error)
-        }
-    }
 
-    // Ping Google with your sitemap URL after generating it
-    const sitemapUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`
-    await pingGoogle(sitemapUrl)
 
     return [...routes, ...articleRoutes]
 } 
