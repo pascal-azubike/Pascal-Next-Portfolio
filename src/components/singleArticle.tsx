@@ -272,7 +272,7 @@ const ArticleLayout: React.FC = () => {
         <div key={index} className={`mb-2 ${item.level === 2 ? "mt-4" : ""}`}>
           <a
             href={`#${item.id}`}
-            className={`block py-1 text-sm transition-colors duration-150 ease-in-out  ${activeSection === item.id
+            className={`block py-1 transition-colors duration-150 ease-in-out  ${activeSection === item.id
               ? "text-[#4b9bff] font-semibold"
               : hoveredSection === item.id
                 ? "text-white"
@@ -307,7 +307,7 @@ const ArticleLayout: React.FC = () => {
                   )}
                   <a
                     href={`#${subItem.id}`}
-                    className={`block py-1 pl-4 text-sm transition-colors duration-150 ease-in-out ${activeSection === subItem.id
+                    className={`block py-1 pl-4  transition-colors duration-150 ease-in-out ${activeSection === subItem.id
                       ? "text-[#4b9bff] font-semibold"
                       : hoveredSection === subItem.id
                         ? "text-white"
@@ -337,7 +337,7 @@ const ArticleLayout: React.FC = () => {
               onFocus={toggleOpen}
               type="text"
               placeholder="Quick search..."
-              className="w-full py-2 pl-8 pr-3 text-sm bg-[rgba(32,33,39,0.8)] text-white rounded-lg border border-[#343541] focus:outline-none focus:border-[#4b9bff]"
+              className="w-full py-2 pl-8 pr-3  bg-[rgba(32,33,39,0.8)] text-white rounded-lg border border-[#343541] focus:outline-none focus:border-[#4b9bff]"
             />
             <Search
               className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#a1a1aa]"
@@ -385,7 +385,7 @@ const ArticleLayout: React.FC = () => {
               onFocus={toggleOpen}
               type="text"
               placeholder="Quick search..."
-              className="w-full py-2 pl-8 pr-3 text-sm bg-zinc-800 text-white rounded-lg border border-zinc-700 focus:outline-none focus:border-blue-400"
+              className="w-full py-2 pl-8 pr-3  bg-zinc-800 text-white rounded-lg border border-zinc-700 focus:outline-none focus:border-blue-400"
             />
             <Search
               className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -397,7 +397,7 @@ const ArticleLayout: React.FC = () => {
       <div className="mx-auto px-4 lg:px-0 max-w-screen-2xl">
         <div className="flex flex-col lg:flex-row min-[1200px]:gap-8 left">
           {/* Left Sidebar */}
-          <div className="hidden lg:block lg:w-1/4 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto">
+          <div className="hidden lg:block  lg:w-1/4 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto">
             <LeftSidebar />
           </div>
           {/* Main Content */}
@@ -408,7 +408,7 @@ const ArticleLayout: React.FC = () => {
                 <h1 className="text-2xl md:text-4xl font-bold mb-6">
                   {article?.title}
                 </h1>
-                <p className="text-gray-400 text-lg mb-8 max-w-2xl">
+                <p className="text-gray-400  mb-8 max-w-2xl">
                   {article?.shortSummary}
                 </p>
                 <div className="flex flex-wrap gap-4">

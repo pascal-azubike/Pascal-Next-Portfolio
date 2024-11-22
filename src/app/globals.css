@@ -201,58 +201,6 @@ blockquote {
 
 
 
-.tawk-branding {
-  display: none !important;
-}
-
-/* Tawk.to Custom Styling */
-:root {
-  --tawk-header-background-color: #18181b !important;
-  --tawk-header-text-color: #ffffff !important;
-  --tawk-header-border-color: #27272a !important;
-  
-  --tawk-message-background-color: #27272a !important;
-  --tawk-message-text-color: #ffffff !important;
-  
-  --tawk-chat-background-color: #18181b !important;
-  --tawk-chat-bubble-background-color: #3b82f6 !important;
-  --tawk-chat-bubble-text-color: #ffffff !important;
-  
-  --tawk-input-background-color: #27272a !important;
-  --tawk-input-text-color: #ffffff !important;
-  --tawk-input-border-color: #3f3f46 !important;
-  
-  --tawk-button-background-color: #3b82f6 !important;
-  --tawk-button-text-color: #ffffff !important;
-}
-
-/* Hide Tawk.to branding */
-.tawk-branding {
-  display: none !important;
-}
-
-/* Custom scrollbar for chat */
-.tawk-custom-scrollbar::-webkit-scrollbar {
-  width: 7px !important;
-  height: 7px !important;
-}
-
-.tawk-custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #565658 !important;
-  border-radius: 7px !important;
-}
-
-.tawk-custom-scrollbar::-webkit-scrollbar-track {
-  background-color: transparent !important;
-  border-radius: 10px !important;
-}
-
-/* Adjust chat widget container */
-.tawk-min-container {
-  margin: 0 20px 20px 0 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-}
 
 
 .bubble-input {
@@ -328,4 +276,49 @@ blockquote {
 .bubble-image-upload.dragging {
   border-color: #666 !important;
   background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+
+
+.ql-toolbar.ql-snow {
+	background: #bfcbda;
+	color: white !important;
+	border: none;
+}
+
+@media (hover: hover) {
+	.ql-syntax::-webkit-scrollbar {
+		width: 7px;
+		height: 7px;
+		cursor: grab;
+	}
+
+	.ql-syntax::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+		border-radius: 7px;
+		height: 7px;
+	}
+
+	.ql-syntax::-webkit-scrollbar-track {
+		background-color: transparent;
+		border-radius: 6px;
+	}
+}
+
+/* Add gap between paragraphs in Quill content */
+.prose p {
+    margin-bottom: 1.5rem !important; /* Adjust the gap between paragraphs */
+}
+
+/* Style ordered and unordered lists */
+
+.prose ol,
+.prose ul {
+    margin-left: 1.5rem !important; /* Add left margin to lists */
+    margin-bottom: 1rem !important; /* Add bottom margin to lists */
+}
+
+/* Style list items */
+.prose li {
+    margin-bottom: 0.5rem !important; /* Add bottom margin to list items */
 }
