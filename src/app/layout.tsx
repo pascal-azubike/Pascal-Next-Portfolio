@@ -92,12 +92,22 @@ export default function RootLayout({
         <ClientSetup>{children}</ClientSetup>
         <Toaster />
 
-        {/* Tawk.to script */}
+        {/* Live2Support Chat */}
         <script
-          async
-          src="https://embed.tawk.to/673c6dfd4304e3196ae4f455/1id2ff47q"
-        ></script>
-
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                var pp = document.createElement('script'),
+                    ppr = document.getElementsByTagName('script')[0];
+                stid = 'M2xUNXdEalVqcTRWUUFBQXlOT2NqQT09';
+                pp.type = 'text/javascript';
+                pp.async = true;
+                pp.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 's01.live2support.com/dashboardv2/chatwindow/';
+                ppr.parentNode.insertBefore(pp, ppr);
+              })();
+            `
+          }}
+        />
       </body>
     </html>
   );
