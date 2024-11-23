@@ -294,6 +294,13 @@ function ProductForm() {
                       value={tags}
                       onChange={(e) => setTags(e.target.value)}
                       onKeyDown={handleTagsChange}
+                      onBlur={() => {
+                        if (tags.trim()) {
+                          const currentTags = form.getValues('tags');
+                          form.setValue('tags', [...currentTags, tags.trim()]);
+                          setTags('');
+                        }
+                      }}
                       className="bg-zinc-800 border-0 focus:ring-2 focus:ring-blue-400/50 text-white placeholder:text-zinc-500 rounded-xl p-4"
                     />
                     <div className="flex flex-wrap gap-2 mt-2">
