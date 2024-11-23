@@ -92,7 +92,7 @@ export default function RootLayout({
         <ClientSetup>{children}</ClientSetup>
         <Toaster />
 
-        {/* Live2Support Chat */}
+  {/* Live2Support Chat */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
