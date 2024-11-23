@@ -1,15 +1,16 @@
-import { MetadataRoute } from "next"
-import Article from "@/app/api/models/Article"
-import { connectDB } from "@/app/api/config/MongoDbConfig"
-import axios from 'axios'
+import { NextRequest, NextResponse } from "next/server";
+import Article from "@/app/api/models/Article";
+import { connectDB } from "@/app/api/config/MongoDbConfig";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    await connectDB()
+export const GET = async () => {
+    console.log("GET function is called");
+    console.log("im here name");
+    await connectDB();
 
-    // Get all published articles
-    const articles = await Article.find({}).lean()
+    // Fetch all published articles
+    const articles = await Article.find({}).lean();
 
-    // Static routes - add all your website's static pages here
+    // Static routes
     const routes = [
         {
             url: `${process.env.NEXT_PUBLIC_APP_URL}`,
@@ -64,15 +65,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.7,
         }
     ]
-    console.log(articles)
+
     // Add article routes
     const articleRoutes = articles.map((article) => ({
         url: `${process.env.NEXT_PUBLIC_APP_URL}/blogs/${article._id.toString()}`,
-        lastModified: article.updatedAt || new Date(),
+        lastModified: article.updatedAt ? new Date(article.updatedAt) : new Date(),
         priority: 0.7,
-    }))
+    }));
 
+    // Combine static and dynamic routes
+    const sitemapRoutes = [...routes, ...articleRoutes];
 
+    // Generate XML for the sitemap
+    const xml = generateSitemapXml(sitemapRoutes);
 
-    return [...routes, ...articleRoutes]
-} 
+    // Ensure the response is valid XML
+    return new Response(xml, {
+        headers: {
+            "Content-Type": "application/xml",
+        },
+    });
+};
+
+// Function to generate XML from routes
+const generateSitemapXml = (routes: { url: string; lastModified: Date; priority: number; }[]) => {
+    const urlset = routes
+        .map(route => `
+            <url>
+                <loc>${route.url}</loc>
+                <lastmod>${route.lastModified.toISOString()}</lastmod>
+                <priority>${route.priority}</priority>
+            </url>
+        `)
+        .join("");
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${urlset}
+    </urlset>`;
+}; 
