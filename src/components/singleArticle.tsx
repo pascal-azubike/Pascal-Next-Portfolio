@@ -88,6 +88,14 @@ const ArticleLayout: React.FC = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlContent, "text/html");
     const codeBlocks = doc.querySelectorAll("pre");
+    
+    // Target all <code> elements and change their color and background
+    const codeElements = doc.querySelectorAll("code");
+    codeElements.forEach((codeElement) => {
+      codeElement.style.color = "rgb(37, 99, 235)"; // Tailwind's blue-400
+      codeElement.style.backgroundColor = "rgb(30, 41, 59)"; // Tailwind's zinc-900
+    });
+
     codeBlocks.forEach((codeBlock) => {
       // Create wrapper
       const wrapper = document.createElement("div");
@@ -453,16 +461,15 @@ const ArticleLayout: React.FC = () => {
             >
               {/* The article content will be inserted here by the useEffect */}
             </div>
-            {/* Right Sidebar - Moved below the main content */}
-            <div className=" ">
+            {/* recommended content */}
+            <div className=" mt-24 ">
               <div className="space-y-8 p-4">
                 {/* Social Media Section */}
                 <div className="bg-zinc-800/50 backdrop-blur-sm text-gray-400 rounded-lg p-6">
                   <h3 className="text-xl font-bold mb-2">Related Articles</h3>
-                  <ul>
-                    {data?.similarArticles
-                      ?.slice(0, 5)
-                      .map((similarArticle, index) => (
+                  {data?.similarArticles && data.similarArticles.length > 0 ? (
+                    <ul>
+                      {data.similarArticles.slice(0, 5).map((similarArticle, index) => (
                         <li key={index} className="mb-2">
                           <a
                             href={`/blogs/${similarArticle._id}`}
@@ -472,7 +479,10 @@ const ArticleLayout: React.FC = () => {
                           </a>
                         </li>
                       ))}
-                  </ul>
+                    </ul>
+                  ) : (
+                    <p className="text-gray-500">No similar articles found.</p>
+                  )}
                 </div>
               </div>
             </div>
