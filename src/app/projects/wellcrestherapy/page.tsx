@@ -86,13 +86,7 @@ export default function WellcrestTherapyCaseStudy() {
             >
               Live Link <ArrowUpRight className="ml-2" size={20} />
             </Link>
-            <Link
-              href="https://www.veed.io/view/7ea6ce4f-b0e6-42ae-a7c4-187482addcb5?panel=share"
-              target="_blank"
-              className="inline-flex items-center justify-center px-6 py-3 border border-blue-400 text-white font-semibold rounded-lg hover:bg-blue-400 hover:text-black transition-all"
-            >
-              User Demo <ArrowUpRight className="ml-2" size={20} />
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -297,72 +291,9 @@ export default function WellcrestTherapyCaseStudy() {
                 </div>
               </div>
 
-              {/* Add Key Accomplishments section */}
-              <div>
-                <h2 className="text-2xl font-bold mb-8">Key Accomplishments</h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  {[
-                    {
-                      metric: "40%",
-                      description:
-                        "Reduction in page load time while maintaining rich media content"
-                    },
-                    {
-                      metric: "60%",
-                      description: "Improvement in organic search visibility"
-                    },
-                    {
-                      metric: "70%",
-                      description: "Reduction in content update turnaround time"
-                    },
-                    {
-                      metric: "45%",
-                      description: "Increase in mobile user engagement"
-                    }
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="bg-zinc-800/30 rounded-lg p-6 backdrop-blur-sm"
-                    >
-                      <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
-                        {item.metric}
-                      </div>
-                      <p className="text-gray-400">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+             
 
-              {/* Add Learning Outcomes section */}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-8">Learning Outcomes</h2>
-                <div className="space-y-4 text-gray-400">
-                  <p>
-                    This project significantly enhanced my expertise in
-                    healthcare-focused web development:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>
-                      Deepened understanding of HIPAA compliance in web
-                      applications
-                    </li>
-                    <li>
-                      Mastered Next.js 13&apos;s server components for optimal
-                      performance
-                    </li>
-                    <li>
-                      Improved skills in creating accessible, user-friendly
-                      healthcare interfaces
-                    </li>
-                    <li>
-                      Gained experience in balancing technical requirements with
-                      healthcare-specific needs
-                    </li>
-                  </ul>
-                </div>
-              </div>
 
-              {/* Previous sections (Tools Used, etc.) remain the same */}
             </div>
           </div>
         </div>

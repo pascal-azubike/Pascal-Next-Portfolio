@@ -114,8 +114,8 @@ export default function CaseStudyPage() {
           <div className="mb-16 relative">
             <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-zinc-800">
               <Image
-                src="/assets/images/blogvana.png"
-                alt="Denmark Multibuz Dashboard"
+                src="/assets/images/denmark.png"
+                alt="Denmark-Multibuz-Dashboard"
                 fill
                 className=" max-h-[90%] max-w-[90%] mx-auto my-auto rounded-lg"
               />

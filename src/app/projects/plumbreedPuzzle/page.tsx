@@ -84,13 +84,7 @@ export default function PlumbreedPuzzlesCaseStudy() {
             >
               Live Site <ArrowUpRight className="ml-2" size={20} />
             </Link>
-            <Link
-              href="#"
-              target="_blank"
-              className="inline-flex items-center justify-center px-6 py-3 border border-purple-500 text-white font-semibold rounded-lg hover:bg-purple-500 transition-all"
-            >
-              Demo Video <ArrowUpRight className="ml-2" size={20} />
-            </Link>
+           
           </div>
         </div>
       </section>
