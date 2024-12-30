@@ -11,14 +11,13 @@ export const projects = [
   {
     title: "PlumbreedPuzzle",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
-    link: "/projects/plumbreedPuzzle",
+      "A Christian game puzzle that specializes in sales of custom christian games and puzzles", link: "/projects/plumbreedPuzzle",
     image: "/assets/images/plumbreedpuzzle.png"
   },
   {
     title: "Wellcresttherapy",
     description:
-      "A web app that allows users to practice for front-end and UI interviews.",
+      "A full stack web app for healthcare practitioner with advanced Admin dashboard ",
     link: "/projects/wellcrestherapy",
     image: "/assets/images/wellcrstherapy.png"
   },
