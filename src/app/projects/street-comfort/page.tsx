@@ -108,7 +108,7 @@ export default function StreetComfortCaseStudy() {
               <h2 className="text-2xl md:text-3xl font-bold mb-8">Project Overview</h2>
               <div className="space-y-6 text-gray-400">
                 <p className="text-lg">
-                  Developed a luxury streetwear e-commerce platform using Next.js and MongoDB. The platform features advanced product management for men's and women's branded shirts, real-time inventory tracking, and multiple payment options including Flutterwave integration and manual payment verification.
+                  Developed a luxury streetwear e-commerce platform using Next.js and MongoDB. The platform features advanced product management for men&apos;s and women&apos;s branded shirts, real-time inventory tracking, and multiple payment options including Flutterwave integration and manual payment verification.
                 </p>
 
                 <div className="grid gap-6 md:grid-cols-3">
@@ -116,7 +116,7 @@ export default function StreetComfortCaseStudy() {
                     {
                       icon: <Package className="w-8 h-8 text-[#6B4C35]" />,
                       title: "Product Management",
-                      description: "Advanced product catalog with detailed specifications, multiple images, and size variants for men's and women's shirts."
+                      description: "Advanced product catalog with detailed specifications, multiple images, and size variants for men&apos;s and women&apos;s shirts."
                     },
                     {
                       icon: <Globe className="w-8 h-8 text-[#6B4C35]" />,
@@ -150,7 +150,7 @@ export default function StreetComfortCaseStudy() {
                 {[
                   [
                     "Advanced Product Management",
-                    "Comprehensive product catalog with detailed specifications, multiple images, and size variants for men's and women's shirts."
+                    "Comprehensive product catalog with detailed specifications, multiple images, and size variants for men&apos;s and women&apos;s shirts."
                   ],
                   [
                     "Multiple Payment Options",
@@ -337,7 +337,7 @@ export default function StreetComfortCaseStudy() {
                   </div>
                   <div className="p-4">
                     <h3 className="text-lg font-semibold mb-2">Luxury Fashion Landing Page</h3>
-                    <p className="text-gray-400">Modern and elegant landing page showcasing the brand's premium streetwear collection with dynamic customer testimonials and 230K+ happy clients.</p>
+                    <p className="text-gray-400">Modern and elegant landing page showcasing the brand&apos;s premium streetwear collection with dynamic customer testimonials and 230K+ happy clients.</p>
                   </div>
                 </div>
 
