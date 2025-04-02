@@ -9,9 +9,17 @@ export default function PortfolioGrid() {
 }
 export const projects = [
   {
+    title: "Street Comfort",
+    description:
+      "A modern e-commerce platform for footwear, featuring advanced product management, real-time inventory tracking, and seamless user experience.",
+    link: "/projects/street-comfort",
+    image: "/assets/images/streetcomfortshop.png"
+  },
+  {
     title: "PlumbreedPuzzle",
     description:
-      "A Christian game puzzle that specializes in sales of custom christian games and puzzles", link: "/projects/plumbreedPuzzle",
+      "A Christian game puzzle that specializes in sales of custom christian games and puzzles",
+    link: "/projects/plumbreedPuzzle",
     image: "/assets/images/plumbreedpuzzle.png"
   },
   {
