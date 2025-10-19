@@ -63,27 +63,33 @@ export default function About() {
     <div>
       <main className="max-w-5xl bg-zinc-900 mx-auto px-4 md:px-8 pt-32 md:pt-44">
         <div>
-          <h1 className="font-bold text-3xl md:text-5xl md:leading-tight text-zinc-50 max-w-3xl">
-            Hi there! I&apos;m <span className="text-cyan-500">Azubike Pascal</span>{" "}
-            and I work as a full stack soap engineer.
+          <h1 className="font-bold text-3xl md:text-4xl md:leading-tight text-zinc-50 max-w-3xl">
+            Hi there! I am <span className="text-cyan-500">Azubike Pascal</span>{" "}
+            and I work as a full stack software engineer.
           </h1>
           <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 md:leading-loose tracking-wide">
-            I got hooked on tech pretty early, you know how kids are! I was that 
-            curious kid who took apart my mom&apos;s computer (sorry about that, Mom!) 
-            just to see what made it tick. Started messing around with code in my 
-            teens, and honestly, I couldn&apos;t get enough of it. Fast forward to today, 
-            and here I am, still getting excited about building cool websites and 
-            solving tricky problems with code.
+            I have always been curious about how things work, the kind of kid who could not resist taking stuff apart.
+            That curiosity eventually led me to coding in my teens, and I have been hooked ever since.
+            These days, I still get the same thrill from building clean, functional web apps and solving problems with code.
           </p>
+
+          <p className="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 md:leading-loose tracking-wide">
+            Of recent, I picked up <span className="text-cyan-500 font-semibold">C#, .NET Core</span>, and
+            <span className="text-cyan-500 font-semibold"> ASP.NET Web API</span> for backend development, expanding my toolkit to
+            build high-performance and enterprise-grade server applications.
+          </p>
+
           <div className="mt-8">
             <h2 className="text-xl md:text-2xl font-bold text-zinc-50 mb-4">Technical Expertise</h2>
-            
-            <div className="space-y-4">
+
+            <div className="space-y-4 max-w-4xl">
               <div>
                 <h3 className="text-cyan-500 font-semibold mb-2">Frontend Development</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React.js', 'Next.js', 'Redux Toolkit', 
-                    'React Query', 'Zustand', 'SCSS', 'Tailwind CSS'].map((tech) => (
+                  {[
+                    'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React.js', 'Next.js', 'Redux Toolkit',
+                    'React Query', 'Zustand', 'SCSS', 'Tailwind CSS', 'Flutter', 'Figma', 'WordPress'
+                  ].map((tech) => (
                     <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
                       {tech}
                     </span>
@@ -94,7 +100,9 @@ export default function About() {
               <div>
                 <h3 className="text-cyan-500 font-semibold mb-2">Backend Development</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express.js', 'Python', 'Flask', 'REST APIs', 'GraphQL'].map((tech) => (
+                  {[
+                    'Node.js', 'Express.js', 'Nest.js', 'Python', 'Flask', 'Django', 'C#', '.NET Core', 'ASP.NET Web API', 'REST APIs', 'GraphQL'
+                  ].map((tech) => (
                     <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
                       {tech}
                     </span>
@@ -105,7 +113,9 @@ export default function About() {
               <div>
                 <h3 className="text-cyan-500 font-semibold mb-2">Database & Tools</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Git', 'Docker', 'AWS'].map((tech) => (
+                  {[
+                    'PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Git', 'Docker', 'AWS', 'Vercel', 'Heroku', 'CI/CD'
+                  ].map((tech) => (
                     <span key={tech} className="px-3 py-1 bg-zinc-800 rounded-full text-sm text-zinc-300">
                       {tech}
                     </span>
@@ -125,6 +135,7 @@ export default function About() {
               </div>
             </div>
           </div>
+
           <div className="mt-8">
             <a
               href="/book-call"
@@ -138,6 +149,7 @@ export default function About() {
           </div>
         </div>
       </main>
+
       <div className="flex">
         <TimelineDemo />
       </div>

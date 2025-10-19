@@ -66,7 +66,7 @@ const GlobalSearch = () => {
               <div></div>
             </TooltipTrigger>
             <TooltipContent
-              className="z-[9999] bg-zinc-800 mt-[80px] mr-[40px] text-zinc-100 px-4 py-2.5 border border-zinc-700 shadow-lg"
+              className="z-[9999] bg-gray-800 mt-[80px] mr-[40px] text-zinc-100 px-4 py-2.5 border border-zinc-700 shadow-lg"
               sideOffset={5}
               side="top"
             >
@@ -79,7 +79,7 @@ const GlobalSearch = () => {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setOpen}>
-        <DialogContent className="p-0 bg-[#1a1b1e] border border-zinc-800 shadow-2xl rounded-xl overflow-hidden">
+        <DialogContent className="p-0 bg-[#1a1b1e] border border-gray-400 shadow-2xl rounded-xl overflow-hidden">
           <div className="flex flex-col">
             <div className="border-b border-zinc-800 px-4 py-3">
               <div className="flex items-center gap-3 relative">

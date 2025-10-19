@@ -60,25 +60,6 @@ export const HoverEffect = ({
               <div className="p-6">
                 <CardTitle>{item.title}</CardTitle>
                 <CardDescription>{item.description}</CardDescription>
-
-                <div className="flex space-x-2">
-                  <ExternalLink
-                    className="text-gray-500 mr-4 inline-block  stroke-1"
-                    size={20}
-                  />
-                  <Code
-                    className="text-gray-500 mr-4 inline-block  stroke-1"
-                    size={20}
-                  />
-                  <Zap
-                    className="text-gray-500 mr-4 inline-block  stroke-1"
-                    size={20}
-                  />
-                  <Settings
-                    className="text-gray-500 mr-4 inline-block  stroke-1"
-                    size={20}
-                  />
-                </div>
                 <div className="flex flex-row space-x-2 mt-4 items-center px-0.5">
                   <button className="text-zinc-500 group-hover:text-cyan-500 text-xs">
                     View More

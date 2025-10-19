@@ -17,7 +17,6 @@ import axios from "axios";
 import { cn } from "@/lib/utils";
 import "highlight.js/styles/atom-one-dark.css";
 import "react-quill/dist/quill.snow.css";
-import { Copy } from "lucide-react";
 import hljs from "highlight.js";
 import { useSearchStore } from "@/hooks/use-search-store";
 import PascalSpinner from "./LoadingSpinner";
@@ -88,7 +87,7 @@ const ArticleLayout: React.FC = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlContent, "text/html");
     const codeBlocks = doc.querySelectorAll("pre");
-    
+
     // Target all <code> elements and change their color and background
     const codeElements = doc.querySelectorAll("code");
     codeElements.forEach((codeElement) => {

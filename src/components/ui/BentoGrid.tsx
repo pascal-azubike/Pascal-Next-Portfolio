@@ -50,30 +50,39 @@ export const BentoGridItem = ({
 }) => {
   // Tech stacks grouped by category
   const techCategories = [
-    "HTML",
-    "CSS",
-    "JavaScript",
+    "HTML and CSS",
     "TypeScript",
     "React.js",
     "Next.js",
-    "Redux toolkit",
+    "Redux Toolkit",
     "React Query",
-    "zustand",
-    "SCSS",
+    "Zustand",
     "Tailwind CSS",
+    "Figma",
+
+    // --- Backend ---
     "Node.js",
-    "Express js",
+    "Express.js",
+    "NestJS",
     "Python",
     "Flask",
-    "GIT",
-    "Ms Word",
-    "Ms Excel",
+    "Django",
+    "C#",
+    ".NET Core",
+    "ASP.NET Web API",
+    "GraphQL",
+    "REST APIs",
+
+    // --- Databases ---
+    "PostgreSQL",
     "MongoDB",
     "MySQL",
-    "PostgreSQL",
-    "NumPy",
-    "Seaborn",
-    "Scikit learn"
+
+    // --- DevOps & Cloud ---
+    "Docker",
+    "Vercel",
+    "CI/CD Pipelines",
+    "Git",
   ];
 
   const [copied, setCopied] = useState(false);
@@ -159,7 +168,7 @@ export const BentoGridItem = ({
                 {techCategories.map((category, index) => (
                   <span
                     key={index}
-                    className="py-1  px-2 text-xs lg:text-sm rounded-lg 
+                    className="py-1  px-2 text-xs lg:text-sm rounded-lg
                       bg-zinc-900 hover:bg-zinc-800 transition-colors whitespace-nowrap"
                   >
                     {category}

@@ -1,55 +1,67 @@
 import React, { useState } from "react";
-import { Apple, Chrome, Film } from "lucide-react";
 
 const companies = [
   {
-    name: "ABC Capital",
-    icon: "/assets/images/abc-logo (1).svg",
-    experience: {
-      title: "Software Engineer",
-      period: "May 2024 - till date",
-      location: "Ado Ekiti, Ekiti",
-      achievements: [
-        "Led 3+ client projects using Next.js, React, and Node.js while mentoring junior developers to full productivity",
-        "Built AI-powered recommendation and semantic search system using OpenAI ada 002 model and MongoDB Vector Search",
-        "Optimized MongoDB queries and implemented indexing to slash API response times from 3s to 200ms",
-        "Built scalable Node.js/MongoDB backend serving 50,000+ daily users with consistent sub-second response times",
-        "Modernized React codebase with hooks and better state management, reducing bundle size by 40% and bugs by 70%"
-      ]
-    }
-  },
-
-  {
-    name: "Freelancer",
-    icon: "data:image/png;base64,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",
+    name: "Neutribes Limited",
+    icon: "/assets/images/neutribes.png",
     experience: {
       title: "Full Stack Developer",
-      period: "Jan 2023 - till date",
-      location: "World Wide",
+      period: "June 2025 – Present",
+      location: "Remote",
       achievements: [
-        "Developed and deployed scalable, full-stack web applications for multiple clients",
-        "Optimized backend services with Node.js, reducing server response times by up to 40%",
-        "Implemented SEO and SSR strategies with Next.js",
-        "Integrated third-party APIs and payment systems seamlessly"
-      ]
-    }
+        "Delivered 3 complete WordPress websites from scratch, including theme setup, plugin configuration, SEO optimization, and security hardening.",
+        "Built full-stack applications using FastAPI, NestJS, and Next.js with clean, maintainable architecture and robust API integrations.",
+        "Implemented Figma designs into pixel-perfect, responsive frontends, improving design consistency and development speed.",
+        "Ensured accessibility and SEO compliance across all client projects, boosting organic reach and usability.",
+      ],
+    },
+  },
+  {
+    name: "Futsolins (Contract)",
+    icon: "/assets/images/futsolins.svg",
+    experience: {
+      title: "Frontend Developer",
+      period: "April 2025 – June 2025",
+      location: "Remote",
+      achievements: [
+        "Built interactive learning interfaces using Next.js and React Query, optimizing client-side data fetching for speed and reliability.",
+        "Collaborated with product and design teams to deliver responsive UI components tailored for students and educators.",
+        "Improved performance, accessibility, and cross-device usability, enhancing user engagement.",
+      ],
+    },
+  },
+  {
+    name: "ABC Capital Limited",
+    icon: "/assets/images/abc-logo (1).svg",
+    experience: {
+      title: "Full Stack Developer (Contract)",
+      period: "May 2024 – March 2025",
+      location: "Ado Ekiti, Ekiti State",
+      achievements: [
+        "Led 3+ client projects using Next.js, React, and Node.js while mentoring junior developers to full productivity.",
+        "Built AI-powered recommendation and semantic search systems using OpenAI Ada 002 and MongoDB Vector Search.",
+        "Optimized MongoDB queries and indexing to reduce API response times from 3s to 200ms.",
+        "Built scalable Node.js/MongoDB backend serving 50,000+ daily users with consistent sub-second performance.",
+        "Modernized React codebase with hooks and better state management, reducing bundle size by 40% and bugs by 70%.",
+      ],
+    },
   },
   {
     name: "CITE UNIPORT",
     icon: "/assets/images/uniport.svg",
     experience: {
-      title: "Software Engineer Intern",
-      period: "Feb 2020 - Nov 2022",
-      location: "Choba, Port-Harcourt",
+      title: "Software Development Intern",
+      period: "Feb 2020 – Nov 2022",
+      location: "Choba, Port Harcourt",
       achievements: [
-        "Led a team of interns to design and launch a campus-wide web app",
-        "Collaborated with senior developers to apply best practices in scalable code architecture",
-        "Coordinated timelines and milestones, ensuring project completion from start to finish",
-        "Developed modular code components, enhancing development efficiency and scalability",
-        "Supervised testing and deployment, delivering a fully functional app used by the university community"
-      ]
-    }
-  }
+        "Led a team of interns to design and launch a campus-wide web application.",
+        "Collaborated with senior developers to apply best practices in scalable architecture.",
+        "Coordinated milestones and timelines, ensuring timely project delivery.",
+        "Developed modular code components, improving efficiency and maintainability.",
+        "Supervised testing and deployment, delivering a production-ready app used by the university community.",
+      ],
+    },
+  },
 ];
 
 const WorkExperience = () => {
@@ -57,7 +69,7 @@ const WorkExperience = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2 mt-10 lg:mt-20 max-w-2xl mx-auto relative">
+      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mt-10 lg:mt-20 max-w-3xl mx-auto relative">
         <div className="w-full md:w-40">
           <div className="absolute -left-6 w-px h-full bg-zinc-800 overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-500 to-purple-500 animate-shooting-star"></div>
@@ -91,19 +103,19 @@ const WorkExperience = () => {
             }
           `}</style>
 
-          <div className="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+          <div className="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto w-fit md:overflow-x-visible pb-4 md:pb-0">
             {companies.map((company, index) => (
               <button
                 key={index}
-                className={`flex-shrink-0 px-3 py-2 text-zinc-400 relative z-20 md:w-full text-left rounded-md flex items-center group 
-                  ${
-                    activeCompany.name === company.name
-                      ? "bg-gradient-to-br from-zinc-700 to-zinc-800"
-                      : "hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800"
+                className={` px-3 py-2 w-full min-w-full text-zinc-400 relative z-20 justify-start text-left rounded-md flex group
+                    ${activeCompany.name === company.name
+                    ? "bg-gradient-to-br  from-zinc-700 to-zinc-800"
+                    : "hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800"
                   } transition-all duration-300 ease-in-out`}
+
                 onClick={() => setActiveCompany(company)}
               >
-                <div className="bg-red-500 p-1 h-7 w-7 flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 group-hover:scale-110 transition-transform duration-300 ease-in-out">
+                <div className="p-1 h-7 w-7 flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 group-hover:scale-110 transition-transform duration-300 ease-in-out">
                   <img
                     src={company.icon}
                     alt={`${company.name} icon`}

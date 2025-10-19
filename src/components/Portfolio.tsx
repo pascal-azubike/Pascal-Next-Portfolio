@@ -11,10 +11,32 @@ export const projects = [
   {
     title: "Street Comfort",
     description:
-      "A modern e-commerce platform for footwear, featuring advanced product management, real-time inventory tracking, and seamless user experience.",
+      "E-commerce platform for footwear with advanced product management.",
     link: "/projects/street-comfort",
     image: "/assets/images/streetcomfortshop.png"
   },
+  {
+    title: "Fouani Store Clone",
+    description: "E-commerce clone with automated scraping, seamless admin interface.",
+    link: "/projects/fouani-store-clone",
+    image: "/assets/images/fuaniClone.png"
+  },
+  {
+    title: "NeuTribes Collective",
+    description:
+      "Digital platform celebrating African voices through publishing, fashion.",
+    link: "/projects/neutribes-collective",
+    image: "/assets/images/neutribesHome.png"
+  },
+  {
+    title: "Elior Industries Nigeria",
+    description:
+      "Website showcasing premium Turkish steel doors, architectural systems.",
+    link: "/projects/elior-industries-ng",
+    image: "/assets/images/eliorIndustry.png"
+  },
+
+
   {
     title: "PlumbreedPuzzle",
     description:

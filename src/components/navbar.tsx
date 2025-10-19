@@ -36,12 +36,11 @@ const Navbar = () => {
             <Link
               key={index}
               href={item.href}
-              className={`font-bold py-2 text-sm px-2 rounded-lg  flex items-center justify-center text-white ${
-                activeCompany.label === item.label &&
+              className={`font-bold py-2 text-sm px-2 rounded-lg  flex items-center justify-center text-white ${activeCompany.label === item.label &&
                 activeCompany.label !== "Azubike Pascal"
-                  ? "bg-gradient-to-br from-zinc-700 to-zinc-800"
-                  : "hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800"
-              } transition-all duration-1000 ease-in-out`}
+                ? "bg-gradient-to-br from-zinc-700 to-zinc-800"
+                : "hover:bg-gradient-to-br hover:from-zinc-700 hover:to-zinc-800"
+                } transition-all duration-1000 ease-in-out`}
             >
               {item.image && (
                 <Image
@@ -57,7 +56,7 @@ const Navbar = () => {
           ))}
         </div>
         <a
-          href="/cv.pdf"
+          href="/pascalResume.pdf"
           target="__blank"
           className="font-medium text-white inline-flex items-center justify-center rounded-[10px] bg-gradient-to-b from-[#464d55] to-[#25292e] text-sm px-4 py-2 transition duration-150 shadow-[0_10px_20px_rgba(0,_0,_0,_.1),0_3px_6px_rgba(0,_0,_0,_.05)] hover:shadow-[rgba(0,_1,_0,_.2)_0_2px_8px] active:outline-none hover:opacity-80"
         >

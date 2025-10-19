@@ -65,14 +65,7 @@ export default function StreetComfortCaseStudy() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="https://github.com/pascal-azubike/street-comfort"
-              target="_blank"
-              className="inline-flex items-center justify-center px-6 py-3 bg-zinc-800/50 text-gray-400 font-semibold rounded-lg hover:bg-zinc-800/70 transition-colors border border-zinc-700"
-            >
-              View on GitHub <ArrowUpRight className="ml-2" size={20} />
-            </Link>
-            <Link
-              href="http://streetcomfortwear.com/"
+              href="http://streetcomfortwear.com"
               target="_blank"
               className="inline-flex items-center justify-center px-6 py-3 bg-[#6B4C35] text-white font-semibold rounded-lg hover:bg-[#815D43] transition-colors shadow-lg shadow-[#6B4C35]/20"
             >
@@ -101,7 +94,7 @@ export default function StreetComfortCaseStudy() {
       {/* Project Details */}
       <section className="py-12 px-4 overflow-hidden">
         <div className="mx-auto max-w-5xl">
-          
+
 
           <div className="space-y-16">
             <div>
