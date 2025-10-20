@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const companies = [
@@ -116,7 +117,7 @@ const WorkExperience = () => {
                 onClick={() => setActiveCompany(company)}
               >
                 <div className="p-1 h-7 w-7 flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 group-hover:scale-110 transition-transform duration-300 ease-in-out">
-                  <img
+                  <Image
                     src={company.icon}
                     alt={`${company.name} icon`}
                     className="h-4 w-4 object-contain"
