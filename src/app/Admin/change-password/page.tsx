@@ -3,22 +3,23 @@ import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+
+import { EyeIcon, EyeOffIcon, LoaderCircleIcon } from "lucide-react";
+import useUploadMutation from "@/hooks/useUploadMutation";
+import { usePathname, useRouter } from "next/navigation";
+import PrimaryHeading from "@/components/primaryHeading";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import {
-  Form,
+  Form, FormField,
   FormControl,
   FormDescription,
-  FormField,
   FormItem,
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
-import { EyeIcon, EyeOffIcon, LoaderCircleIcon } from "lucide-react";
-import useUploadMutation from "@/hooks/useUploadMutation";
-import { usePathname, useRouter } from "next/navigation";
-import PrimaryHeading from "@/components/primaryHeading";
 // Define the schema for validation
 const FormSchema = z.object({
   oldUsername: z.string().min(2, {
